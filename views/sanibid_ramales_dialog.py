@@ -26,13 +26,14 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from .ui.SanibidRamalesDialogBaseUi import Ui_SanibidRamalesDialogBase
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'sanibid_ramales_dialog_base.ui'))
+# FORM_CLASS, _ = uic.loadUiType(os.path.join(
+#     os.path.dirname(__file__), 'ui/sanibid_ramales_dialog_base.ui'))
 
 
-class SanibidRamalesDialog(QtWidgets.QDialog, FORM_CLASS):
+class SanibidRamalesDialog(QtWidgets.QDialog, Ui_SanibidRamalesDialogBase):
     def __init__(self, parent=None):
         """Constructor."""
         super(SanibidRamalesDialog, self).__init__(parent)

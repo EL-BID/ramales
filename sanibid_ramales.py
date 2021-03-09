@@ -26,9 +26,9 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
 # Initialize Qt resources from file resources.py
-from .resources.resources import *
+from .views.ui.resources import *
 # Import the code for the dialog
-from .sanibid_ramales_dialog import SanibidRamalesDialog
+from .views.sanibid_ramales_dialog import SanibidRamalesDialog
 import os.path
 
 
