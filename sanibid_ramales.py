@@ -24,12 +24,15 @@
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
-
+from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
 # Import the code for the dialog
 from .views.sanibid_ramales_dialog import SanibidRamalesDialog
+from .views.layers_panel_dialog import LayersPanelDialog
 import os.path
+from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
+from .helpers.utils import setComboItem
 
 
 class SanibidRamales:
@@ -62,6 +65,9 @@ class SanibidRamales:
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&SanibidRamales')
+
+        #Project Helper
+        self.proj = Project(self.iface)
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -165,7 +171,7 @@ class SanibidRamales:
             icon_path,
             text=self.tr(u'Sanibid Ramales'),
             callback=self.run,
-            parent=self.iface.mainWindow())
+            parent=self.iface.mainWindow())           
 
         # will be set False in run()
         self.first_start = True
@@ -180,21 +186,70 @@ class SanibidRamales:
             self.iface.removeToolBarIcon(action)
 
 
+    def select_nodes_layer(self):
+        name = self.dlg.selectNodesLayerComboBox.currentText()        
+        self.proj.setValue(NODES_LAYER_NAME, name)
+
+    def select_blocks_layer(self):
+        name = self.dlg.selectBlocksLayerComboBox.currentText()        
+        self.proj.setValue(BLOCKS_LAYER_NAME, name)
+
     def run(self):
         """Run method that performs all the real work"""
 
-        # Create the dialog with elements (after translation) and keep reference
+        layers = QgsProject.instance().layerTreeRoot().children()
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
             self.first_start = False
-            self.dlg = SanibidRamalesDialog()
+            self.dlg = LayersPanelDialog()        
+
+        
+        blocks = self.dlg.selectBlocksLayerComboBox
+        nodes = self.dlg.selectNodesLayerComboBox                      
+        blocks.clear()
+        nodes.clear()
+        blocks.addItems([layer.name() for layer in layers])
+        nodes.addItems([layer.name() for layer in layers])
+        
+        setComboItem(blocks, self.proj.getValue(BLOCKS_LAYER_NAME))        
+        setComboItem(nodes, self.proj.getValue(NODES_LAYER_NAME))
+
+        blocks.currentIndexChanged.connect(self.select_blocks_layer)
+        nodes.currentIndexChanged.connect(self.select_nodes_layer)
 
         # show the dialog
         self.dlg.show()
+
         # Run the dialog event loop
         result = self.dlg.exec_()
-        # See if OK was pressed
         if result:
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
-            pass
+            if self.dlg.newLayerRadioButton.isChecked():                
+                newBlocksLayer = self.dlg.blocksLayerNameEdit.text()
+                newNodesLayer = self.dlg.nodesLayerNameEdit.text()
+
+                if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME):
+                    self.proj.showError("ya existe la capa de manzanas")
+                else:
+                    #si existe capa actual desconectar triggers
+                    #crear capa de manzanas
+                    self.proj.createBlocksLayer(newBlocksLayer)
+
+                if newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
+                    self.proj.showError("ya existe la capa de nodos")
+                else:
+                    #si existe capa actual desconectar triggers
+                    #crear capa de nodos
+                    self.proj.createNodesLayer(newNodesLayer)
+                
+            else:
+                pass
+                # oldBlocksName = self.proj.getValue(BLOCKS_LAYER_NAME)
+                # oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
+                
+                # if oldBlocksName:
+                #     self.HandlerInitialized = False                      
+                # nameLayer = self.dlg.cboLayers.currentText()
+                # myLayer = QgsProject.instance().mapLayersByName( nameLayer )[0]
+                # self.saveVariablesSettingsScreen()
+            
+                # self.startHandler()

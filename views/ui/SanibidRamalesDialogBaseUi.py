@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'sanibid_ramales_dialog_base.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_SanibidRamalesDialogBase(object):
     def setupUi(self, SanibidRamalesDialogBase):
@@ -28,3 +26,4 @@ class Ui_SanibidRamalesDialogBase(object):
     def retranslateUi(self, SanibidRamalesDialogBase):
         _translate = QtCore.QCoreApplication.translate
         SanibidRamalesDialogBase.setWindowTitle(_translate("SanibidRamalesDialogBase", "SanibidRamales"))
+
