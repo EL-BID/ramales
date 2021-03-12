@@ -186,14 +186,6 @@ class SanibidRamales:
             self.iface.removeToolBarIcon(action)
 
 
-    def select_nodes_layer(self):
-        name = self.dlg.selectNodesLayerComboBox.currentText()        
-        self.proj.setValue(NODES_LAYER_NAME, name)
-
-    def select_blocks_layer(self):
-        name = self.dlg.selectBlocksLayerComboBox.currentText()        
-        self.proj.setValue(BLOCKS_LAYER_NAME, name)
-
     def run(self):
         """Run method that performs all the real work"""
 
@@ -202,7 +194,6 @@ class SanibidRamales:
         if self.first_start == True:
             self.first_start = False
             self.dlg = LayersPanelDialog()        
-
         
         blocks = self.dlg.selectBlocksLayerComboBox
         nodes = self.dlg.selectNodesLayerComboBox                      
@@ -214,9 +205,6 @@ class SanibidRamales:
         setComboItem(blocks, self.proj.getValue(BLOCKS_LAYER_NAME))        
         setComboItem(nodes, self.proj.getValue(NODES_LAYER_NAME))
 
-        blocks.currentIndexChanged.connect(self.select_blocks_layer)
-        nodes.currentIndexChanged.connect(self.select_nodes_layer)
-
         # show the dialog
         self.dlg.show()
 
@@ -226,26 +214,32 @@ class SanibidRamales:
             if self.dlg.newLayerRadioButton.isChecked():                
                 newBlocksLayer = self.dlg.blocksLayerNameEdit.text()
                 newNodesLayer = self.dlg.nodesLayerNameEdit.text()
-
-                if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME):
-                    self.proj.showError("ya existe la capa de manzanas")
-                else:
-                    #si existe capa actual desconectar triggers
-                    #crear capa de manzanas
-                    self.proj.createBlocksLayer(newBlocksLayer)
-
-                if newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
-                    self.proj.showError("ya existe la capa de nodos")
-                else:
-                    #si existe capa actual desconectar triggers
-                    #crear capa de nodos
-                    self.proj.createNodesLayer(newNodesLayer)
                 
+                if newNodesLayer == "" or newBlocksLayer == "":
+                    self.proj.showError("El nombre de la capa no puede ser vacío")
+                    return False
+
+                if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME) or newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
+                    self.proj.showError("ya existe una capa con el mismo nombre")
+                    return False
+                
+                #Todo si existe capa actual desconectar triggers                    
+                self.proj.createBlocksLayer(newBlocksLayer)
+                self.proj.createNodesLayer(newNodesLayer)
+                self.dlg.blocksLayerNameEdit.setText("")
+                self.dlg.nodesLayerNameEdit.setText("")
+                self.dlg.existingLayerRadioButton.setChecked(True)
+                                                                                        
             else:
-                pass
-                # oldBlocksName = self.proj.getValue(BLOCKS_LAYER_NAME)
-                # oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
                 
+                oldBlocksName = self.proj.getValue(BLOCKS_LAYER_NAME)
+                oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
+                
+                if oldBlocksName != self.dlg.selectBlocksLayerComboBox.currentText():
+                    self.proj.setValue(BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
+
+                if oldNodesName != self.dlg.selectNodesLayerComboBox.currentText():
+                    self.proj.setValue(NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
                 # if oldBlocksName:
                 #     self.HandlerInitialized = False                      
                 # nameLayer = self.dlg.cboLayers.currentText()

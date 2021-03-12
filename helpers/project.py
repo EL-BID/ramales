@@ -36,7 +36,8 @@ class Project:
         self.iface.messageBar().pushMessage("saniBID Ramales:",
                                             msgTxt, level=Qgis.Critical, duration=5)
 
-    def getValue(self, key, defaultValue=None):
+    def getValue(self, key, defaultValue=None): 
+        """ Get project variable value by key """       
         entry = self.proj.readEntry(self.plugin_id, key)[0]
         if entry:
             value = entry
@@ -46,11 +47,13 @@ class Project:
         return value
 
     def setValue(self, key, value):
+        """ Set project key->value variable """
         self.proj.writeEntry(self.plugin_id, key, value)
 
     def getLayer(self, name):
-        layerName = self.getValue(name)
+        """ Get Layer by name """
 
+        layerName = self.getValue(name)
         if layerName:
             lst = self.proj.mapLayersByName(layerName)
             if lst:
@@ -59,6 +62,7 @@ class Project:
         return None
 
     def createLayer(self, name, fields, type, crs, destName=None):
+        """ Creates shapefile layer """
         try:
             path_absolute = self.proj.readPath("./")+"/layers"
             if not os.path.exists(path_absolute):
@@ -83,20 +87,53 @@ class Project:
             return False
 
     def createBlocksLayer(self, name):
+        """ Creates layer to store neighborhood areas """
+
         fields = QgsFields()
-        fields.append(QgsField('ID', QVariant.Int))
-        fields.append(QgsField('Value', QVariant.Double))
-        fields.append(QgsField('Name', QVariant.String))
+        fields = QgsFields()        
+        attributes = (
+            QgsField("date", QVariant.Date),
+            QgsField("name", QVariant.String),
+            QgsField("watershed", QVariant.String),
+            QgsField("min_depth", QVariant.Double),
+            QgsField("min_slope", QVariant.Double),
+            QgsField("revision", QVariant.String),
+            QgsField("rev_date", QVariant.Double),
+            QgsField("length_all", QVariant.Double),
+            QgsField("pvc_pipe", QVariant.Double),            
+            QgsField("comments", QVariant.String)
+        )
+
+        for attribute in attributes:
+            fields.append(attribute)
+
         layer = self.createLayer(name, fields, QgsWkbTypes.Polygon,
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
         if layer:
             self.setValue(BLOCKS_LAYER_NAME, name)
 
     def createNodesLayer(self, name):
-        fields = QgsFields()
-        fields.append(QgsField('ID', QVariant.Int))
-        fields.append(QgsField('Value', QVariant.Double))
-        fields.append(QgsField('Name', QVariant.String))
+        """ Creates layer to store surveys points """
+
+        fields = QgsFields()        
+        attributes = (
+            QgsField("id", QVariant.Int),
+            QgsField("length", QVariant.Double),
+            QgsField("username", QVariant.String),
+            QgsField("geo_loc", QVariant.String),        
+            QgsField("comments", QVariant.String),
+            QgsField("up_box", QVariant.Double),
+            QgsField("down_box", QVariant.Double),
+            QgsField("up_gl", QVariant.Double),
+            QgsField("down_gl", QVariant.Double),
+            QgsField("x", QVariant.Double),
+            QgsField("y", QVariant.Double),
+            QgsField("metadata", QVariant.String)
+        )
+
+        for attribute in attributes:
+            fields.append(attribute)
+        
         layer = self.createLayer(name, fields, QgsWkbTypes.Point,
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
         if layer:

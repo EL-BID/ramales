@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'import_surveys_dialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_SurveysDialog(object):
     def setupUi(self, SurveysDialog):
@@ -41,3 +39,4 @@ class Ui_SurveysDialog(object):
         SurveysDialog.setWindowTitle(_translate("SurveysDialog", "Importar Encuestas"))
         self.label.setText(_translate("SurveysDialog", "Seleccione el proyecto que desea importar:"))
         self.pushButton.setText(_translate("SurveysDialog", "Recargar listado"))
+
