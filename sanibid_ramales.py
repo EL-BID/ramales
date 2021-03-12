@@ -21,6 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+import os.path
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
@@ -30,8 +31,10 @@ from .views.ui.resources import *
 # Import the code for the dialog
 from .views.sanibid_ramales_dialog import SanibidRamalesDialog
 from .views.layers_panel_dialog import LayersPanelDialog
-import os.path
+from .views.LoginView import LoginViewDialog
+from .views.ImportSurveysView import ImportSurveysDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
+from .helpers.api import get_surveys
 from .helpers.utils import setComboItem
 
 
@@ -66,7 +69,7 @@ class SanibidRamales:
         self.actions = []
         self.menu = self.tr(u'&SanibidRamales')
 
-        #Project Helper
+        # Project Helper
         self.proj = Project(self.iface)
 
         # Check if plugin was started the first time in current QGIS session
@@ -88,18 +91,17 @@ class SanibidRamales:
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('SanibidRamales', message)
 
-
     def add_action(
-        self,
-        icon_path,
-        text,
-        callback,
-        enabled_flag=True,
-        add_to_menu=True,
-        add_to_toolbar=True,
-        status_tip=None,
-        whats_this=None,
-        parent=None):
+            self,
+            icon_path,
+            text,
+            callback,
+            enabled_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
+            parent=None):
         """Add a toolbar icon to the toolbar.
 
         :param icon_path: Path to the icon for this action. Can be a resource
@@ -171,11 +173,10 @@ class SanibidRamales:
             icon_path,
             text=self.tr(u'Sanibid Ramales'),
             callback=self.run,
-            parent=self.iface.mainWindow())           
+            parent=self.iface.mainWindow())
 
         # will be set False in run()
         self.first_start = True
-
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -185,6 +186,36 @@ class SanibidRamales:
                 action)
             self.iface.removeToolBarIcon(action)
 
+    def showLogin(self):
+        self.loginDialog.passText.setText("")
+        self.loginDialog.show()
+
+    def showSurveys(self):
+        self.loginDialog.hide()
+        self.surveysDialog.show()     
+
+    def loadSurveys(self):
+        if self.surveysDialog.hasData():
+            self.showSurveys()
+        else:
+            user = self.loginDialog.userText.text()
+            password = self.loginDialog.passText.text()
+            if user != "" and password != "":
+                surveys = get_surveys(user=user, password=password)
+                self.loginDialog.passText.setText("")
+                if surveys:
+                    if surveys['success']:
+                        self.surveysDialog.populateSurveys(surveys['data'])
+                        self.showSurveys()
+                    else:
+                        self.proj.showError("no hay data")
+            else:
+                self.showLogin()
+
+    def reloadSurveyData(self):
+        self.surveysDialog.clearData()
+        self.surveysDialog.hide()
+        self.loadSurveys()
 
     def run(self):
         """Run method that performs all the real work"""
@@ -193,16 +224,21 @@ class SanibidRamales:
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
             self.first_start = False
-            self.dlg = LayersPanelDialog()        
-        
+            self.dlg = LayersPanelDialog()
+            self.dlg.importSurveysButton.clicked.connect(self.loadSurveys)
+            self.loginDialog = LoginViewDialog()
+            self.loginDialog.accepted.connect(self.loadSurveys)
+            self.surveysDialog = ImportSurveysDialog()
+            self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)            
+
         blocks = self.dlg.selectBlocksLayerComboBox
-        nodes = self.dlg.selectNodesLayerComboBox                      
+        nodes = self.dlg.selectNodesLayerComboBox
         blocks.clear()
         nodes.clear()
         blocks.addItems([layer.name() for layer in layers])
         nodes.addItems([layer.name() for layer in layers])
-        
-        setComboItem(blocks, self.proj.getValue(BLOCKS_LAYER_NAME))        
+
+        setComboItem(blocks, self.proj.getValue(BLOCKS_LAYER_NAME))
         setComboItem(nodes, self.proj.getValue(NODES_LAYER_NAME))
 
         # show the dialog
@@ -211,39 +247,38 @@ class SanibidRamales:
         # Run the dialog event loop
         result = self.dlg.exec_()
         if result:
-            if self.dlg.newLayerRadioButton.isChecked():                
+            if self.dlg.newLayerRadioButton.isChecked():
                 newBlocksLayer = self.dlg.blocksLayerNameEdit.text()
                 newNodesLayer = self.dlg.nodesLayerNameEdit.text()
-                
-                if newNodesLayer == "" or newBlocksLayer == "":
-                    self.proj.showError("El nombre de la capa no puede ser vacío")
+
+                if newNodesLayer == "" and newBlocksLayer == "":
+                    self.proj.showError(
+                        "Al menos una capa no tiene que estar vacia")
                     return False
 
                 if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME) or newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
-                    self.proj.showError("ya existe una capa con el mismo nombre")
+                    self.proj.showError(
+                        "ya existe una capa con el mismo nombre")
                     return False
-                
-                #Todo si existe capa actual desconectar triggers                    
+
+                # Todo si existe capa actual desconectar triggers
                 self.proj.createBlocksLayer(newBlocksLayer)
                 self.proj.createNodesLayer(newNodesLayer)
                 self.dlg.blocksLayerNameEdit.setText("")
                 self.dlg.nodesLayerNameEdit.setText("")
                 self.dlg.existingLayerRadioButton.setChecked(True)
-                                                                                        
+
+                self.proj.showMessage("las capas fueron creadas exitosamente")
+
             else:
-                
+
                 oldBlocksName = self.proj.getValue(BLOCKS_LAYER_NAME)
                 oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
-                
+
                 if oldBlocksName != self.dlg.selectBlocksLayerComboBox.currentText():
-                    self.proj.setValue(BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
+                    self.proj.setValue(
+                        BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
 
                 if oldNodesName != self.dlg.selectNodesLayerComboBox.currentText():
-                    self.proj.setValue(NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
-                # if oldBlocksName:
-                #     self.HandlerInitialized = False                      
-                # nameLayer = self.dlg.cboLayers.currentText()
-                # myLayer = QgsProject.instance().mapLayersByName( nameLayer )[0]
-                # self.saveVariablesSettingsScreen()
-            
-                # self.startHandler()
+                    self.proj.setValue(
+                        NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())

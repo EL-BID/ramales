@@ -16,6 +16,27 @@ def is_authorized(user, password):
     return True
 
 
-def get_surveys(project_id, user, password):
-    response = {'success': True, 'data': []}
+def get_surveys(user, password):
+    response = {'success': True, 'data': [
+        {
+            'projectName': 'Colorado',
+            'projectId': 1,
+            'surveys': [
+
+                {'id': 1, 'name': 'Test'},
+                {'id': 2, 'name': 'Test 2'}
+            ]
+
+        },
+         {
+            'projectName': 'Haitien',
+            'projectId': 2,
+            'surveys': [
+
+                {'id': 1, 'name': 'Test Haitien'},
+                {'id': 2, 'name': 'Test Haitien 2'}
+            ]
+
+        }
+    ]}
     return response
