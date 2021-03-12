@@ -11,10 +11,10 @@ class LayersPanelDialog(QtWidgets.QDialog, Ui_LayersPanelDialog):
         super(LayersPanelDialog, self).__init__(parent)        
         self.setupUi(self)
         self.createLayersGroupBox.setVisible(False)
-        self.existingLayerRadioButton.toggled.connect(self.ToogleVisibleGroup)
-        self.newLayerRadioButton.toggled.connect(self.ToogleVisibleGroup)
+        self.existingLayerRadioButton.toggled.connect(self.toogleVisibleGroup)
+        self.newLayerRadioButton.toggled.connect(self.toogleVisibleGroup)
     
-    def ToogleVisibleGroup(self, _b):
+    def toogleVisibleGroup(self, _b):
         if self.existingLayerRadioButton.isChecked():
             self.selectLayersGroupBox.setVisible(True)
             self.createLayersGroupBox.setVisible(False)
