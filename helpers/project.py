@@ -42,8 +42,7 @@ class Project:
         if entry:
             value = entry
         else:
-            value = defaultValue
-        print(key, value)
+            value = defaultValue        
         return value
 
     def setValue(self, key, value):
@@ -138,3 +137,7 @@ class Project:
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
         if layer:
             self.setValue(NODES_LAYER_NAME, name)
+
+
+    def populateNodesLayer(self, data):
+        print(data)

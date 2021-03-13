@@ -34,7 +34,7 @@ from .views.layers_panel_dialog import LayersPanelDialog
 from .views.LoginView import LoginViewDialog
 from .views.ImportSurveysView import ImportSurveysDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
-from .helpers.api import get_surveys
+from .helpers.api import get_surveys, get_survey_data
 from .helpers.utils import setComboItem
 
 
@@ -186,8 +186,7 @@ class SanibidRamales:
                 action)
             self.iface.removeToolBarIcon(action)
 
-    def showLogin(self):
-        self.loginDialog.passText.setText("")
+    def showLogin(self):        
         self.loginDialog.show()
 
     def showSurveys(self):
@@ -195,27 +194,50 @@ class SanibidRamales:
         self.surveysDialog.show()     
 
     def loadSurveys(self):
-        if self.surveysDialog.hasData():
+        if self.surveysDialog.hasRows():
             self.showSurveys()
         else:
             user = self.loginDialog.userText.text()
             password = self.loginDialog.passText.text()
             if user != "" and password != "":
                 surveys = get_surveys(user=user, password=password)
-                self.loginDialog.passText.setText("")
+                #self.loginDialog.passText.setText("")
                 if surveys:
                     if surveys['success']:
                         self.surveysDialog.populateSurveys(surveys['data'])
                         self.showSurveys()
                     else:
                         self.proj.showError("no hay data")
+                        self.loginDialog.passText.setText("")
+                else:
+                    self.loginDialog.passText.setText("")
+                    self.proj.showError("unhandled error: api response error")
             else:
                 self.showLogin()
 
     def reloadSurveyData(self):
-        self.surveysDialog.clearData()
+        self.surveysDialog.clearAll()
         self.surveysDialog.hide()
         self.loadSurveys()
+
+    def getSurveyData(self):        
+        user = self.loginDialog.userText.text()
+        password = self.loginDialog.passText.text()
+        if user != "" and password != "":
+            id = self.surveysDialog.getIdFromRow()
+            if id:
+                data = get_survey_data(id, user, password)
+                if data:
+                    if data['success']:
+                        self.proj.populateNodesLayer(data['data'])
+                        self.proj.showMessage("Data loaded to layer")                        
+                    else:
+                        self.proj.showError("no hay data")
+            else:
+                self.proj.showError("no hay id")                   
+        else:
+            self.proj.showError("Esto no deberia pasar")
+        
 
     def run(self):
         """Run method that performs all the real work"""
@@ -229,7 +251,8 @@ class SanibidRamales:
             self.loginDialog = LoginViewDialog()
             self.loginDialog.accepted.connect(self.loadSurveys)
             self.surveysDialog = ImportSurveysDialog()
-            self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)            
+            self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
+            self.surveysDialog.accepted.connect(self.getSurveyData)         
 
         blocks = self.dlg.selectBlocksLayerComboBox
         nodes = self.dlg.selectNodesLayerComboBox

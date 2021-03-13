@@ -40,3 +40,8 @@ def get_surveys(user, password):
         }
     ]}
     return response
+
+
+def get_survey_data(survey_id, user, password):
+    response = {'success': True, 'data': ['hay data'] }
+    return response

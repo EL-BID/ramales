@@ -33,7 +33,8 @@
       <string>Recargar listado</string>
      </property>
      <property name="icon">
-      <iconset theme="reload"/>
+      <iconset theme="reload">
+       <normaloff>.</normaloff>.</iconset>
      </property>
     </widget>
    </item>
@@ -55,6 +56,11 @@
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>
+     <column>
+      <property name="text">
+       <string>#</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Projecto</string>
