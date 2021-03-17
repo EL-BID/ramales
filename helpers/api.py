@@ -8,6 +8,7 @@ error = pyqtSignal(Exception, basestring)
 progress = pyqtSignal(float)
 info = pyqtSignal(str)
 message = pyqtSignal(str)
+DASHBORAD_URL = "http://localhost:3000"
 
 translate = QCoreApplication.translate
 
@@ -17,31 +18,25 @@ def is_authorized(user, password):
 
 
 def get_surveys(user, password):
-    response = {'success': True, 'data': [
-        {
-            'projectName': 'Colorado',
-            'projectId': 1,
-            'surveys': [
 
-                {'id': 1, 'name': 'Test'},
-                {'id': 2, 'name': 'Test 2'}
-            ]
-
-        },
-         {
-            'projectName': 'Haitien',
-            'projectId': 2,
-            'surveys': [
-
-                {'id': 1, 'name': 'Test Haitien'},
-                {'id': 2, 'name': 'Test Haitien 2'}
-            ]
-
-        }
-    ]}
+    url = '{}/api/projects/surveys?user={}'.format(DASHBORAD_URL, user)
+    headers = {'Content-Type': 'application/json'}
+    try:
+        r = requests.request("GET", url, headers=headers, data={})
+        res = r.json()
+        response = {'success': True, 'data': res['projects']}
+    except:
+        response = {'success': False, 'msg': 'unable to fetch surveys'}
     return response
 
 
 def get_survey_data(survey_id, user, password):
-    response = {'success': True, 'data': ['hay data'] }
+    url = '{}/api/surveys/{}'.format(DASHBORAD_URL, survey_id)
+    headers = {'Content-Type': 'application/json'}
+    try:
+        r = requests.request("GET", url, headers=headers, data={})
+        res = r.json()
+        response = {'success': True, 'data': res['data']}
+    except:
+        response = {'success': False, 'msg': 'unable to fetch survey data'}
     return response

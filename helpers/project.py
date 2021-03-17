@@ -18,6 +18,35 @@ class Project:
         self.plugin_id = PLUGIN_ID
         self.proj = QgsProject.instance()
 
+    def layerAttributes(self):
+        return {
+            NODES_LAYER_NAME:( 
+                ("id", QVariant.Int),
+                ("length", QVariant.Double),
+                ("username", QVariant.String),
+                ("geo_loc", QVariant.String),
+                ("comments", QVariant.String),
+                ("up_box", QVariant.Double),
+                ("down_box", QVariant.Double),
+                ("up_gl", QVariant.Double),
+                ("down_gl", QVariant.Double),
+                ("x", QVariant.Double),
+                ("y", QVariant.Double),
+                ("metadata", QVariant.String)
+            ),
+            BLOCKS_LAYER_NAME:(
+                ("date", QVariant.Date),
+                ("name", QVariant.String),
+                ("watershed", QVariant.String),
+                ("min_depth", QVariant.Double),
+                ("min_slope", QVariant.Double),
+                ("revision", QVariant.String),
+                ("rev_date", QVariant.Double),
+                ("length_all", QVariant.Double),
+                ("pvc_pipe", QVariant.Double),
+                ("comments", QVariant.String)
+            )}
+
     def tr(self, message, default=None):
         """Get the translation for a string using Qt translation API."""
         tranlated = QCoreApplication.translate('SanibidRamales', message)
@@ -36,13 +65,13 @@ class Project:
         self.iface.messageBar().pushMessage("saniBID Ramales:",
                                             msgTxt, level=Qgis.Critical, duration=5)
 
-    def getValue(self, key, defaultValue=None): 
-        """ Get project variable value by key """       
+    def getValue(self, key, defaultValue=None):
+        """ Get project variable value by key """
         entry = self.proj.readEntry(self.plugin_id, key)[0]
         if entry:
             value = entry
         else:
-            value = defaultValue        
+            value = defaultValue
         return value
 
     def setValue(self, key, value):
@@ -89,20 +118,8 @@ class Project:
         """ Creates layer to store neighborhood areas """
 
         fields = QgsFields()
-        fields = QgsFields()        
-        attributes = (
-            QgsField("date", QVariant.Date),
-            QgsField("name", QVariant.String),
-            QgsField("watershed", QVariant.String),
-            QgsField("min_depth", QVariant.Double),
-            QgsField("min_slope", QVariant.Double),
-            QgsField("revision", QVariant.String),
-            QgsField("rev_date", QVariant.Double),
-            QgsField("length_all", QVariant.Double),
-            QgsField("pvc_pipe", QVariant.Double),            
-            QgsField("comments", QVariant.String)
-        )
-
+        attributes = (QgsField(name, type)
+                      for name, type in self.layerAttributes()[BLOCKS_LAYER_NAME])
         for attribute in attributes:
             fields.append(attribute)
 
@@ -114,30 +131,47 @@ class Project:
     def createNodesLayer(self, name):
         """ Creates layer to store surveys points """
 
-        fields = QgsFields()        
-        attributes = (
-            QgsField("id", QVariant.Int),
-            QgsField("length", QVariant.Double),
-            QgsField("username", QVariant.String),
-            QgsField("geo_loc", QVariant.String),        
-            QgsField("comments", QVariant.String),
-            QgsField("up_box", QVariant.Double),
-            QgsField("down_box", QVariant.Double),
-            QgsField("up_gl", QVariant.Double),
-            QgsField("down_gl", QVariant.Double),
-            QgsField("x", QVariant.Double),
-            QgsField("y", QVariant.Double),
-            QgsField("metadata", QVariant.String)
-        )
+        fields = QgsFields()
+        attributes = (QgsField(name, type)
+                      for name, type in self.layerAttributes()[NODES_LAYER_NAME])
 
         for attribute in attributes:
             fields.append(attribute)
-        
+
         layer = self.createLayer(name, fields, QgsWkbTypes.Point,
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
         if layer:
             self.setValue(NODES_LAYER_NAME, name)
 
-
     def populateNodesLayer(self, data):
-        print(data)
+        layer = self.getLayer(NODES_LAYER_NAME)
+        if layer:
+            feat = QgsFeature(layer.fields())
+            for item in data:
+                feat.setAttribute('id', item['_id'])
+                feat.setAttribute("length", item['length'])
+                feat.setAttribute("username", item['username'])
+                feat.setAttribute("geo_loc", item['geolocation'])
+                feat.setAttribute("comments", item['observations'])
+                feat.setAttribute("up_box", item['upstream_box'])
+                feat.setAttribute("down_box", item['downstream_box'])
+                feat.setAttribute("up_gl", item['upstream_gl'])
+                feat.setAttribute("down_gl", item['downstream_gl'])
+                feat.setAttribute("x", item['_geolocation'][1])
+                feat.setAttribute("y", item['_geolocation'][0])
+                feat.setAttribute("metadata", 'status:{} deviceid:{} version:{}'.format(
+                    item['_status'], item['deviceid'], item['__version__']))
+                # geometry
+                sourceCrs = QgsCoordinateReferenceSystem(4326)
+                destCrs = self.iface.mapCanvas().mapSettings().destinationCrs()
+                tr = QgsCoordinateTransform(
+                    sourceCrs, destCrs, QgsProject.instance())
+                point = QgsPointXY(
+                    float(item['_geolocation'][1]), float(item['_geolocation'][0]))
+                point = tr.transform(point)
+                geom = QgsGeometry.fromPointXY(point)
+                feat.setGeometry(geom)
+
+                (res, outFeats) = layer.dataProvider().addFeatures([feat])
+            layer.updateExtents()
+            layer.commitChanges()
