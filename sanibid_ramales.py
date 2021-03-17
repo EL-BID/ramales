@@ -233,6 +233,7 @@ class SanibidRamales:
                         self.proj.showMessage("Data loaded to layer")                        
                     else:
                         self.proj.showError("no hay data")
+                    self.loginDialog.passText.setText("")
             else:
                 self.proj.showError("no hay id")                   
         else:
