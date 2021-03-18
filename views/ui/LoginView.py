@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'login_dialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_loginQDialog(object):
     def setupUi(self, loginQDialog):
@@ -45,3 +43,4 @@ class Ui_loginQDialog(object):
         loginQDialog.setWindowTitle(_translate("loginQDialog", "Login"))
         self.passLabel.setText(_translate("loginQDialog", "Password"))
         self.userLabel.setText(_translate("loginQDialog", "User"))
+

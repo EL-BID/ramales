@@ -2,29 +2,27 @@
 
 # Form implementation generated from reading ui file 'block_dialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
-class Ui_BlockDialog(object):
-    def setupUi(self, BlockDialog):
-        BlockDialog.setObjectName("BlockDialog")
-        BlockDialog.resize(409, 581)
-        self.formLayout = QtWidgets.QFormLayout(BlockDialog)
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(409, 581)
+        self.formLayout = QtWidgets.QFormLayout(Dialog)
         self.formLayout.setObjectName("formLayout")
-        self.buttonBox = QtWidgets.QDialogButtonBox(BlockDialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.formLayout.setWidget(15, QtWidgets.QFormLayout.SpanningRole, self.buttonBox)
-        self.observationsLabel = QtWidgets.QLabel(BlockDialog)
+        self.observationsLabel = QtWidgets.QLabel(Dialog)
         self.observationsLabel.setObjectName("observationsLabel")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.observationsLabel)
-        self.generalBox = QtWidgets.QGroupBox(BlockDialog)
+        self.generalBox = QtWidgets.QGroupBox(Dialog)
         self.generalBox.setObjectName("generalBox")
         self.formLayout_2 = QtWidgets.QFormLayout(self.generalBox)
         self.formLayout_2.setObjectName("formLayout_2")
@@ -38,9 +36,9 @@ class Ui_BlockDialog(object):
         self.block = QtWidgets.QLabel(self.generalBox)
         self.block.setObjectName("block")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.block)
-        self.lineEdit = QtWidgets.QLineEdit(self.generalBox)
-        self.lineEdit.setObjectName("lineEdit")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.lineEdit)
+        self.blockEdit = QtWidgets.QLineEdit(self.generalBox)
+        self.blockEdit.setObjectName("blockEdit")
+        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.blockEdit)
         self.watershedLabel = QtWidgets.QLabel(self.generalBox)
         self.watershedLabel.setObjectName("watershedLabel")
         self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.watershedLabel)
@@ -60,7 +58,7 @@ class Ui_BlockDialog(object):
         self.minSlope.setObjectName("minSlope")
         self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.minSlope)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.SpanningRole, self.generalBox)
-        self.groupBox_2 = QtWidgets.QGroupBox(BlockDialog)
+        self.groupBox_2 = QtWidgets.QGroupBox(Dialog)
         self.groupBox_2.setObjectName("groupBox_2")
         self.formLayout_3 = QtWidgets.QFormLayout(self.groupBox_2)
         self.formLayout_3.setObjectName("formLayout_3")
@@ -81,6 +79,7 @@ class Ui_BlockDialog(object):
         self.totalLengthLabel.setObjectName("totalLengthLabel")
         self.formLayout_3.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.totalLengthLabel)
         self.totalLength = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.totalLength.setEnabled(False)
         self.totalLength.setObjectName("totalLength")
         self.formLayout_3.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.totalLength)
         self.pvcPipeLabel = QtWidgets.QLabel(self.groupBox_2)
@@ -90,38 +89,39 @@ class Ui_BlockDialog(object):
         self.pvcPipe.setObjectName("pvcPipe")
         self.formLayout_3.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.pvcPipe)
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.SpanningRole, self.groupBox_2)
-        self.observations = QtWidgets.QPlainTextEdit(BlockDialog)
+        self.observations = QtWidgets.QPlainTextEdit(Dialog)
         self.observations.setObjectName("observations")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.SpanningRole, self.observations)
 
-        self.retranslateUi(BlockDialog)
-        self.buttonBox.accepted.connect(BlockDialog.accept)
-        self.buttonBox.rejected.connect(BlockDialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(BlockDialog)
-        BlockDialog.setTabOrder(self.dateEdit, self.lineEdit)
-        BlockDialog.setTabOrder(self.lineEdit, self.watershed)
-        BlockDialog.setTabOrder(self.watershed, self.minDepth)
-        BlockDialog.setTabOrder(self.minDepth, self.minSlope)
-        BlockDialog.setTabOrder(self.minSlope, self.revision)
-        BlockDialog.setTabOrder(self.revision, self.revisionDate)
-        BlockDialog.setTabOrder(self.revisionDate, self.totalLength)
-        BlockDialog.setTabOrder(self.totalLength, self.pvcPipe)
-        BlockDialog.setTabOrder(self.pvcPipe, self.observations)
+        self.retranslateUi(Dialog)
+        self.buttonBox.accepted.connect(Dialog.accept)
+        self.buttonBox.rejected.connect(Dialog.reject)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        Dialog.setTabOrder(self.dateEdit, self.blockEdit)
+        Dialog.setTabOrder(self.blockEdit, self.watershed)
+        Dialog.setTabOrder(self.watershed, self.minDepth)
+        Dialog.setTabOrder(self.minDepth, self.minSlope)
+        Dialog.setTabOrder(self.minSlope, self.revision)
+        Dialog.setTabOrder(self.revision, self.revisionDate)
+        Dialog.setTabOrder(self.revisionDate, self.totalLength)
+        Dialog.setTabOrder(self.totalLength, self.pvcPipe)
+        Dialog.setTabOrder(self.pvcPipe, self.observations)
 
-    def retranslateUi(self, BlockDialog):
+    def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        BlockDialog.setWindowTitle(_translate("BlockDialog", "Manzana"))
-        self.observationsLabel.setText(_translate("BlockDialog", "Observaciones"))
-        self.generalBox.setTitle(_translate("BlockDialog", "Generales"))
-        self.dateLabel.setText(_translate("BlockDialog", "Fecha"))
-        self.dateEdit.setDisplayFormat(_translate("BlockDialog", "dd/MM/yyyy"))
-        self.block.setText(_translate("BlockDialog", "Nº Manzana"))
-        self.watershedLabel.setText(_translate("BlockDialog", "Cuenca"))
-        self.minDepthLabel.setText(_translate("BlockDialog", "Profundidad mínima"))
-        self.minSlopeLabel.setText(_translate("BlockDialog", "Pendiente mínima"))
-        self.groupBox_2.setTitle(_translate("BlockDialog", "Cuantitativos"))
-        self.revisionLabel.setText(_translate("BlockDialog", "Revisión"))
-        self.revisionDateLabel.setText(_translate("BlockDialog", "Fecha Revisión"))
-        self.revisionDate.setDisplayFormat(_translate("BlockDialog", "dd/MM/yyyy"))
-        self.totalLengthLabel.setText(_translate("BlockDialog", "Longitud total"))
-        self.pvcPipeLabel.setText(_translate("BlockDialog", "Tuberia en PVC Ø 150 mm"))
+        Dialog.setWindowTitle(_translate("Dialog", "Manzana"))
+        self.observationsLabel.setText(_translate("Dialog", "Observaciones"))
+        self.generalBox.setTitle(_translate("Dialog", "Generales"))
+        self.dateLabel.setText(_translate("Dialog", "Fecha"))
+        self.dateEdit.setDisplayFormat(_translate("Dialog", "dd/MM/yyyy"))
+        self.block.setText(_translate("Dialog", "Manzana"))
+        self.watershedLabel.setText(_translate("Dialog", "Cuenca"))
+        self.minDepthLabel.setText(_translate("Dialog", "Profundidad mínima"))
+        self.minSlopeLabel.setText(_translate("Dialog", "Pendiente mínima"))
+        self.groupBox_2.setTitle(_translate("Dialog", "Cuantitativos"))
+        self.revisionLabel.setText(_translate("Dialog", "Revisión"))
+        self.revisionDateLabel.setText(_translate("Dialog", "Fecha Revisión"))
+        self.revisionDate.setDisplayFormat(_translate("Dialog", "dd/MM/yyyy"))
+        self.totalLengthLabel.setText(_translate("Dialog", "Longitud total"))
+        self.pvcPipeLabel.setText(_translate("Dialog", "Tuberia en PVC Ø 150 mm"))
+
