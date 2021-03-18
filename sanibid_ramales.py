@@ -24,7 +24,7 @@
 import os.path
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
@@ -73,6 +73,13 @@ class SanibidRamales:
 
         # Project Helper
         self.proj = Project(self.iface)
+
+        #dialogs
+        self.loginDialog = LoginViewDialog()
+        self.loginDialog.accepted.connect(self.loadSurveys)
+        self.surveysDialog = ImportSurveysDialog()
+        self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
+        self.surveysDialog.accepted.connect(self.getSurveyData) 
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -172,8 +179,14 @@ class SanibidRamales:
         icon_path = ':/plugins/sanibid_ramales/icon.png'
         self.add_action(
             icon_path,
-            text=self.tr(u'Sanibid Ramales'),
+            text=self.tr(u'Sanibid Ramales: Ajustes'),
             callback=self.run,
+            parent=self.iface.mainWindow())
+
+        self.add_action(
+            icon_path,
+            text=self.tr(u'Sanibid Ramales: Import'),
+            callback=self.importData,
             parent=self.iface.mainWindow())
 
         # will be set False in run()
@@ -197,6 +210,8 @@ class SanibidRamales:
         self.surveysDialog.show()     
 
     def loadSurveys(self):
+        """ Shows authorized surveys to import """
+
         if self.surveysDialog.hasRows():
             self.showSurveys()
         else:
@@ -210,13 +225,15 @@ class SanibidRamales:
                         self.surveysDialog.populateSurveys(surveys['data'])
                         self.showSurveys()
                     else:
-                        self.proj.showError("no hay data")
+                        self.proj.showError("Not able to get remote data")
                         self.loginDialog.passText.setText("")
                 else:
                     self.loginDialog.passText.setText("")
-                    self.proj.showError("unhandled error: api response error")
+                    self.proj.showError("Unhandled error: api response error")
             else:
                 self.showLogin()
+        
+            
 
     def reloadSurveyData(self):
         self.surveysDialog.clearAll()
@@ -242,6 +259,19 @@ class SanibidRamales:
         else:
             self.proj.showError("Esto no deberia pasar")
         
+    def importData(self):
+        """ Shows confirmation dialog to import data """
+
+        if self.proj.hasNodesLayer():
+            target = self.proj.getValue(NODES_LAYER_NAME)
+            if (QMessageBox.question(self.surveysDialog,
+                "Import data",
+                "This action will insert the points from the survey to the node layer (<b>{}</b>), do you want to continue?".format(target),
+                QMessageBox.Yes|QMessageBox.No) ==QMessageBox.No):                
+                return
+            self.loadSurveys()                 
+        else:
+            self.proj.showError("No existe la capa de NODOS")
 
     def run(self):
         """Run method that performs all the real work"""
@@ -250,13 +280,7 @@ class SanibidRamales:
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
             self.first_start = False
-            self.dlg = LayersPanelDialog()
-            self.dlg.importSurveysButton.clicked.connect(self.loadSurveys)
-            self.loginDialog = LoginViewDialog()
-            self.loginDialog.accepted.connect(self.loadSurveys)
-            self.surveysDialog = ImportSurveysDialog()
-            self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
-            self.surveysDialog.accepted.connect(self.getSurveyData)         
+            self.dlg = LayersPanelDialog()                    
 
         blocks = self.dlg.selectBlocksLayerComboBox
         nodes = self.dlg.selectNodesLayerComboBox

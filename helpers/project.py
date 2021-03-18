@@ -89,6 +89,9 @@ class Project:
 
         return None
 
+    def hasNodesLayer(self):
+        return not self.getLayer(NODES_LAYER_NAME) is None
+
     def createLayer(self, name, fields, type, crs, destName=None):
         """ Creates shapefile layer """
         try:
