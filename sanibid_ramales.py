@@ -186,6 +186,8 @@ class SanibidRamales:
                 self.tr(u'&SanibidRamales'),
                 action)
             self.iface.removeToolBarIcon(action)
+        # remove the toolbar
+        del self.toolbar
 
     def showLogin(self):        
         self.loginDialog.show()
