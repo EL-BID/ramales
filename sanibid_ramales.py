@@ -68,6 +68,8 @@ class SanibidRamales:
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&SanibidRamales')
+        self.toolbar = self.iface.addToolBar(u'&SanibidRamales')
+        self.toolbar.setObjectName(u'&SanibidRamales')
 
         # Project Helper
         self.proj = Project(self.iface)
@@ -153,9 +155,8 @@ class SanibidRamales:
             action.setWhatsThis(whats_this)
 
         if add_to_toolbar:
-            # Adds plugin icon to Plugins toolbar
-            self.iface.addToolBarIcon(action)
-
+            self.toolbar.addAction(action)
+        
         if add_to_menu:
             self.iface.addPluginToMenu(
                 self.menu,
