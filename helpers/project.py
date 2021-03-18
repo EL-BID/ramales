@@ -100,15 +100,15 @@ class Project:
             else:
                 name_to_save = path_absolute + "/" + name + ".shp"
 
-            writter = QgsVectorFileWriter(
-                name_to_save, "UTF-8", fields, type, crs, "ESRI Shapefile")
+            writter = QgsVectorFileWriter(name_to_save, "UTF-8", fields, type, crs, "ESRI Shapefile")
+            del writter
             layer = QgsVectorLayer(name_to_save, name, "ogr")
             dp = layer.dataProvider()
-            layer.startEditing()
+            #layer.startEditing()
             dp.addAttributes(fields)
             layer.commitChanges()
             self.proj.addMapLayer(layer)
-            del writter
+            
             return layer
         except:
             self.showError("not able to create layer")
