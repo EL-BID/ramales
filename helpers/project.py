@@ -32,6 +32,7 @@ class Project:
                 ("down_gl", QVariant.Double),
                 ("x", QVariant.Double),
                 ("y", QVariant.Double),
+                ("pvc_diameter", QVariant.Double),
                 ("metadata", QVariant.String)
             ),
             BLOCKS_LAYER_NAME:(
@@ -43,7 +44,6 @@ class Project:
                 ("revision", QVariant.String),
                 ("rev_date", QVariant.Double),
                 ("length_all", QVariant.Double),
-                ("pvc_pipe", QVariant.Double),
                 ("comments", QVariant.String)
             )}
 
