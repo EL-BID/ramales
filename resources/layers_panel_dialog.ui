@@ -153,22 +153,6 @@
        <string>Capa de Encuesta</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="importSurveysButton">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>130</y>
-        <width>171</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>importar encuestas</string>
-      </property>
-      <property name="icon">
-       <iconset theme="reload"/>
-      </property>
-     </widget>
     </widget>
     <widget class="QGroupBox" name="createLayersGroupBox">
      <property name="enabled">
