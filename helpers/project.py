@@ -18,6 +18,9 @@ class Project:
         self.plugin_id = PLUGIN_ID
         self.proj = QgsProject.instance()
 
+    def instance(self):
+        return self.proj
+
     def layerAttributes(self):
         return {
             NODES_LAYER_NAME:( 
@@ -89,8 +92,17 @@ class Project:
 
         return None
 
+    def getNodesLayer(self):
+        return self.getLayer(NODES_LAYER_NAME)
+
+    def getBlocksLayer(self):
+        return self.getLayer(BLOCKS_LAYER_NAME)
+
     def hasNodesLayer(self):
         return not self.getLayer(NODES_LAYER_NAME) is None
+    
+    def hasBlocksLayer(self):
+        return not self.getLayer(BLOCKS_LAYER_NAME) is None
 
     def createLayer(self, name, fields, type, crs, destName=None):
         """ Creates shapefile layer """
@@ -106,8 +118,7 @@ class Project:
             writter = QgsVectorFileWriter(name_to_save, "UTF-8", fields, type, crs, "ESRI Shapefile")
             del writter
             layer = QgsVectorLayer(name_to_save, name, "ogr")
-            dp = layer.dataProvider()
-            #layer.startEditing()
+            dp = layer.dataProvider()        
             dp.addAttributes(fields)
             layer.commitChanges()
             self.proj.addMapLayer(layer)

@@ -73,7 +73,7 @@ class SanibidRamales:
 
         # Project Helper
         self.proj = Project(self.iface)
-
+        self.proj.instance().layersAdded.connect( self.startEditHandlers )
         #dialogs
         self.loginDialog = LoginViewDialog()
         self.loginDialog.accepted.connect(self.loadSurveys)
@@ -84,6 +84,7 @@ class SanibidRamales:
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
+        self.startEditHandlers()
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -333,3 +334,29 @@ class SanibidRamales:
                 if oldNodesName != self.dlg.selectNodesLayerComboBox.currentText():
                     self.proj.setValue(
                         NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
+
+
+    def disconnectLayerEvents(self):
+        print("desconecto por las dudas si ya existen")
+        pass
+
+    def connectLayerEvents(self):
+        #desconectar por las dudas
+        self.disconnectLayerEvents()
+        #obtengo las capas
+        nodesLayer = self.proj.getNodesLayer()
+        blocksLayer = self.proj.getBlocksLayer()
+        #agrego eventos
+        nodesLayer.layerModified.connect(self.nodes_edit_handler)
+        blocksLayer.layerModified.connect(self.nodes_edit_handler)
+
+    def nodes_edit_handler(self):
+        print("layer modified")
+
+
+    def startEditHandlers(self):
+        if self.proj.hasBlocksLayer() and self.proj.hasNodesLayer():
+            print('existen las capas, se conectan los eventos')
+            self.connectLayerEvents()
+        else:
+            print("no agrego los eventos todavia")
