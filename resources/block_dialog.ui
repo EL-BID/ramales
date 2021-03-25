@@ -104,7 +104,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QDateEdit" name="dateEdit">
+       <widget class="QDateEdit" name="date">
         <property name="displayFormat">
          <string>dd/MM/yyyy</string>
         </property>
@@ -121,7 +121,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="blockEdit"/>
+       <widget class="QLineEdit" name="blockName"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="watershedLabel">
@@ -169,8 +169,8 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>dateEdit</tabstop>
-  <tabstop>blockEdit</tabstop>
+  <tabstop>date</tabstop>
+  <tabstop>blockName</tabstop>
   <tabstop>watershed</tabstop>
   <tabstop>minDepth</tabstop>
   <tabstop>minSlope</tabstop>
