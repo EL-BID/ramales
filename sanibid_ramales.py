@@ -25,7 +25,7 @@ import os.path
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QMessageBox
-from qgis.core import QgsProject
+from qgis.core import QgsProject, QgsEditFormConfig
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
 # Import the code for the dialog
@@ -33,6 +33,7 @@ from .views.sanibid_ramales_dialog import SanibidRamalesDialog
 from .views.layers_panel_dialog import LayersPanelDialog
 from .views.LoginView import LoginViewDialog
 from .views.ImportSurveysView import ImportSurveysDialog
+from .views.BlockView import BlockViewDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
 from .helpers.api import get_surveys, get_survey_data
 from .helpers.utils import setComboItem
@@ -73,17 +74,19 @@ class SanibidRamales:
 
         # Project Helper
         self.proj = Project(self.iface)
-        self.proj.instance().layersAdded.connect( self.startEditHandlers )
+        #self.proj.instance().layersAdded.connect( self.startEditHandlers )
+        
         #dialogs
         self.loginDialog = LoginViewDialog()
         self.loginDialog.accepted.connect(self.loadSurveys)
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
-        self.surveysDialog.accepted.connect(self.getSurveyData) 
+        self.surveysDialog.accepted.connect(self.getSurveyData)
+        self.blockDialog = BlockViewDialog()
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
-        self.first_start = None
+        self.first_start = None        
         self.startEditHandlers()
 
     # noinspection PyMethodMayBeStatic
@@ -312,10 +315,16 @@ class SanibidRamales:
                     self.proj.showError(
                         "ya existe una capa con el mismo nombre")
                     return False
-
-                # Todo si existe capa actual desconectar triggers
+                
+                #disconnect cuurent layers
+                self.disconnectLayerEvents('NODES')
+                self.disconnectLayerEvents('BLOCKS')
+                
+                #create layers
                 self.proj.createBlocksLayer(newBlocksLayer)
                 self.proj.createNodesLayer(newNodesLayer)
+                self.startEditHandlers()
+                #reset dialog
                 self.dlg.blocksLayerNameEdit.setText("")
                 self.dlg.nodesLayerNameEdit.setText("")
                 self.dlg.existingLayerRadioButton.setChecked(True)
@@ -328,35 +337,128 @@ class SanibidRamales:
                 oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
 
                 if oldBlocksName != self.dlg.selectBlocksLayerComboBox.currentText():
-                    self.proj.setValue(
-                        BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
+                    self.proj.setValue(BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
+                    self.connectLayerEvents('BLOCKS')
 
                 if oldNodesName != self.dlg.selectNodesLayerComboBox.currentText():
-                    self.proj.setValue(
-                        NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
-
-
-    def disconnectLayerEvents(self):
-        print("desconecto por las dudas si ya existen")
+                    self.proj.setValue(NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
+                    self.connectLayerEvents('NODES')
+ 
+    
+    def handleNodesFeatureAdded(self, fid):
+        print("added")
+        pass
+    
+    def handleNodesFeaturesDeleted(self, fids):
+        print("deleted")
         pass
 
-    def connectLayerEvents(self):
-        #desconectar por las dudas
-        self.disconnectLayerEvents()
-        #obtengo las capas
-        nodesLayer = self.proj.getNodesLayer()
-        blocksLayer = self.proj.getBlocksLayer()
-        #agrego eventos
-        nodesLayer.layerModified.connect(self.nodes_edit_handler)
-        blocksLayer.layerModified.connect(self.nodes_edit_handler)
+    def handleNodesGeometryChanged(self, fid, geometry):
+        print("geom changed")
+        pass
 
-    def nodes_edit_handler(self):
-        print("layer modified")
+    def handleNodesSelectionChanged(self, selected, deselected, clearAndSelect):
+        print("selected")
+        pass
 
+    def handleBlocksFeatureAdded(self, fid):
+        self.showEditForm(fid)
+        pass
+    
+    def handleBlocksFeaturesDeleted(self, fids):
+        print("deleted")
+        pass
 
-    def startEditHandlers(self):
+    def handleBlocksGeometryChanged(self, fid, geometry):
+        print("geom changed")
+        pass
+
+    def handleBlocksSelectionChanged(self, selected, deselected, clearAndSelect):
+        print("selected")
+        pass
+    
+    def disconnectLayerEvents(self, layerType):
+        """ remove signal handlers """
+
+        if layerType == 'NODES': 
+            layer = self.proj.getNodesLayer()
+            try:
+                print("disconecting NODES")
+                form_config = layer.editFormConfig() 
+                form_config.setSuppress(QgsEditFormConfig.SuppressOff) 
+                layer.setEditFormConfig(form_config)
+                layer.featureAdded.disconnect(self.handleNodesFeatureAdded)
+                layer.featuresDeleted.disconnect(self.handleNodesFeaturesDeleted)
+                layer.geometryChanged.disconnect(self.handleNodesGeometryChanged)
+                layer.selectionChanged.disconnect(self.handleNodesSelectionChanged)                
+            except TypeError:
+                print("unable to disconnect NODES")
+                pass 
+        
+        if layerType == 'BLOCKS':
+            layer = self.proj.getBlocksLayer()
+            try:
+                print("disconecting BLOCKS")
+                form_config = layer.editFormConfig() 
+                form_config.setSuppress(QgsEditFormConfig.SuppressOff) 
+                layer.setEditFormConfig(form_config)
+                layer.featureAdded.disconnect(self.handleBlocksFeatureAdded)
+                layer.featuresDeleted.disconnect(self.handleBlocksFeaturesDeleted)
+                layer.geometryChanged.disconnect(self.handleBlocksGeometryChanged)
+                layer.selectionChanged.disconnect(self.handleBlocksSelectionChanged)                
+            except TypeError:
+                print("unable to disconnect BLOCKS")
+                pass
+
+    def connectLayerEvents(self, layerType):
+        """ Add signal handlers """
+
+        self.disconnectLayerEvents(layerType)
+
+        if layerType == 'NODES': 
+            print("conecting NODES")           
+            layer = self.proj.getNodesLayer()            
+            form_config = layer.editFormConfig() 
+            form_config.setSuppress(QgsEditFormConfig.SuppressOn) 
+            layer.setEditFormConfig(form_config)
+            layer.featureAdded.connect(self.handleNodesFeatureAdded)
+            layer.featuresDeleted.connect(self.handleNodesFeaturesDeleted)
+            layer.geometryChanged.connect(self.handleNodesGeometryChanged)
+            layer.selectionChanged.connect(self.handleNodesSelectionChanged)
+
+        if layerType == 'BLOCKS':
+            print("conecting BLOCKS")
+            layer = self.proj.getBlocksLayer()
+            form_config = layer.editFormConfig() 
+            form_config.setSuppress(QgsEditFormConfig.SuppressOn) 
+            layer.setEditFormConfig(form_config)
+            layer.featureAdded.connect(self.handleBlocksFeatureAdded)
+            layer.featuresDeleted.connect(self.handleBlocksFeaturesDeleted)
+            layer.geometryChanged.connect(self.handleBlocksGeometryChanged)
+            layer.selectionChanged.connect(self.handleBlocksSelectionChanged)
+
+    
+    def showEditForm(self, fid):
+        nodes = []
+        blocks = self.proj.getBlocksLayer()
+        allNodes = self.proj.getNodesLayer().getFeatures()
+        block = blocks.getFeature(fid)
+        for node in allNodes:
+            if block.geometry().intersects(node.geometry()):
+                nodes.append(node)        
+        self.blockDialog.setData(block, nodes)
+
+    def startEditHandlers(self, layers=None):
         if self.proj.hasBlocksLayer() and self.proj.hasNodesLayer():
             print('existen las capas, se conectan los eventos')
-            self.connectLayerEvents()
+            if layers:
+                for layer in layers:
+                    if layer.name() == self.proj.getValue(NODES_LAYER_NAME):
+                        self.connectLayerEvents('NODES')
+                    if layer.name() == self.proj.getValue(BLOCKS_LAYER_NAME):
+                        self.connectLayerEvents('BLOCKS')
+            else:
+                self.connectLayerEvents('NODES')
+                self.connectLayerEvents('BLOCKS')
         else:
-            print("no agrego los eventos todavia")
+            print("no agrego los eventos todavia porque las capas no estan seteadas")

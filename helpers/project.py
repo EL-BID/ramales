@@ -5,7 +5,6 @@ import errno
 from qgis.core import *
 from qgis.PyQt.QtGui import QColor
 from qgis.gui import QgsMessageBar
-from ..views.BlockView import BlockView
 
 
 BLOCKS_LAYER_NAME = 'BLOCKS_LAYER'
@@ -121,23 +120,6 @@ class Project:
             writter = QgsVectorFileWriter(name_to_save, "UTF-8", fields, type, crs, "ESRI Shapefile")
             del writter
             layer = QgsVectorLayer(name_to_save, name, "ogr")
-            if (type == 3):
-                config = layer.editFormConfig()
-                config.setInitCodeSource(1)
-                config.setLayout(1)
-                config.setUiForm(os.path.join(resources_folder, 'block_dialog.ui'))
-
-                # config.setInitFilePath(os.path.join(os.path.dirname(__file__),'..', 'views/Block.py'))
-                config.setInitCodeSource( QgsEditFormConfig.CodeSourceFile )
-                config.setInitFunction('formOpen')
-                # print(os.path.join( os.path.dirname( __file__ ), '..', 'views', 'Block.py' ))
-                vfile = os.path.join( os.path.dirname( __file__ ), '..', 'views', 'Block.py' )
-                config.setInitFilePath(vfile)
-
-                # config.setInitCodeSource(os.path.join(os.path.dirname(__file__),'..', 'views/Block.py'))
-                # config.setInitFunction('formOpen')
-                layer.setEditFormConfig(config)
-
             dp = layer.dataProvider()
             dp.addAttributes(fields)
             layer.commitChanges()
