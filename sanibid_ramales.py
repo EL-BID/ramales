@@ -383,8 +383,8 @@ class SanibidRamales:
         if layerType == 'NODES':
             try:
                 print("disconecting NODES")
+                layer = self.proj.getNodesLayer()
                 if (layer):
-                    layer = self.proj.getNodesLayer()
                     form_config = layer.editFormConfig()
                     form_config.setSuppress(QgsEditFormConfig.SuppressOff)
                     layer.setEditFormConfig(form_config)
