@@ -380,32 +380,34 @@ class SanibidRamales:
     def disconnectLayerEvents(self, layerType):
         """ remove signal handlers """
 
-        if layerType == 'NODES': 
-            layer = self.proj.getNodesLayer()
+        if layerType == 'NODES':
             try:
                 print("disconecting NODES")
-                form_config = layer.editFormConfig() 
-                form_config.setSuppress(QgsEditFormConfig.SuppressOff) 
-                layer.setEditFormConfig(form_config)
-                layer.featureAdded.disconnect(self.handleNodesFeatureAdded)
-                layer.featuresDeleted.disconnect(self.handleNodesFeaturesDeleted)
-                layer.geometryChanged.disconnect(self.handleNodesGeometryChanged)
-                layer.selectionChanged.disconnect(self.handleNodesSelectionChanged)                
+                if (layer):
+                    layer = self.proj.getNodesLayer()
+                    form_config = layer.editFormConfig()
+                    form_config.setSuppress(QgsEditFormConfig.SuppressOff)
+                    layer.setEditFormConfig(form_config)
+                    layer.featureAdded.disconnect(self.handleNodesFeatureAdded)
+                    layer.featuresDeleted.disconnect(self.handleNodesFeaturesDeleted)
+                    layer.geometryChanged.disconnect(self.handleNodesGeometryChanged)
+                    layer.selectionChanged.disconnect(self.handleNodesSelectionChanged)
             except TypeError:
                 print("unable to disconnect NODES")
                 pass 
         
         if layerType == 'BLOCKS':
-            layer = self.proj.getBlocksLayer()
             try:
                 print("disconecting BLOCKS")
-                form_config = layer.editFormConfig() 
-                form_config.setSuppress(QgsEditFormConfig.SuppressOff) 
-                layer.setEditFormConfig(form_config)
-                layer.featureAdded.disconnect(self.handleBlocksFeatureAdded)
-                layer.featuresDeleted.disconnect(self.handleBlocksFeaturesDeleted)
-                layer.geometryChanged.disconnect(self.handleBlocksGeometryChanged)
-                layer.selectionChanged.disconnect(self.handleBlocksSelectionChanged)                
+                layer = self.proj.getBlocksLayer()
+                if (layer):
+                    form_config = layer.editFormConfig()
+                    form_config.setSuppress(QgsEditFormConfig.SuppressOff)
+                    layer.setEditFormConfig(form_config)
+                    layer.featureAdded.disconnect(self.handleBlocksFeatureAdded)
+                    layer.featuresDeleted.disconnect(self.handleBlocksFeaturesDeleted)
+                    layer.geometryChanged.disconnect(self.handleBlocksGeometryChanged)
+                    layer.selectionChanged.disconnect(self.handleBlocksSelectionChanged)
             except TypeError:
                 print("unable to disconnect BLOCKS")
                 pass
