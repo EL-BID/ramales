@@ -82,7 +82,7 @@ class SanibidRamales:
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
         self.surveysDialog.accepted.connect(self.getSurveyData)
-        self.blockDialog = BlockViewDialog()
+        self.blockDialog = BlockViewDialog(self.proj)
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -374,7 +374,9 @@ class SanibidRamales:
         pass
 
     def handleBlocksSelectionChanged(self, selected, deselected, clearAndSelect):
-        print("selected")
+        fid = selected[0] if len(selected) > 0 else -1
+        if fid != -1:
+            self.showEditForm(fid)
         pass
     
     def disconnectLayerEvents(self, layerType):

@@ -47,9 +47,9 @@ class Project:
                 ("minDepth", QVariant.Double),
                 ("minSlope", QVariant.Double),
                 ("revision", QVariant.String),
-                ("revisionDate", QVariant.Double),
-                ("totalLength", QVariant.Double),
-                ("observations", QVariant.String)
+                ("revDate", QVariant.Double),
+                ("length", QVariant.Double),
+                ("comments", QVariant.String)
             )}
 
     def tr(self, message, default=None):
