@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from .ui.BlockDialogUi import Ui_BlockDialog
 
 class BlockViewDialog(QDialog, Ui_BlockDialog):
@@ -12,21 +12,56 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
 
     def setData(self, block, nodes):
         #data mapper
-        self.revision.setText(str(block['revision']))
-        self.blockName.setText(str(block['blockName']))
+        self.revision.setText(self.check(block['revision']))
+        self.blockName.setText(self.check(block['blockName']))
         if block['date']:
             self.date.setDate(block['date'])
         if block['revDate']:
             self.revisionDate.setDate(block['revDate'])
-        self.watershed.setText(str(block['watershed']))
+        self.watershed.setText(self.check(block['watershed']))
         if block['length']:            
             self.totalLength.setValue(float(block['length']))
         if block['minDepth']:
             self.minDepth.setValue(block['minDepth'])
         if block['minSlope']:
             self.minSlope.setValue(block['minSlope'])
-        self.observations.appendPlainText(str(block['comments']))        
+        self.observations.appendPlainText(self.check(block['comments']))        
         self.current_block = block
+
+        nodesCount = len(nodes)
+        self.tableWidget.setColumnCount(18)
+        self.tableWidget.setRowCount(nodesCount)
+        # self.tableWidget.setMinimumWidth(500)
+        # self.tableWidget.setMinimumHeight(500)
+
+        # Set the table headers
+        self.tableWidget.setHorizontalHeaderLabels(
+            ["id", "length", "username","up_box", "down_box", "up_gl", "down_gl",
+            "pvc_diameter", "upBrLevel", "dwnBrLevel", "upDepth", "dwnDepth", "model",
+             "upRuleLvl", "dwnRuleLvl", "critDepth", "slopeSection", "obs"]
+            )
+
+        # Set the table values
+        for i in range(nodesCount):
+            node = nodes[i].attribute     
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(self.check(node('id'))))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(self.check(node('length'))))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(self.check(node('username'))))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(self.check(node('up_box'))))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(self.check(node('down_box'))))
+            self.tableWidget.setItem(i, 5, QTableWidgetItem(self.check(node('up_gl'))))
+            self.tableWidget.setItem(i, 6, QTableWidgetItem(self.check(node('down_gl'))))
+            self.tableWidget.setItem(i, 7, QTableWidgetItem(self.check(node('pvc_diam'))))
+            self.tableWidget.setItem(i, 17, QTableWidgetItem(self.check(node('comments'))))
+
+
+        # Resize of the rows and columns based on the content
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.resizeRowsToContents()
+
+        # Display the table
+        self.tableWidget.show()
+
         self.show()
 
     def save(self):
@@ -47,3 +82,6 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         layer.commitChanges()
         self.proj.showMessage('saved successfully')
         self.hide()
+
+    def check(self, var):
+        return ('' if var == None else str(var))

@@ -37,7 +37,16 @@ class Project:
                 ("down_gl", QVariant.Double),
                 ("x", QVariant.Double),
                 ("y", QVariant.Double),
-                ("pvc_diameter", QVariant.Double),
+                ("pvc_diam", QVariant.Int),
+                ("upBrLevel", QVariant.Double),
+                ("dwnBrLevel", QVariant.Double),
+                ("upDepth", QVariant.Double),
+                ("dwnDepth", QVariant.Double),
+                ("model", QVariant.Double),
+                ("upRuleLvl", QVariant.Double),
+                ("dwnRuleLvl", QVariant.Double),
+                ("critDepth", QVariant.Double),
+                ("slopeSec", QVariant.Double),
                 ("metadata", QVariant.String)
             ),
             BLOCKS_LAYER_NAME:(
@@ -121,7 +130,6 @@ class Project:
             del writter
             layer = QgsVectorLayer(name_to_save, name, "ogr")
             dp = layer.dataProvider()
-            dp.addAttributes(fields)
             layer.commitChanges()
             self.proj.addMapLayer(layer)
             

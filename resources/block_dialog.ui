@@ -14,6 +14,82 @@
    <string>Manzana</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <item row="5" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="generalBox">
+     <property name="title">
+      <string>Generales</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="dateLabel">
+        <property name="text">
+         <string>Fecha</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="date">
+        <property name="displayFormat">
+         <string>dd/MM/yyyy</string>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="block">
+        <property name="text">
+         <string>Manzana</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="blockName"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="watershedLabel">
+        <property name="text">
+         <string>Cuenca</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="watershed"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="minDepthLabel">
+        <property name="text">
+         <string>Profundidad mínima</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="minDepth"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="minSlopeLabel">
+        <property name="text">
+         <string>Pendiente mínima</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="minSlope"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="maximumSize">
@@ -88,83 +164,7 @@
     </widget>
    </item>
    <item row="4" column="0" colspan="2">
-    <widget class="QTableView" name="surveysView"/>
-   </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="generalBox">
-     <property name="title">
-      <string>Generales</string>
-     </property>
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="dateLabel">
-        <property name="text">
-         <string>Fecha</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="date">
-        <property name="displayFormat">
-         <string>dd/MM/yyyy</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="block">
-        <property name="text">
-         <string>Manzana</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="blockName"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="watershedLabel">
-        <property name="text">
-         <string>Cuenca</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="watershed"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="minDepthLabel">
-        <property name="text">
-         <string>Profundidad mínima</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="minDepth"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="minSlopeLabel">
-        <property name="text">
-         <string>Pendiente mínima</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QDoubleSpinBox" name="minSlope"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+    <widget class="QTableWidget" name="tableWidget"/>
    </item>
   </layout>
  </widget>
