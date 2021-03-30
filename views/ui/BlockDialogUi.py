@@ -54,6 +54,7 @@ class Ui_BlockDialog(object):
         self.minSlopeLabel.setObjectName("minSlopeLabel")
         self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.minSlopeLabel)
         self.minSlope = QtWidgets.QDoubleSpinBox(self.generalBox)
+        self.minSlope.setDecimals(3)
         self.minSlope.setObjectName("minSlope")
         self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.minSlope)
         self.gridLayout_2.addWidget(self.generalBox, 0, 0, 1, 1)
