@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from .ui.BlockDialogUi import Ui_BlockDialog
+from qgis.core import *
 
 class BlockViewDialog(QDialog, Ui_BlockDialog):
 
@@ -77,44 +78,40 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
     def save(self):
         #blocks
         blocks = self.proj.getBlocksLayer()        
-        if not blocks.isEditable():
-                blocks.startEditing()
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('revision'), self.revision.text())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('blockName'), self.blockName.text())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('date'), self.date.date())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('revDate'), self.revisionDate.date())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('watershed'), self.watershed.text())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('length'), self.totalLength.value())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('minDepth'), self.minDepth.value())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('minSlope'), self.minSlope.value())
-        blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('comments'), self.observations.toPlainText())
-        blocks.commitChanges()
-        
+        with edit(blocks):
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('revision'), self.revision.text())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('blockName'), self.blockName.text())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('date'), self.date.date())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('revDate'), self.revisionDate.date())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('watershed'), self.watershed.text())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('length'), self.totalLength.value())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('minDepth'), self.minDepth.value())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('minSlope'), self.minSlope.value())
+            blocks.changeAttributeValue( self.current_block.id(), blocks.fields().lookupField('comments'), self.observations.toPlainText())
+                
         #nodes
         nodes = self.proj.getNodesLayer()
-        if not nodes.isEditable():
-            nodes.startEditing()
-        row = 0
-        for node in self.current_nodes:
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('up_box'), self.tableWidget.item(row,0).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('down_box'), self.tableWidget.item(row,1).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('length'), self.tableWidget.item(row,2).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('up_gl'), self.tableWidget.item(row,3).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('down_gl'), self.tableWidget.item(row,4).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upBrLevel'), self.tableWidget.item(row,5).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnBrLevel'), self.tableWidget.item(row,6).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upDepth'), self.tableWidget.item(row,7).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnDepth'), self.tableWidget.item(row,8).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('model'), self.tableWidget.item(row,9).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upRuleLvl'), self.tableWidget.item(row,10).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnRuleLvl'), self.tableWidget.item(row,11).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('critDepth'), self.tableWidget.item(row,12).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('slopeSec'), self.tableWidget.item(row,13).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('pvc_diam'), self.tableWidget.item(row,14) )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('comments'), self.tableWidget.item(row,15).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('username'), self.tableWidget.item(row,16).text() )
-            row += 1
-        nodes.commitChanges()
+        with edit(nodes):
+            row = 0
+            for node in self.current_nodes:
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('up_box'), self.tableWidget.item(row,0).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('down_box'), self.tableWidget.item(row,1).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('length'), self.tableWidget.item(row,2).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('up_gl'), self.tableWidget.item(row,3).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('down_gl'), self.tableWidget.item(row,4).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upBrLevel'), self.tableWidget.item(row,5).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnBrLevel'), self.tableWidget.item(row,6).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upDepth'), self.tableWidget.item(row,7).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnDepth'), self.tableWidget.item(row,8).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('model'), self.tableWidget.item(row,9).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('upRuleLvl'), self.tableWidget.item(row,10).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnRuleLvl'), self.tableWidget.item(row,11).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('critDepth'), self.tableWidget.item(row,12).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('slopeSec'), self.tableWidget.item(row,13).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('pvc_diam'), self.tableWidget.item(row,14) )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('comments'), self.tableWidget.item(row,15).text() )
+                nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('username'), self.tableWidget.item(row,16).text() )
+                row += 1       
         
         self.proj.showMessage('saved successfully')
         self.hide()

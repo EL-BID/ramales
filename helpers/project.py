@@ -169,7 +169,11 @@ class Project:
 
     def populateNodesLayer(self, data):
         layer = self.getLayer(NODES_LAYER_NAME)
-        if layer:
+        with edit(layer):
+            #clear features
+            for feat in layer.getFeatures():
+                layer.deleteFeature(feat.id())
+            
             feat = QgsFeature(layer.fields())
             for item in data:
                 feat.setAttribute('id', item['_id'])
@@ -196,6 +200,4 @@ class Project:
                 geom = QgsGeometry.fromPointXY(point)
                 feat.setGeometry(geom)
 
-                (res, outFeats) = layer.dataProvider().addFeatures([feat])
-            layer.updateExtents()
-            layer.commitChanges()
+                (res, outFeats) = layer.dataProvider().addFeatures([feat])            
