@@ -73,8 +73,7 @@ class SanibidRamales:
         self.toolbar.setObjectName(u'&SanibidRamales')
 
         # Project Helper
-        self.proj = Project(self.iface)
-        #self.proj.instance().layersAdded.connect( self.startEditHandlers )
+        self.proj = Project(self.iface)        
         
         #dialogs
         self.loginDialog = LoginViewDialog()
@@ -86,8 +85,9 @@ class SanibidRamales:
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
-        self.first_start = None        
-        self.startEditHandlers()
+        self.first_start = None
+        self.proj.instance().layersAdded.connect( self.startEditHandlers )     
+        #self.startEditHandlers()
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -279,7 +279,7 @@ class SanibidRamales:
 
     def run(self):
         """Run method that performs all the real work"""
-
+        self.proj.showMessage("RUN")
         layers = QgsProject.instance().layerTreeRoot().children()
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
@@ -316,7 +316,7 @@ class SanibidRamales:
                         "ya existe una capa con el mismo nombre")
                     return False
                 
-                #disconnect cuurent layers
+                #disconnect current layers
                 self.disconnectLayerEvents('NODES')
                 self.disconnectLayerEvents('BLOCKS')
                 
@@ -417,7 +417,7 @@ class SanibidRamales:
     def connectLayerEvents(self, layerType):
         """ Add signal handlers """
 
-        self.disconnectLayerEvents(layerType)
+        #self.disconnectLayerEvents(layerType)
 
         if layerType == 'NODES': 
             print("conecting NODES")           
@@ -453,16 +453,21 @@ class SanibidRamales:
         self.blockDialog.setData(block, nodes)
 
     def startEditHandlers(self, layers=None):
-        if self.proj.hasBlocksLayer() and self.proj.hasNodesLayer():
-            print('existen las capas, se conectan los eventos')
-            if layers:
-                for layer in layers:
-                    if layer.name() == self.proj.getValue(NODES_LAYER_NAME):
-                        self.connectLayerEvents('NODES')
-                    if layer.name() == self.proj.getValue(BLOCKS_LAYER_NAME):
-                        self.connectLayerEvents('BLOCKS')
-            else:
-                self.connectLayerEvents('NODES')
-                self.connectLayerEvents('BLOCKS')
-        else:
-            print("no agrego los eventos todavia porque las capas no estan seteadas")
+        
+        #if we are adding new layer
+        if layers:             
+            for layer in layers:
+                if layer.name() == self.proj.getValue(NODES_LAYER_NAME):
+                    self.disconnectLayerEvents('NODES')
+                    self.connectLayerEvents('NODES')
+                if layer.name() == self.proj.getValue(BLOCKS_LAYER_NAME):
+                    self.disconnectLayerEvents('BLOCKS')
+                    self.connectLayerEvents('BLOCKS')
+            return True
+        
+        if self.proj.hasBlocksLayer():                         
+            self.disconnectLayerEvents('BLOCKS')
+            self.connectLayerEvents('BLOCKS')
+        if self.proj.hasNodesLayer():
+            self.disconnectLayerEvents('NODES')
+            self.connectLayerEvents('NODES')                    
