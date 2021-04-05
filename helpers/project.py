@@ -5,7 +5,7 @@ import errno
 from qgis.core import *
 from qgis.PyQt.QtGui import QColor
 from qgis.gui import QgsMessageBar
-
+from ..views.BlockView import BlockViewDialog
 
 BLOCKS_LAYER_NAME = 'BLOCKS_LAYER'
 NODES_LAYER_NAME = 'NODES_LAYER'
@@ -19,6 +19,7 @@ class Project:
         self.iface = iface
         self.plugin_id = PLUGIN_ID
         self.proj = QgsProject.instance()
+        self.blockDialog = BlockViewDialog(self)
 
     def instance(self):
         return self.proj
@@ -88,32 +89,100 @@ class Project:
             value = defaultValue
         return value
 
-    def setValue(self, key, value):
-        """ Set project key->value variable """
-        self.proj.writeEntry(self.plugin_id, key, value)
-
     def getLayer(self, name):
         """ Get Layer by name """
-
         layerName = self.getValue(name)
         if layerName:
             lst = self.proj.mapLayersByName(layerName)
             if lst:
                 return lst[0]
-
         return None
 
+
     def getNodesLayer(self):
+        """ Returns current NODES layer """
         return self.getLayer(NODES_LAYER_NAME)
 
+
     def getBlocksLayer(self):
+        """ Returns current BLOCKS layer """
         return self.getLayer(BLOCKS_LAYER_NAME)
 
+
+    def setValue(self, key, value):
+        """ Set project key->value variable """
+        self.proj.writeEntry(self.plugin_id, key, value)
+    
+
+    def setBlocksLayer(self, layerName):
+        """ Sets BLOCKS layer """
+        self.disconnectSignals(BLOCKS_LAYER_NAME)
+        self.setValue(BLOCKS_LAYER_NAME, layerName)        
+        self.connectBlockSignals()
+
+
+    def setNodesLayer(self, layerName):
+        """ Sets NODES layer """
+        #self.disconnectSignals(NODES_LAYER_NAME)
+        self.setValue(NODES_LAYER_NAME, layerName)        
+        #self.connectNodesSignals()
+
+
+    def connectBlockSignals(self):        
+        layer = self.getBlocksLayer()
+        if layer:
+            print("connecting BLOCKS signals to layer: {}".format(layer.name()))
+            form_config = layer.editFormConfig() 
+            form_config.setSuppress(QgsEditFormConfig.SuppressOn) 
+            layer.setEditFormConfig(form_config)
+            layer.featureAdded.connect(self.handleBlocksFeatureAdded)            
+            layer.selectionChanged.connect(self.handleBlocksSelectionChanged)
+
+
+    def connectNodesSignals(self):
+        """ Adds signas callbacks to layers """       
+        layer = self.getNodesLayer()
+        if layer:
+            print("connecting NODES signals to layer: {}".format(layer.name()))
+            form_config = layer.editFormConfig() 
+            form_config.setSuppress(QgsEditFormConfig.SuppressOn) 
+            layer.setEditFormConfig(form_config)
+            layer.featureAdded.connect(self.handleNodesFeatureAdded)            
+            layer.selectionChanged.connect(self.handleNodesSelectionChanged)
+
+
+    def disconnectSignals(self, layerName):
+        """ Disconnect layer signals """       
+        layer = self.getLayer(layerName)
+        if (layer):
+            print("removing signals from layer: {}".format(layer.name()))
+            try:
+                form_config = layer.editFormConfig()
+                form_config.setSuppress(QgsEditFormConfig.SuppressOff)
+                layer.setEditFormConfig(form_config)
+            except TypeError:
+                print("unable to SuppressOff")
+            
+            try:                 
+                layer.featureAdded.disconnect(self.handleBlocksFeatureAdded)
+            except TypeError:
+                print("unable to disconnect blocks featureAdded")
+                
+            try:
+                layer.selectionChanged.disconnect(self.handleBlocksSelectionChanged)
+            except TypeError:
+                print("unable to disconnect selectionChanged")
+
+
     def hasNodesLayer(self):
+        """ Returns True/False if NODES layer is setted """
         return not self.getLayer(NODES_LAYER_NAME) is None
     
+
     def hasBlocksLayer(self):
+        """ Returns True/False if BLOCKS layer is setted """
         return not self.getLayer(BLOCKS_LAYER_NAME) is None
+
 
     def createLayer(self, name, fields, type, crs, destName=None):
         """ Creates shapefile layer """
@@ -138,6 +207,7 @@ class Project:
             self.showError("not able to create layer")
             return False
 
+
     def createBlocksLayer(self, name):
         """ Creates layer to store neighborhood areas """
 
@@ -149,8 +219,7 @@ class Project:
 
         layer = self.createLayer(name, fields, QgsWkbTypes.Polygon,
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
-        if layer:
-            self.setValue(BLOCKS_LAYER_NAME, name)
+        return layer
 
     def createNodesLayer(self, name):
         """ Creates layer to store surveys points """
@@ -164,10 +233,12 @@ class Project:
 
         layer = self.createLayer(name, fields, QgsWkbTypes.Point,
                                  self.iface.mapCanvas().mapSettings().destinationCrs())
-        if layer:
-            self.setValue(NODES_LAYER_NAME, name)
+        return layer
+
 
     def populateNodesLayer(self, data):
+        """ Truncates and insert points into NODES layer """
+
         layer = self.getLayer(NODES_LAYER_NAME)
         with edit(layer):
             #clear features
@@ -201,3 +272,29 @@ class Project:
                 feat.setGeometry(geom)
 
                 (res, outFeats) = layer.dataProvider().addFeatures([feat])            
+   
+
+    def handleBlocksFeatureAdded(self, fid):
+        """ BLOCKS layer FeatureAdded callback """
+        self.showEditForm(fid)
+        pass
+    
+    
+    def handleBlocksSelectionChanged(self, selected, deselected, clearAndSelect):
+         """ BLOCKS layer SelectionChanged callback """
+        fid = selected[0] if len(selected) > 0 else -1
+        if fid != -1:
+            self.showEditForm(fid)
+        pass                          
+
+    
+    def showEditForm(self, fid):
+        """ Shows Blocks Dialog for selected layer feature """
+        nodes = []
+        blocks = self.getBlocksLayer()
+        allNodes = self.getNodesLayer().getFeatures()
+        block = blocks.getFeature(fid)
+        for node in allNodes:
+            if block.geometry().intersects(node.geometry()):
+                nodes.append(node)        
+        self.blockDialog.setData(block, nodes)
