@@ -279,9 +279,9 @@ class Project:
         self.showEditForm(fid)
         pass
     
-    
+
     def handleBlocksSelectionChanged(self, selected, deselected, clearAndSelect):
-         """ BLOCKS layer SelectionChanged callback """
+        """ BLOCKS layer SelectionChanged callback """
         fid = selected[0] if len(selected) > 0 else -1
         if fid != -1:
             self.showEditForm(fid)
