@@ -15,6 +15,8 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.minSlope.valueChanged.connect(self.slopeMinChanged)
 
     def setData(self, block, nodes):
+        self.minDepth.blockSignals(True)
+        self.minSlope.blockSignals(True)
         self.tableWidget.blockSignals(True)
         self.revision.setText(self.check(block['revision']))
         self.blockName.setText(self.check(block['blockName']))
@@ -34,7 +36,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.current_nodes = nodes
 
         nodesCount = len(nodes)
-        self.tableWidget.setColumnCount(17)
+        self.tableWidget.setColumnCount(16)
         self.tableWidget.setRowCount(nodesCount)
 
         # Set the table headers
@@ -42,7 +44,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             ["up_box", "down_box","length", "up_gl", "down_gl",
              "upBrLevel", "dwnBrLevel", "upDepth", "dwnDepth", "model",
              "upRuleLvl", "dwnRuleLvl", "critDepth", "slopeSection",
-             "pvc_diameter", "obs", "username"]
+             "pvc_diameter", "obs"]
             )
 
         # Set the table values
@@ -67,7 +69,6 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             self.tableWidget.setItem(i, 13, QTableWidgetItem(self.check(node('slopeSec'))))
             self.tableWidget.setItem(i, 14, QTableWidgetItem(self.check(node('pvc_diam'))))
             self.tableWidget.setItem(i, 15, QTableWidgetItem(self.check(node('comments'))))
-            self.tableWidget.setItem(i, 16, QTableWidgetItem(self.check(node('username'))))
 
         self.totalLength.setValue(float(totalLength))
         # Resize of the rows and columns based on the content
@@ -76,6 +77,8 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         # Display the table
         self.tableWidget.show()
         self.tableWidget.blockSignals(False)
+        self.minDepth.blockSignals(False)
+        self.minSlope.blockSignals(False)
         self.show()
 
     def save(self):
@@ -111,9 +114,8 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('dwnRuleLvl'), self.tableWidget.item(row,11).text() )
             nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('critDepth'), self.tableWidget.item(row,12).text() )
             nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('slopeSec'), self.tableWidget.item(row,13).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('pvc_diam'), self.tableWidget.item(row,14) )
+            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('pvc_diam'), self.tableWidget.item(row,14).text() )
             nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('comments'), self.tableWidget.item(row,15).text() )
-            nodes.changeAttributeValue(node.id(), nodes.fields().lookupField('username'), self.tableWidget.item(row,16).text() )
             row += 1
         blocks.commitChanges()
         nodes.commitChanges()
@@ -131,12 +133,11 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.calculate()
     
     def onItemChanged(self, index):
+        val = self.tableWidget.item(index.row(), index.column()).text()
+        val = val if val != '' else None
         if (index.column() == 12):
-            val = self.tableWidget.item(index.row(), index.column()).text()
             self.tableWidget.blockSignals(True)
-            val = val if val != '' else None
             self.tableWidget.setItem(index.row(), 7, QTableWidgetItem(val))
-            self.current_nodes[index.row()]['critDepth'] = val
             self.tableWidget.blockSignals(False)
             self.calculate()
 
@@ -144,18 +145,14 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.tableWidget.blockSignals(True)
         minDepth = self.minDepth.value()
         minSlope = self.minSlope.value()
-        nodesCount = len(self.current_nodes)
-        for i in range(nodesCount):
-            node = self.current_nodes[i].attribute
-            nodePrev = self.current_nodes[i-1].attribute
-            length = float(node('length'))
-            up_gl = float(node('up_gl'))
-            down_box = float(node('down_box'))
-            down_gl = float(node('down_gl'))
-            critDepth = float(node('critDepth')) if node('critDepth') != None else 0
-            dwnDepthPrev = 0 if i == 0 else nodePrev('dwnDepth')
-            dwnBrLevelPrev = 0 if i == 0 else nodePrev('dwnBrLevel')
-            self.tableWidget.setRowCount(nodesCount)
+        for i in range(self.tableWidget.rowCount()):
+            length = float(self.tableWidget.item(i, 2).text())
+            up_gl = float(self.tableWidget.item(i, 3).text())
+            down_box = float(self.tableWidget.item(i, 1).text())
+            down_gl = float(self.tableWidget.item(i, 4).text())
+            critDepth = float(self.tableWidget.item(i, 12).text()) if self.tableWidget.item(i, 12).text() != None and self.tableWidget.item(i, 12).text() != '' else 0
+            dwnDepthPrev = 0 if i == 0 else float(self.tableWidget.item((i-1), 8).text())
+            dwnBrLevelPrev = 0 if i == 0 else float(self.tableWidget.item((i-1), 6).text())
             if (i == 0):
                 upDepth = (minDepth) if down_box != 0 else ''  #H21 i==0
                 upBrLevel = (up_gl - upDepth) if down_box != 0 else '' #tocheck ''  #F21 i==0
@@ -165,29 +162,20 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
 
             dwnBrLevel = "" if down_box == 0 else (0 if length == 0 else ((down_gl - minDepth) if (upBrLevel - (down_gl - minDepth))/length >= minSlope else round((upBrLevel - length * minSlope - 0.0005), 3))) #G21
             dwnDepth = (down_gl - dwnBrLevel) if down_box != 0 else ''#I21
-            model = 2 #J21 = 2 pero pueden modificar.
-            
+            model = 2 #J21 = 2 -> setear en el setdata
+
             upRuleLvl = "" if down_box == 0 else ("" if length == 0 else (model + upBrLevel )) #K21
-            dwnRuleLvl = "" if down_box == 0 else ("" if length == 0 else (model + dwnBrLevel)) #L21 
-            #M21 critDepth puede modificarse y hace otro evento
+            dwnRuleLvl = "" if down_box == 0 else ("" if length == 0 else (model + dwnBrLevel)) #L21
             slopeSection = "" if down_box == 0 else round((upBrLevel - dwnBrLevel) * 100, 1) # N21 slopeSection
-            
+
             self.tableWidget.setItem(i, 5, QTableWidgetItem(str(round(upBrLevel, 3))))
-            self.current_nodes[i]['upBrLevel'] = upBrLevel
             self.tableWidget.setItem(i, 6, QTableWidgetItem(str(round(dwnBrLevel, 3))))
-            self.current_nodes[i]['dwnBrLevel'] = dwnBrLevel
             self.tableWidget.setItem(i, 7, QTableWidgetItem(str(round(upDepth, 2))))
-            self.current_nodes[i]['upDepth'] = upDepth
             self.tableWidget.setItem(i, 8, QTableWidgetItem(str(round(dwnDepth, 2))))
-            self.current_nodes[i]['dwnDepth'] = dwnDepth
             self.tableWidget.setItem(i, 9, QTableWidgetItem(str(model))) #tocheck
-            self.current_nodes[i]['model'] = model
             self.tableWidget.setItem(i, 10, QTableWidgetItem(str(round(upRuleLvl, 3))))
-            self.current_nodes[i]['upRuleLvl'] = upRuleLvl
             self.tableWidget.setItem(i, 11, QTableWidgetItem(str(round(dwnRuleLvl, 3))))
-            self.current_nodes[i]['dwnRuleLvl'] = dwnRuleLvl
             self.tableWidget.setItem(i, 12, QTableWidgetItem(str(round(critDepth, 3))))
-            self.current_nodes[i]['critDepth'] = critDepth
             self.tableWidget.setItem(i, 13, QTableWidgetItem(str(slopeSection)))
-            self.current_nodes[i]['slopeSec'] = slopeSection
+
         self.tableWidget.blockSignals(False)
