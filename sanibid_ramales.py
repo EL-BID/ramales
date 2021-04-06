@@ -72,18 +72,19 @@ class SanibidRamales:
         self.toolbar.setObjectName(u'&SanibidRamales')
 
         # Project Helper
-        self.proj = Project(self.iface)
-
+        self.proj = Project(self.iface)        
+        
         #dialogs
         self.loginDialog = LoginViewDialog()
         self.loginDialog.accepted.connect(self.loadSurveys)
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
-        self.surveysDialog.accepted.connect(self.getSurveyData) 
+        self.surveysDialog.accepted.connect(self.getSurveyData)        
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
+        self.proj.instance().layersAdded.connect( self.startEditHandlers )            
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -275,7 +276,6 @@ class SanibidRamales:
 
     def run(self):
         """Run method that performs all the real work"""
-
         layers = QgsProject.instance().layerTreeRoot().children()
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start == True:
@@ -310,11 +310,15 @@ class SanibidRamales:
                 if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME) or newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
                     self.proj.showError(
                         "ya existe una capa con el mismo nombre")
-                    return False
-
-                # Todo si existe capa actual desconectar triggers
+                    return False        
+                
+                #create layers
                 self.proj.createBlocksLayer(newBlocksLayer)
                 self.proj.createNodesLayer(newNodesLayer)
+                #assign layers
+                self.proj.setBlocksLayer(newBlocksLayer)
+                self.proj.setNodesLayer(newNodesLayer)
+                #reset dialog
                 self.dlg.blocksLayerNameEdit.setText("")
                 self.dlg.nodesLayerNameEdit.setText("")
                 self.dlg.existingLayerRadioButton.setChecked(True)
@@ -325,11 +329,25 @@ class SanibidRamales:
 
                 oldBlocksName = self.proj.getValue(BLOCKS_LAYER_NAME)
                 oldNodesName = self.proj.getValue(NODES_LAYER_NAME)
+                newBlocksName = self.dlg.selectBlocksLayerComboBox.currentText()
+                newNodesName = self.dlg.selectNodesLayerComboBox.currentText()
 
-                if oldBlocksName != self.dlg.selectBlocksLayerComboBox.currentText():
-                    self.proj.setValue(
-                        BLOCKS_LAYER_NAME, self.dlg.selectBlocksLayerComboBox.currentText())
-
-                if oldNodesName != self.dlg.selectNodesLayerComboBox.currentText():
-                    self.proj.setValue(
-                        NODES_LAYER_NAME, self.dlg.selectNodesLayerComboBox.currentText())
+                if oldBlocksName != newBlocksName:
+                    self.proj.setBlocksLayer(newBlocksName)
+                    
+                if oldNodesName != newNodesName:
+                    self.proj.setNodesLayer(newNodesName)
+                    
+ 
+    def startEditHandlers(self, layers=None):
+        
+        #if we are adding new layer to project
+        if layers:             
+            for layer in layers:
+                if layer.name() == self.proj.getValue(NODES_LAYER_NAME):
+                    self.proj.setNodesLayer(layer.name())
+                    
+                if layer.name() == self.proj.getValue(BLOCKS_LAYER_NAME):                    
+                    self.proj.setBlocksLayer(layer.name())
+            return True
+                          
