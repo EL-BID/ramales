@@ -42,3 +42,16 @@ def get_survey_data(survey_id, user, password):
     except:
         response = {'success': False, 'msg': 'Unable to fetch survey data'}
     return response
+
+
+def send_data(survey_id, user, password, data):
+    url = '{}/api/branches'.format(DASHBORAD_URL)
+    body= {'user': user, 'password': password, 'data': data, 'survey_id': survey_id}
+    headers = {'Content-Type': 'application/json'}
+    try:
+        r = requests.request("POST", url, headers=headers, data=json.dumps(body))
+        res = r.json()
+        return res
+    except:
+        response = {'success': False, 'msg': 'Unable to publish data'}
+    return response

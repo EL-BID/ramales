@@ -36,7 +36,7 @@ from .views.LoginView import LoginViewDialog
 from .views.publish_dialog import PublishDialog
 from .views.ImportSurveysView import ImportSurveysDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
-from .helpers.api import get_surveys, get_survey_data
+from .helpers.api import get_surveys, get_survey_data, send_data
 from .helpers.utils import setComboItem
 
 
@@ -257,6 +257,7 @@ class SanibidRamales:
         if user != "" and password != "":
             id = self.surveysDialog.getIdFromRow()
             if id:
+                self.proj.setValue('CURRENT_SURVEY_ID', id)
                 data = get_survey_data(id, user, password)
                 if data:
                     if data['success']:
@@ -285,15 +286,23 @@ class SanibidRamales:
             self.proj.showError("No existe la capa de NODOS")
 
     def publishData(self):
+        """ Sends data to dashboard """
+
         user = self.publisDialog.usernameText.text()
         password = self.publisDialog.passwordText.text()
         if user != "" and password != "":
             #TODO: run nodes verifications before
             data = self.proj.layersToJson()
-            if data and data['layers']:         
-                self.proj.showMessage("enviando")
+            if data and data['layers']:    
+                survey_id = self.proj.getValue('CURRENT_SURVEY_ID')
+                if survey_id is not None:                    
+                    response = send_data(survey_id, user, password, data)
+                    if response and response['success']:
+                        self.proj.showMessage(response['msg'])
+                else:
+                    self.proj.showError("CURRENT_SURVEY_ID not found")               
             else:
-                self.proj.showError("no hay data")                   
+                self.proj.showError("Not able to get data from layers")                   
         else:
             self.publisDialog.show()
 
