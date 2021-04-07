@@ -236,7 +236,7 @@ class SanibidRamales:
                         self.surveysDialog.populateSurveys(surveys['data'])
                         self.showSurveys()
                     else:
-                        self.proj.showError("Not able to get remote data")
+                        self.proj.showError("Not able to get remote data: {}".format(surveys['msg']))
                         self.loginDialog.passText.setText("")
                 else:
                     self.loginDialog.passText.setText("")
