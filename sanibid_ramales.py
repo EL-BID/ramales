@@ -28,10 +28,12 @@ from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
+from . import resources
 # Import the code for the dialog
 from .views.sanibid_ramales_dialog import SanibidRamalesDialog
 from .views.layers_panel_dialog import LayersPanelDialog
 from .views.LoginView import LoginViewDialog
+from .views.publish_dialog import PublishDialog
 from .views.ImportSurveysView import ImportSurveysDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
 from .helpers.api import get_surveys, get_survey_data
@@ -76,6 +78,8 @@ class SanibidRamales:
         
         #dialogs
         self.loginDialog = LoginViewDialog()
+        self.publisDialog = PublishDialog()
+        self.publisDialog.accepted.connect(self.publishData)
         self.loginDialog.accepted.connect(self.loadSurveys)
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
@@ -177,17 +181,23 @@ class SanibidRamales:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/sanibid_ramales/icon.png'
+        icon_path = ':/plugins/sanibid_ramales/icons/'
         self.add_action(
-            icon_path,
+            icon_path + 'settings.png',
             text=self.tr(u'Sanibid Ramales: Ajustes'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
         self.add_action(
-            icon_path,
+            icon_path + 'import.png',
             text=self.tr(u'Sanibid Ramales: Import'),
             callback=self.importData,
+            parent=self.iface.mainWindow())
+
+        self.add_action(
+            icon_path + 'export.png',
+            text=self.tr(u'Sanibid Ramales: Publish'),
+            callback=self.publisDialog.show,
             parent=self.iface.mainWindow())
 
         # will be set False in run()
@@ -273,6 +283,19 @@ class SanibidRamales:
             self.loadSurveys()                 
         else:
             self.proj.showError("No existe la capa de NODOS")
+
+    def publishData(self):
+        user = self.publisDialog.usernameText.text()
+        password = self.publisDialog.passwordText.text()
+        if user != "" and password != "":
+            #TODO: run nodes verifications before
+            data = self.proj.layersToJson()
+            if data and data['layers']:         
+                self.proj.showMessage("enviando")
+            else:
+                self.proj.showError("no hay data")                   
+        else:
+            self.publisDialog.show()
 
     def run(self):
         """Run method that performs all the real work"""

@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'block_dialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_BlockDialog(object):
     def setupUi(self, BlockDialog):
@@ -125,3 +123,4 @@ class Ui_BlockDialog(object):
         self.revisionDate.setDisplayFormat(_translate("BlockDialog", "dd/MM/yyyy"))
         self.totalLengthLabel.setText(_translate("BlockDialog", "Longitud total"))
         self.observationsLabel.setText(_translate("BlockDialog", "Observaciones"))
+

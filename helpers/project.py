@@ -127,6 +127,20 @@ class Project:
         self.setValue(NODES_LAYER_NAME, layerName)        
         #self.connectNodesSignals()
 
+    def layersToJson(self):
+        try:
+            blocks = self.getBlocksLayer()
+            nodes = self.getNodesLayer()
+            blocks_geojson = QgsJsonExporter().exportFeatures(blocks.getFeatures())
+            nodes_geojson = QgsJsonExporter().exportFeatures(nodes.getFeatures())
+            return { 
+                    'layers': {
+                        'blocks': blocks_geojson, 
+                        'nodes': nodes_geojson
+                        }
+                    }
+        except Exception as e:                     
+            return False
 
     def connectBlockSignals(self):        
         layer = self.getBlocksLayer()
