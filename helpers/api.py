@@ -2,7 +2,6 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, QCoreApplication
 import requests
 import json
 import traceback
-import sys
 
 finished = pyqtSignal(object)
 error = pyqtSignal(Exception, basestring)
