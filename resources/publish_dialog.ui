@@ -6,17 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
+    <width>395</width>
     <height>197</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Publish</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>50</x>
      <y>150</y>
      <width>301</width>
      <height>32</height>
@@ -34,8 +37,8 @@
     <rect>
      <x>110</x>
      <y>30</y>
-     <width>281</width>
-     <height>33</height>
+     <width>241</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>
@@ -44,9 +47,12 @@
     <rect>
      <x>110</x>
      <y>80</y>
-     <width>281</width>
-     <height>33</height>
+     <width>241</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="usernameLabel">
@@ -75,25 +81,22 @@
     <string>password</string>
    </property>
   </widget>
+  <widget class="QLabel" name="respnseLabel">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>120</y>
+     <width>241</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>PublishDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
@@ -107,6 +110,22 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>PublishDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>98</y>
     </hint>
    </hints>
   </connection>

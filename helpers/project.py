@@ -2,6 +2,7 @@ import os
 from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, Qt, QVariant
 import shutil
 import errno
+import json
 from qgis.core import *
 from qgis.PyQt.QtGui import QColor
 from qgis.gui import QgsMessageBar
@@ -133,12 +134,7 @@ class Project:
             nodes = self.getNodesLayer()
             blocks_geojson = QgsJsonExporter().exportFeatures(blocks.getFeatures())
             nodes_geojson = QgsJsonExporter().exportFeatures(nodes.getFeatures())
-            return { 
-                    'layers': {
-                        'blocks': blocks_geojson, 
-                        'nodes': nodes_geojson
-                        }
-                    }
+            return { 'blocks': json.loads(blocks_geojson), 'nodes': json.loads(nodes_geojson) }
         except Exception as e:                     
             return False
 

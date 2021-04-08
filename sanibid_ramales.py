@@ -279,7 +279,7 @@ class SanibidRamales:
             if (QMessageBox.question(self.surveysDialog,
                 "Import data",
                 "This action will insert the points from the survey to the node layer (<b>{}</b>), do you want to continue?".format(target),
-                QMessageBox.Yes|QMessageBox.No) ==QMessageBox.No):                
+                QMessageBox.Yes|QMessageBox.No) == QMessageBox.No):                
                 return
             self.loadSurveys()                 
         else:
@@ -293,12 +293,14 @@ class SanibidRamales:
         if user != "" and password != "":
             #TODO: run nodes verifications before
             data = self.proj.layersToJson()
-            if data and data['layers']:    
+            if data:    
                 survey_id = self.proj.getValue('CURRENT_SURVEY_ID')
                 if survey_id is not None:                    
                     response = send_data(survey_id, user, password, data)
                     if response and response['success']:
-                        self.proj.showMessage(response['msg'])
+                        self.proj.showMessage(response['message'])
+                    else:
+                        self.proj.showError(response['message'])           
                 else:
                     self.proj.showError("CURRENT_SURVEY_ID not found")               
             else:
