@@ -79,7 +79,7 @@ class SanibidRamales:
         #dialogs
         self.loginDialog = LoginViewDialog()
         self.publisDialog = PublishDialog()
-        self.publisDialog.accepted.connect(self.publishData)
+        self.publisDialog.buttonBox.accepted.connect(self.publishData)
         self.loginDialog.accepted.connect(self.loadSurveys)
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
@@ -287,24 +287,28 @@ class SanibidRamales:
 
     def publishData(self):
         """ Sends data to dashboard """
-
+        
+        
         user = self.publisDialog.usernameText.text()
         password = self.publisDialog.passwordText.text()
+        survey_id = self.proj.getValue('CURRENT_SURVEY_ID')
         if user != "" and password != "":
+            self.publisDialog.messageLabel.setText("Sending data ...")
             #TODO: run nodes verifications before
-            data = self.proj.layersToJson()
-            if data:    
-                survey_id = self.proj.getValue('CURRENT_SURVEY_ID')
-                if survey_id is not None:                    
+            if survey_id is None:
+                self.proj.showError("CURRENT_SURVEY_ID not found")
+            else:                 
+                data = self.proj.layersToJson()
+                if data:                                                            
                     response = send_data(survey_id, user, password, data)
                     if response and response['success']:
                         self.proj.showMessage(response['message'])
                     else:
-                        self.proj.showError(response['message'])           
+                        self.proj.showError(response['message'])                                                                   
                 else:
-                    self.proj.showError("CURRENT_SURVEY_ID not found")               
-            else:
-                self.proj.showError("Not able to get data from layers")                   
+                    self.proj.showError("Not able to get data from layers")
+            self.publisDialog.messageLabel.setText("")
+            self.publisDialog.hide()                   
         else:
             self.publisDialog.show()
 
