@@ -129,12 +129,36 @@ class Project:
         #self.connectNodesSignals()
 
     def layersToJson(self):
-        try:
-            blocks = self.getBlocksLayer()
+        try:                        
+            crs = QgsProject.instance().crs()
+            WGS84 = QgsCoordinateReferenceSystem(4326)
+            transform = QgsCoordinateTransform(crs, WGS84, QgsProject.instance())
+
+            #blocks
+            featureList = []
+            blocks = self.getBlocksLayer()                      
+            for f in blocks.getFeatures():
+                g = f.geometry()
+                g.transform(transform)
+                f.setGeometry(g)
+                featureList.append(f)            
+            
+            exporter = QgsJsonExporter(blocks)            
+            blocks_geojson = exporter.exportFeatures(blocks.getFeatures())
+
+            #nodes
+            featureList = []
             nodes = self.getNodesLayer()
-            blocks_geojson = QgsJsonExporter().exportFeatures(blocks.getFeatures())
-            nodes_geojson = QgsJsonExporter().exportFeatures(nodes.getFeatures())
+            for f in nodes.getFeatures():
+                g = f.geometry()
+                g.transform(transform)
+                f.setGeometry(g)
+                featureList.append(f)  
+
+            exporter = QgsJsonExporter(nodes) 
+            nodes_geojson = exporter.exportFeatures(nodes.getFeatures())
             return { 'blocks': json.loads(blocks_geojson), 'nodes': json.loads(nodes_geojson) }
+
         except Exception as e:                     
             return False
 
