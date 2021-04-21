@@ -84,57 +84,57 @@
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>up_gl</source>
-        <translation>Cota Tierra: Aguas arriba</translation>
+        <translation>Cota tierra: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>down_gl</source>
-        <translation type="unfinished"></translation>
+        <translation>Cota tierra: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upBrLevel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cota ramal: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnBrLevel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cota ramal: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Profundidad: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Profundidad: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>model</source>
-        <translation type="unfinished">Modelo</translation>
+        <translation>Gabarito</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upRuleLvl</source>
-        <translation type="unfinished"></translation>
+        <translation>Cota regla: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnRuleLvl</source>
-        <translation type="unfinished"></translation>
+        <translation>Cota regla: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>critDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Profundidad crítica</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>slopeSection</source>
-        <translation type="unfinished"></translation>
+        <translation>Desnivel tramo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>

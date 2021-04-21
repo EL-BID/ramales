@@ -84,57 +84,57 @@
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>up_gl</source>
-        <translation>Ground Level: Upstream</translation>
+        <translation>Ground level: Upstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>down_gl</source>
-        <translation type="unfinished"></translation>
+        <translation>Ground level: Downstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upBrLevel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ground branch: Upstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnBrLevel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ground branch: Downstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Depth: Upstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Depth: Downstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>model</source>
-        <translation type="unfinished">Model</translation>
+        <translation>Template</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>upRuleLvl</source>
-        <translation type="unfinished"></translation>
+        <translation>Ground ruler: Upstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>dwnRuleLvl</source>
-        <translation type="unfinished"></translation>
+        <translation>Ground ruler: Downstream</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>critDepth</source>
-        <translation type="unfinished"></translation>
+        <translation>Critical depth</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
         <source>slopeSection</source>
-        <translation type="unfinished"></translation>
+        <translation>Slope section</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="60"/>
