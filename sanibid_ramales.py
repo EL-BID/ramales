@@ -28,13 +28,15 @@ from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
+from . import resources
 # Import the code for the dialog
 from .views.sanibid_ramales_dialog import SanibidRamalesDialog
 from .views.layers_panel_dialog import LayersPanelDialog
 from .views.LoginView import LoginViewDialog
+from .views.publish_dialog import PublishDialog
 from .views.ImportSurveysView import ImportSurveysDialog
 from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
-from .helpers.api import get_surveys, get_survey_data
+from .helpers.api import get_surveys, get_survey_data, send_data
 from .helpers.utils import setComboItem
 
 
@@ -76,6 +78,8 @@ class SanibidRamales:
         
         #dialogs
         self.loginDialog = LoginViewDialog()
+        self.publisDialog = PublishDialog()
+        self.publisDialog.buttonBox.accepted.connect(self.publishData)
         self.loginDialog.accepted.connect(self.loadSurveys)
         self.surveysDialog = ImportSurveysDialog()
         self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
@@ -177,17 +181,23 @@ class SanibidRamales:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/sanibid_ramales/icon.png'
+        icon_path = ':/plugins/sanibid_ramales/icons/'
         self.add_action(
-            icon_path,
+            icon_path + 'settings.png',
             text=self.tr(u'Sanibid Ramales: Ajustes'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
         self.add_action(
-            icon_path,
+            icon_path + 'import.png',
             text=self.tr(u'Sanibid Ramales: Import'),
             callback=self.importData,
+            parent=self.iface.mainWindow())
+
+        self.add_action(
+            icon_path + 'export.png',
+            text=self.tr(u'Sanibid Ramales: Publish'),
+            callback=self.publisDialog.show,
             parent=self.iface.mainWindow())
 
         # will be set False in run()
@@ -247,6 +257,7 @@ class SanibidRamales:
         if user != "" and password != "":
             id = self.surveysDialog.getIdFromRow()
             if id:
+                self.proj.setValue('CURRENT_SURVEY_ID', id)
                 data = get_survey_data(id, user, password)
                 if data:
                     if data['success']:
@@ -268,11 +279,38 @@ class SanibidRamales:
             if (QMessageBox.question(self.surveysDialog,
                 "Import data",
                 "This action will insert the points from the survey to the node layer (<b>{}</b>), do you want to continue?".format(target),
-                QMessageBox.Yes|QMessageBox.No) ==QMessageBox.No):                
+                QMessageBox.Yes|QMessageBox.No) == QMessageBox.No):                
                 return
             self.loadSurveys()                 
         else:
             self.proj.showError("No existe la capa de NODOS")
+
+    def publishData(self):
+        """ Sends data to dashboard """
+        
+        
+        user = self.publisDialog.usernameText.text()
+        password = self.publisDialog.passwordText.text()
+        survey_id = self.proj.getValue('CURRENT_SURVEY_ID')
+        if user != "" and password != "":
+            self.publisDialog.messageLabel.setText("Sending data ...")
+            #TODO: run nodes verifications before
+            if survey_id is None:
+                self.proj.showError("CURRENT_SURVEY_ID not found")
+            else:                 
+                data = self.proj.layersToJson()
+                if data:                                                            
+                    response = send_data(survey_id, user, password, data)
+                    if response and response['success']:
+                        self.proj.showMessage(response['message'])
+                    else:
+                        self.proj.showError(response['message'])                                                                   
+                else:
+                    self.proj.showError("Not able to get data from layers")
+            self.publisDialog.messageLabel.setText("")
+            self.publisDialog.hide()                   
+        else:
+            self.publisDialog.show()
 
     def run(self):
         """Run method that performs all the real work"""

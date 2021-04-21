@@ -1,5 +1,8 @@
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from .ui.BlockDialogUi import Ui_BlockDialog
+from qgis.PyQt.QtCore import QCoreApplication
+
+translate = QCoreApplication.translate
 
 class BlockViewDialog(QDialog, Ui_BlockDialog):
 
@@ -13,6 +16,20 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.tableWidget.itemChanged.connect(self.onItemChanged)
         self.minDepth.valueChanged.connect(self.depthMinChanged)
         self.minSlope.valueChanged.connect(self.slopeMinChanged)
+
+    def tr(self, message):
+        """Get the translation for a string using Qt translation API.
+
+        We implement this ourselves since we do not inherit QObject.
+
+        :param message: String for translation.
+        :type message: str, QString
+
+        :returns: Translated version of message.
+        :rtype: QString
+        """
+        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+        return translate('BlockViewDialog', message)
 
     def setData(self, block, nodes):
         self.minDepth.blockSignals(True)
@@ -41,10 +58,10 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
 
         # Set the table headers
         self.tableWidget.setHorizontalHeaderLabels(
-            ["up_box", "down_box","length", "up_gl", "down_gl",
-             "upBrLevel", "dwnBrLevel", "upDepth", "dwnDepth", "model",
-             "upRuleLvl", "dwnRuleLvl", "critDepth", "slopeSection",
-             "pvc_diameter", "obs"]
+            [self.tr("up_box"), self.tr("down_box"),self.tr("length"), self.tr("up_gl"), self.tr("down_gl"),
+             self.tr("upBrLevel"), self.tr("dwnBrLevel"), self.tr("upDepth"), self.tr("dwnDepth"), self.tr("model"),
+             self.tr("upRuleLvl"), self.tr("dwnRuleLvl"), self.tr("critDepth"), self.tr("slopeSection"),
+             self.tr("pvc_diameter"), self.tr("obs")]
             )
 
         # Set the table values

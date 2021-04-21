@@ -2,6 +2,7 @@ import os
 from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, Qt, QVariant
 import shutil
 import errno
+import json
 from qgis.core import *
 from qgis.PyQt.QtGui import QColor
 from qgis.gui import QgsMessageBar
@@ -127,6 +128,39 @@ class Project:
         self.setValue(NODES_LAYER_NAME, layerName)        
         #self.connectNodesSignals()
 
+    def layersToJson(self):
+        try:                        
+            crs = QgsProject.instance().crs()
+            WGS84 = QgsCoordinateReferenceSystem(4326)
+            transform = QgsCoordinateTransform(crs, WGS84, QgsProject.instance())
+
+            #blocks
+            featureList = []
+            blocks = self.getBlocksLayer()                      
+            for f in blocks.getFeatures():
+                g = f.geometry()
+                g.transform(transform)
+                f.setGeometry(g)
+                featureList.append(f)            
+            
+            exporter = QgsJsonExporter(blocks)            
+            blocks_geojson = exporter.exportFeatures(blocks.getFeatures())
+
+            #nodes
+            featureList = []
+            nodes = self.getNodesLayer()
+            for f in nodes.getFeatures():
+                g = f.geometry()
+                g.transform(transform)
+                f.setGeometry(g)
+                featureList.append(f)  
+
+            exporter = QgsJsonExporter(nodes) 
+            nodes_geojson = exporter.exportFeatures(nodes.getFeatures())
+            return { 'blocks': json.loads(blocks_geojson), 'nodes': json.loads(nodes_geojson) }
+
+        except Exception as e:                     
+            return False
 
     def connectBlockSignals(self):        
         layer = self.getBlocksLayer()
