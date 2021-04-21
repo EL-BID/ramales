@@ -4,62 +4,62 @@
 <context>
     <name>BlockDialog</name>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="118"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="116"/>
         <source>Manzana</source>
         <translation>Manzana</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="115"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="113"/>
         <source>Generales</source>
         <translation>Generales</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="116"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="114"/>
         <source>Fecha</source>
         <translation>Fecha</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="125"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="123"/>
         <source>dd/MM/yyyy</source>
         <translation>dd/MM/yyyy</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="119"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="117"/>
         <source>Cuenca</source>
         <translation>Cuenca</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="120"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="118"/>
         <source>Profundidad mÃ­nima</source>
         <translation>Profundidad mínima</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="121"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="119"/>
         <source>Pendiente mÃ­nima</source>
         <translation>Pendiente mínima</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="122"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="120"/>
         <source>Cuantitativos</source>
         <translation>Cuantitativos</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="123"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="121"/>
         <source>RevisiÃ³n</source>
         <translation>Revisión</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="124"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="122"/>
         <source>Fecha RevisiÃ³n</source>
         <translation>Fecha de revisión</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="126"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="124"/>
         <source>Longitud total</source>
         <translation>Longitud total</translation>
     </message>
     <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="127"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="125"/>
         <source>Observaciones</source>
         <translation>Observaciones</translation>
     </message>
@@ -177,7 +177,7 @@
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="87"/>
         <source>Capa de Encuesta</source>
-        <translation>Capa de Encuesta</translation>
+        <translation>Capa de encuesta</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="85"/>
@@ -186,21 +186,44 @@
     </message>
 </context>
 <context>
+    <name>PublishDialog</name>
+    <message>
+        <location filename="../views/ui/PublishDialogUi.py" line="45"/>
+        <source>Publish</source>
+        <translation>Publicar</translation>
+    </message>
+    <message>
+        <location filename="../views/ui/PublishDialogUi.py" line="46"/>
+        <source>username</source>
+        <translation>Usuario</translation>
+    </message>
+    <message>
+        <location filename="../views/ui/PublishDialogUi.py" line="47"/>
+        <source>password</source>
+        <translation>Contraseña</translation>
+    </message>
+</context>
+<context>
     <name>SanibidRamales</name>
     <message>
-        <location filename="../sanibid_ramales.py" line="199"/>
+        <location filename="../sanibid_ramales.py" line="209"/>
         <source>&amp;SanibidRamales</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sanibid_ramales.py" line="181"/>
+        <location filename="../sanibid_ramales.py" line="185"/>
         <source>Sanibid Ramales: Ajustes</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../sanibid_ramales.py" line="187"/>
+        <location filename="../sanibid_ramales.py" line="191"/>
         <source>Sanibid Ramales: Import</source>
         <translation>Importar</translation>
+    </message>
+    <message>
+        <location filename="../sanibid_ramales.py" line="197"/>
+        <source>Sanibid Ramales: Publish</source>
+        <translation>Publicar</translation>
     </message>
 </context>
 <context>
