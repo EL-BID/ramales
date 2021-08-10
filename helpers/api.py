@@ -8,7 +8,7 @@ error = pyqtSignal(Exception, basestring)
 progress = pyqtSignal(float)
 info = pyqtSignal(str)
 message = pyqtSignal(str)
-DASHBORAD_URL = "http://localhost:3000"
+DASHBORAD_URL = "https://dashboard.dev.sanibid.org/"
 
 translate = QCoreApplication.translate
 
