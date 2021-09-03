@@ -22,12 +22,13 @@ def get_surveys(user, password):
     url = '{}/api/projects/surveys'.format(DASHBORAD_URL)
     body= {'user': user, 'password': password}
     headers = {'Content-Type': 'application/json'}
+    res = dict()
     try:
         r = requests.request("GET", url, headers=headers, data=json.dumps(body))
         res = r.json()
         response = {'success': True, 'data': res['projects']}
     except Exception as e:
-        response = {'success': False, 'msg': 'Unable to fetch surveys: {}'.format(res['error_message'])}
+        response = {'success': False, 'msg': res['error_message'] if 'error_message' in res else 'Unable to fetch surveys' }
     return response
 
 
@@ -35,12 +36,13 @@ def get_survey_data(survey_id, user, password):
     url = '{}/api/surveys/{}'.format(DASHBORAD_URL, survey_id)
     body= {'user': user, 'password': password}
     headers = {'Content-Type': 'application/json'}
+    res = dict()
     try:
         r = requests.request("GET", url, headers=headers, data=json.dumps(body))        
         res = r.json()
         response = {'success': True, 'data': res['data']}
     except:
-        response = {'success': False, 'msg': 'Unable to fetch survey data'}
+        response = {'success': False, 'msg': res['error_message'] if 'error_message' in res else 'Unable to fetch survey data'}
     return response
 
 

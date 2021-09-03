@@ -22,9 +22,10 @@
  ***************************************************************************/
 """
 import os.path
+import csv
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QMessageBox
+from qgis.PyQt.QtWidgets import QAction, QMessageBox, QFileDialog
 from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .views.ui.resources import *
@@ -39,6 +40,9 @@ from .helpers.project import Project, BLOCKS_LAYER_NAME, NODES_LAYER_NAME
 from .helpers.api import get_surveys, get_survey_data, send_data
 from .helpers.utils import setComboItem
 
+
+ALL_SURVEYS_TARGET = 'all_surveys'
+SINGLE_SURVEY_TARGET = 'survey_data'
 
 class SanibidRamales:
     """QGIS Plugin Implementation."""
@@ -76,13 +80,16 @@ class SanibidRamales:
         # Project Helper
         self.proj = Project(self.iface)        
         
+        # Login handler default refirect target
+        self.login_redirect_target = ALL_SURVEYS_TARGET
+
         #dialogs
         self.loginDialog = LoginViewDialog()
         self.publisDialog = PublishDialog()
         self.publisDialog.buttonBox.accepted.connect(self.publishData)
-        self.loginDialog.accepted.connect(self.loadSurveys)
+        self.loginDialog.accepted.connect(self.handleLogin)
         self.surveysDialog = ImportSurveysDialog()
-        self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveyData)
+        self.surveysDialog.reloadButton.clicked.connect(self.reloadSurveys)
         self.surveysDialog.accepted.connect(self.getSurveyData)        
 
         # Check if plugin was started the first time in current QGIS session
@@ -215,8 +222,24 @@ class SanibidRamales:
 
     def showLogin(self):        
         self.loginDialog.show()
+    
+    def handleLogin(self):
+        """ Login dialog accepted signal handler """
+
+        if self.login_redirect_target == ALL_SURVEYS_TARGET:
+            self.loadSurveys()
+            return True
+
+        if self.login_redirect_target == SINGLE_SURVEY_TARGET:
+            self.login_redirect_target = ALL_SURVEYS_TARGET
+            self.getSurveyData()            
+            return True
+                
+        self.proj.showError("Invalid redirect action after Login")
+
 
     def showSurveys(self):
+        """ Shows surveys dialog """
         self.loginDialog.hide()
         self.surveysDialog.show()     
 
@@ -236,7 +259,7 @@ class SanibidRamales:
                         self.surveysDialog.populateSurveys(surveys['data'])
                         self.showSurveys()
                     else:
-                        self.proj.showError("Not able to get remote data: {}".format(surveys['msg']))
+                        self.proj.showError(surveys['msg'])
                         self.loginDialog.passText.setText("")
                 else:
                     self.loginDialog.passText.setText("")
@@ -246,12 +269,14 @@ class SanibidRamales:
         
             
 
-    def reloadSurveyData(self):
+    def reloadSurveys(self):
         self.surveysDialog.clearAll()
         self.surveysDialog.hide()
         self.loadSurveys()
 
-    def getSurveyData(self):        
+    def getSurveyData(self):
+        """ Get data from selected survey """
+
         user = self.loginDialog.userText.text()
         password = self.loginDialog.passText.text()
         if user != "" and password != "":
@@ -261,15 +286,21 @@ class SanibidRamales:
                 data = get_survey_data(id, user, password)
                 if data:
                     if data['success']:
-                        self.proj.populateNodesLayer(data['data'])
-                        self.proj.showMessage("Data loaded to layer")                        
+                        if data['data']:
+                            self.proj.populateNodesLayer(data['data'])
+                            self.proj.showMessage("Data loaded to layer")
+                        else:
+                            self.proj.showError("Survey is empty: no data to add to layer")
+                       
                     else:
-                        self.proj.showError("no hay data")
+                        self.proj.showError(data['msg'])
                     self.loginDialog.passText.setText("")
             else:
-                self.proj.showError("no hay id")                   
+                self.proj.showError("selecting a survey is required")                   
         else:
-            self.proj.showError("Esto no deberia pasar")
+            self.login_redirect_target = SINGLE_SURVEY_TARGET
+            self.showLogin()
+
         
     def importData(self):
         """ Shows confirmation dialog to import data """
@@ -342,12 +373,12 @@ class SanibidRamales:
 
                 if newNodesLayer == "" and newBlocksLayer == "":
                     self.proj.showError(
-                        "Al menos una capa no tiene que estar vacia")
+                        "At least one layer does not have to be empty")
                     return False
 
                 if newBlocksLayer == self.proj.getValue(BLOCKS_LAYER_NAME) or newNodesLayer == self.proj.getValue(NODES_LAYER_NAME):
                     self.proj.showError(
-                        "ya existe una capa con el mismo nombre")
+                        "A layer with the same name already exists")
                     return False        
                 
                 #create layers
@@ -361,7 +392,7 @@ class SanibidRamales:
                 self.dlg.nodesLayerNameEdit.setText("")
                 self.dlg.existingLayerRadioButton.setChecked(True)
 
-                self.proj.showMessage("las capas fueron creadas exitosamente")
+                self.proj.showMessage("Layers were created successfully")
 
             else:
 

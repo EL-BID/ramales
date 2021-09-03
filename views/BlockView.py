@@ -48,7 +48,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             self.minDepth.setValue(block['minDepth'])
         if block['minSlope']:
             self.minSlope.setValue(block['minSlope'])
-        self.observations.appendPlainText(self.check(block['comments']))        
+        self.observations.setPlainText(self.check(block['comments']))       
         self.current_block = block
         self.current_nodes = nodes
 
