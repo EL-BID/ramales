@@ -1,12 +1,12 @@
 #/***************************************************************************
-# SanibidRamales
+# SanihubRamales
 #
-# sanibid.org
+# sanihub.org
 #							 -------------------
 #		begin				: 2021-02-24
 #		git sha				: $Format:%H$
-#		copyright			: (C) 2021 by BID - SaniBID
-#		email				: info@sanibid.org
+#		copyright			: (C) 2021 by BID - SaniHUB
+#		email				: info@sanihub.org
 # ***************************************************************************/
 #
 #/***************************************************************************
@@ -38,15 +38,15 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	sanibid_ramales.py sanibid_ramales_dialog.py
+	sanihub_ramales.py ramales_dockwidget.py
 
-PLUGINNAME = sanibid_ramales
+PLUGINNAME = sanihub_ramales
 
 PY_FILES = \
 	__init__.py \
-	sanibid_ramales.py sanibid_ramales_dialog.py
+	sanihub_ramales.py ramales_dockwidget.py
 
-UI_FILES = sanibid_ramales_dialog_base.ui
+UI_FILES = ramales_dockwidget_base.ui
 
 EXTRAS = metadata.txt icon.png
 
