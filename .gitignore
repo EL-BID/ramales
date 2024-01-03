@@ -2,3 +2,5 @@ __pycache__/
 .vscode/
 *.pyc
 *.py.bak
+.idea/
+*.xdp*

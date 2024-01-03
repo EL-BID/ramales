@@ -1,7 +1,7 @@
 Plugin Builder Results
 
-Your plugin SanibidRamales was created in:
-    ./sanibid_ramales
+Your plugin SanihubRamales was created in:
+    ./sanihub_ramales
 
 Your QGIS plugin directory is located at:
     /home/martin/.local/share/QGIS/QGIS3/profiles/default/python/plugins
@@ -17,11 +17,11 @@ What's Next:
 
   * Test the plugin by enabling it in the QGIS plugin manager
 
-  * Customize it by editing the implementation file: ``sanibid_ramales.py``
+  * Customize it by editing the implementation file: ``sanihub_ramales.py``
 
   * Create your own custom icon, replacing the default icon.png
 
-  * Modify your user interface by opening SanibidRamales_dialog_base.ui in Qt Designer
+  * Modify your user interface by opening SanihubRamales_dialog_base.ui in Qt Designer
 
   * You can use the Makefile to compile your Ui and resource files when
     you make changes. This requires GNU make (gmake)

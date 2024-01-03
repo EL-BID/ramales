@@ -608,4 +608,3 @@ class Project:
             if block.geometry().intersects(node.geometry()):
                 nodes.append(node)
         self.blockDialog.setData(is_new)
-        

@@ -4,12 +4,12 @@
 <context>
     <name>BlockDialog</name>
     <message>
-        <location filename="../gui/BlockDialogUi.py" line="120"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="120"/>
         <source>Manzana</source>
         <translation>Bloco</translation>
     </message>
     <message>
-        <location filename="../gui/BlockDialogUi.py" line="130"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="117"/>
         <source>Generales</source>
         <translation>Geral</translation>
     </message>

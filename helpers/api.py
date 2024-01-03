@@ -8,7 +8,8 @@ error = pyqtSignal(Exception, basestring)
 progress = pyqtSignal(float)
 info = pyqtSignal(str)
 message = pyqtSignal(str)
-DASHBORAD_URL = "https://dashboard.dev.sanibid.org/"
+#DASHBOARD_URL = "http://localhost:3000"
+DASHBOARD_URL = "https://dashboard.dev.sanihub.org/"
 
 translate = QCoreApplication.translate
 
@@ -19,7 +20,7 @@ def is_authorized(user, password):
 
 def get_surveys(user, password):
 
-    url = '{}/api/projects/surveys'.format(DASHBORAD_URL)
+    url = '{}/api/projects/surveys'.format(DASHBOARD_URL)
     body= {'user': user, 'password': password}
     headers = {'Content-Type': 'application/json'}
     res = dict()
@@ -27,28 +28,28 @@ def get_surveys(user, password):
         r = requests.request("GET", url, headers=headers, data=json.dumps(body))
         res = r.json()
         response = {'success': True, 'data': res['projects']}
-    except Exception as e:
+    except Exception as e:        
         response = {'success': False, 'msg': res['error_message'] if 'error_message' in res else 'Unable to fetch surveys' }
     return response
 
 
-def get_survey_data(survey_id, user, password):
-    url = '{}/api/surveys/{}'.format(DASHBORAD_URL, survey_id)
+def get_survey_data(project_id, user, password):
+    url = '{}/api/projects/{}/surveys'.format(DASHBOARD_URL, project_id)
     body= {'user': user, 'password': password}
     headers = {'Content-Type': 'application/json'}
     res = dict()
     try:
-        r = requests.request("GET", url, headers=headers, data=json.dumps(body))        
+        r = requests.request("POST", url, headers=headers, data=json.dumps(body))        
         res = r.json()
-        response = {'success': True, 'data': res['data']}
+        response = {'success': True, 'data': res}
     except:
         response = {'success': False, 'msg': res['error_message'] if 'error_message' in res else 'Unable to fetch survey data'}
     return response
 
 
-def send_data(survey_id, user, password, data):
-    url = '{}/api/branches'.format(DASHBORAD_URL)
-    body = {'user': user, 'password': password, 'data': data, 'survey_id': survey_id}
+def send_data(project_id, user, password, data):
+    url = '{}/api/branches'.format(DASHBOARD_URL)
+    body = {'user': user, 'password': password, 'data': data, 'project_id': project_id}
     headers = {'Content-Type': 'application/json'}
     try:
         r = requests.request("POST", url, headers=headers, data=json.dumps(body))  

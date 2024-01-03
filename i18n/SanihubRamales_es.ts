@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pt">
+<TS version="2.1" language="es">
 <context>
     <name>BlockDialog</name>
     <message>
-        <location filename="../gui/BlockDialogUi.py" line="120"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="120"/>
         <source>Manzana</source>
-        <translation>Bloco</translation>
+        <translation>Manzana</translation>
     </message>
     <message>
-        <location filename="../gui/BlockDialogUi.py" line="130"/>
+        <location filename="../views/ui/BlockDialogUi.py" line="117"/>
         <source>Generales</source>
-        <translation>Geral</translation>
+        <translation>Generales</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="118"/>
         <source>Fecha</source>
-        <translation>Data</translation>
+        <translation>Fecha</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="127"/>
@@ -26,62 +26,62 @@
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="121"/>
         <source>Cuenca</source>
-        <translation>Bacia</translation>
+        <translation>Cuenca</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="122"/>
         <source>Profundidad mÃ­nima</source>
-        <translation type="obsolete">Profundidade mínima</translation>
+        <translation type="obsolete">Profundidad mínima</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="123"/>
         <source>Pendiente mÃ­nima</source>
-        <translation type="obsolete">Declividade mínima</translation>
+        <translation type="obsolete">Pendiente mínima</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="124"/>
         <source>Cuantitativos</source>
-        <translation>Quantitativo</translation>
+        <translation>Cuantitativos</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="125"/>
         <source>RevisiÃ³n</source>
-        <translation type="obsolete">Revisão</translation>
+        <translation type="obsolete">Revisión</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="126"/>
         <source>Fecha RevisiÃ³n</source>
-        <translation type="obsolete">Data revisão</translation>
+        <translation type="obsolete">Fecha de revisión</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="128"/>
         <source>Longitud total</source>
-        <translation>Comprimento total</translation>
+        <translation>Longitud total</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="129"/>
         <source>Observaciones</source>
-        <translation>Observações</translation>
+        <translation>Observaciones</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="122"/>
         <source>Profundidad minima</source>
-        <translation>Profundidade mínima</translation>
+        <translation>Profundidad mínima</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="123"/>
         <source>Pendiente minima</source>
-        <translation>Declividade mínima</translation>
+        <translation>Pendiente mínima</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="125"/>
         <source>Revision</source>
-        <translation>Revisão</translation>
+        <translation>Revisión</translation>
     </message>
     <message>
         <location filename="../views/ui/BlockDialogUi.py" line="126"/>
         <source>Fecha Revision</source>
-        <translation>Data revisão</translation>
+        <translation>Fecha de revisión</translation>
     </message>
 </context>
 <context>
@@ -89,47 +89,47 @@
     <message>
         <location filename="../views/BlockView.py" line="18"/>
         <source>up_box</source>
-        <translation>Caixa: Mont</translation>
+        <translation>Caja: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="18"/>
         <source>down_box</source>
-        <translation>Caixa: Jusante</translation>
+        <translation>Caja: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="19"/>
         <source>length</source>
-        <translation>Comprimento</translation>
+        <translation>Longitud</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="19"/>
         <source>up_gl</source>
-        <translation>Cota terreno: Montante</translation>
+        <translation>Cota tierra: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="19"/>
         <source>down_gl</source>
-        <translation>Cota terreno: Jusante</translation>
+        <translation>Cota tierra: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="20"/>
         <source>upBrLevel</source>
-        <translation>Cota ramal: Montante</translation>
+        <translation>Cota ramal: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="20"/>
         <source>dwnBrLevel</source>
-        <translation>Cota ramal: Jusante</translation>
+        <translation>Cota ramal: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="20"/>
         <source>upDepth</source>
-        <translation>Profundidade: Montante</translation>
+        <translation>Profundidad: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="21"/>
         <source>dwnDepth</source>
-        <translation>Profundidade: Jusante</translation>
+        <translation>Profundidad: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="21"/>
@@ -139,22 +139,22 @@
     <message>
         <location filename="../views/BlockView.py" line="21"/>
         <source>upRuleLvl</source>
-        <translation>Cota régua: Montante</translation>
+        <translation>Cota regla: Aguas arriba</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="22"/>
         <source>dwnRuleLvl</source>
-        <translation>Cota régua: Jusante</translation>
+        <translation>Cota regla: Aguas abajo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="22"/>
         <source>critDepth</source>
-        <translation>Profundidade crítica</translation>
+        <translation>Profundidad crítica</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="22"/>
         <source>slopeSection</source>
-        <translation>Desnivel trecho</translation>
+        <translation>Desnivel tramo</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="23"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../views/BlockView.py" line="23"/>
         <source>obs</source>
-        <translation>Observações</translation>
+        <translation>Observaciones</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="18"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../views/BlockView.py" line="23"/>
         <source>splice</source>
-        <translation>Ligação</translation>
+        <translation>Empalme</translation>
     </message>
     <message>
         <location filename="../views/BlockView.py" line="24"/>
@@ -192,52 +192,52 @@
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="112"/>
         <source>Ajustes</source>
-        <translation>Definições</translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="113"/>
         <source>Seleccionar capa existente</source>
-        <translation>Selecione a camada existente</translation>
+        <translation>Seleccionar capa existente</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="114"/>
         <source>Crear nueva capa</source>
-        <translation>Crie uma nova camada</translation>
+        <translation>Crear nueva capa</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="115"/>
         <source>Seleccionar</source>
-        <translation>Selecionar</translation>
+        <translation>Seleccionar</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="121"/>
         <source>Capa de Manzana</source>
-        <translation>Camada de bloco</translation>
+        <translation>Capa de manzana</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="122"/>
         <source>Capa de Encuesta</source>
-        <translation>Camada de pesquisa</translation>
+        <translation>Capa de encuesta</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="120"/>
         <source>Crear Capa</source>
-        <translation>Criar Camada</translation>
+        <translation>Crear Capa</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="118"/>
         <source>Capa de Obstáculos</source>
-        <translation type="obsolete">Camada de obstáculos</translation>
+        <translation type="obsolete">Capa de obstáculos</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="124"/>
         <source>Capa de Segmentos</source>
-        <translation>Camada de segmento</translation>
+        <translation>Capa de segmentos</translation>
     </message>
     <message>
         <location filename="../views/ui/LayersPanelDialogUi.py" line="123"/>
         <source>Capa de Obstaculos</source>
-        <translation>Camada de obstáculos</translation>
+        <translation>Capa de obstáculos</translation>
     </message>
 </context>
 <context>
@@ -250,12 +250,12 @@
     <message>
         <location filename="../views/ui/PublishDialogUi.py" line="49"/>
         <source>username</source>
-        <translation>Usuário</translation>
+        <translation>Usuario</translation>
     </message>
     <message>
         <location filename="../views/ui/PublishDialogUi.py" line="50"/>
         <source>password</source>
-        <translation>Senha</translation>
+        <translation>Contraseña</translation>
     </message>
 </context>
 <context>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../sanihub_ramales.py" line="192"/>
         <source>Sanihub Ramales: Ajustes</source>
-        <translation>Definições</translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../sanihub_ramales.py" line="198"/>
@@ -286,17 +286,17 @@
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="56"/>
         <source>Importar Encuestas</source>
-        <translation>Importar pesquisas</translation>
+        <translation>Importar Encuestas</translation>
     </message>
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="57"/>
         <source>Seleccione el proyecto que desea importar:</source>
-        <translation>Selecione o projeto que deseja importar:</translation>
+        <translation>Seleccione el proyecto que desea importar:</translation>
     </message>
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="58"/>
         <source>Recargar listado</source>
-        <translation>Recarregar lista</translation>
+        <translation>Recargar listado</translation>
     </message>
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="60"/>
@@ -306,12 +306,12 @@
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="62"/>
         <source>Projecto</source>
-        <translation>Projeto</translation>
+        <translation>Projecto</translation>
     </message>
     <message>
         <location filename="../views/ui/ImportSurveysDialogUi.py" line="64"/>
         <source>Encuesta</source>
-        <translation>Bloco/s</translation>
+        <translation>Manzana/s</translation>
     </message>
 </context>
 <context>
@@ -319,17 +319,17 @@
     <message>
         <location filename="../views/ui/LoginView.py" line="46"/>
         <source>Login</source>
-        <translation>Conecte-se</translation>
+        <translation>Acceso</translation>
     </message>
     <message>
         <location filename="../views/ui/LoginView.py" line="47"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <location filename="../views/ui/LoginView.py" line="48"/>
         <source>User</source>
-        <translation>Usuário</translation>
+        <translation>Usuario</translation>
     </message>
 </context>
 </TS>
