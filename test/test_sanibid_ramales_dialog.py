@@ -8,26 +8,26 @@
 
 """
 
-__author__ = 'info@sanibid.org'
+__author__ = 'info@sanihub.org'
 __date__ = '2021-02-24'
-__copyright__ = 'Copyright 2021, BID - SaniBID'
+__copyright__ = 'Copyright 2021, BID - SaniHUB'
 
 import unittest
 
 from qgis.PyQt.QtGui import QDialogButtonBox, QDialog
 
-from sanibid_ramales_dialog import SanibidRamalesDialog
+from sanihub_ramales_dialog import SanihubRamalesDialog
 
 from utilities import get_qgis_app
 QGIS_APP = get_qgis_app()
 
 
-class SanibidRamalesDialogTest(unittest.TestCase):
+class SanihubRamalesDialogTest(unittest.TestCase):
     """Test dialog works."""
 
     def setUp(self):
         """Runs before each test."""
-        self.dialog = SanibidRamalesDialog(None)
+        self.dialog = SanihubRamalesDialog(None)
 
     def tearDown(self):
         """Runs after each test."""
@@ -49,7 +49,7 @@ class SanibidRamalesDialogTest(unittest.TestCase):
         self.assertEqual(result, QDialog.Rejected)
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(SanibidRamalesDialogTest)
+    suite = unittest.makeSuite(SanihubRamalesDialogTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

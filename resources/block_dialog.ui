@@ -70,7 +70,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="minDepthLabel">
         <property name="text">
-         <string>Profundidad mínima</string>
+         <string>Profundidad minima</string>
         </property>
        </widget>
       </item>
@@ -80,7 +80,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="minSlopeLabel">
         <property name="text">
-         <string>Pendiente mínima</string>
+         <string>Pendiente minima</string>
         </property>
        </widget>
       </item>
@@ -109,7 +109,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="revisionLabel">
         <property name="text">
-         <string>Revisión</string>
+         <string>Revision</string>
         </property>
        </widget>
       </item>
@@ -119,7 +119,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="revisionDateLabel">
         <property name="text">
-         <string>Fecha Revisión</string>
+         <string>Fecha Revision</string>
         </property>
        </widget>
       </item>
@@ -144,6 +144,12 @@
        <widget class="QDoubleSpinBox" name="totalLength">
         <property name="enabled">
          <bool>false</bool>
+        </property>
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <double>99999999999999.000000000000000</double>
         </property>
        </widget>
       </item>

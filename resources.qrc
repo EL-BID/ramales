@@ -1,8 +1,18 @@
 <RCC>
-    <qresource prefix="/plugins/sanibid_ramales" >
-        <file>icons/sanibid_ramales.png</file>
+    <qresource prefix="plugins/sanihub_ramales" >
+        <file>icons/sanihub_ramales.png</file>
+        <file>icon.png</file>
         <file>icons/import.png</file>
         <file>icons/export.png</file>
         <file>icons/settings.png</file>
+        <file>icons/ramal_1.png</file>
+        <file>icons/xls.png</file>
+        <file>icons/calculate.png</file>
+        <file>icons/about.png</file>
+        <file>icons/ramal.png</file>
+        <file>icons/branch.png</file>
+        <file>icons/branch_icon.ico</file>
+        <file>icons/search.png</file>
+        <file>icons/saniramales_01.png</file>
     </qresource>
 </RCC>

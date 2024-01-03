@@ -8,9 +8,9 @@
 
 """
 
-__author__ = 'info@sanibid.org'
+__author__ = 'info@sanihub.org'
 __date__ = '2021-02-24'
-__copyright__ = 'Copyright 2021, BID - SaniBID'
+__copyright__ = 'Copyright 2021, BID - SaniHUB'
 
 import unittest
 
@@ -18,7 +18,7 @@ from qgis.PyQt.QtGui import QIcon
 
 
 
-class SanibidRamalesDialogTest(unittest.TestCase):
+class SanihubRamalesDialogTest(unittest.TestCase):
     """Test rerources work."""
 
     def setUp(self):
@@ -31,12 +31,12 @@ class SanibidRamalesDialogTest(unittest.TestCase):
 
     def test_icon_png(self):
         """Test we can click OK."""
-        path = ':/plugins/SanibidRamales/icon.png'
+        path = ':/plugins/SanihubRamales/icon.png'
         icon = QIcon(path)
         self.assertFalse(icon.isNull())
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(SanibidRamalesResourcesTest)
+    suite = unittest.makeSuite(SanihubRamalesResourcesTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 
