@@ -27,10 +27,14 @@ No gerenciador de complementos, o usuário deve selecionar a opção instalar a 
 (1), indicar a localização do arquivo de instalação SaniHUB_Ramales.zip no seu computador (2)
 e clicar em Instalar Complemento, conforme indica a Figura.
 
-Após instalar o plug-in, caso seu ícone não esteja aparecendo na barra de ferramentas do
+<img src="/icons/img_instala.png">
+
+Após instalar o plug-in, caso seu ícone <img src="/icons/branch.png"> não esteja aparecendo na barra de ferramentas do
 QGIS, apesar da instalação ter sido bem-sucedida, o usuário deve habilitar sua visualização
-através do menu Exibir  Barra de Ferramentas  saniHUB Ramales, conforme indica a
+através do menu Exibir -> Barra de Ferramentas -> saniHUB Ramales, conforme indica a
 Figura.
+
+<img src="/icons/img_ferramentas.png">
 
 <h2>Manuais</h2>
 
@@ -47,13 +51,17 @@ O Guía de usuário está organizado segundo a seguinte sequência de passos:
 
 <h3>Criação dos projetos de ramal no Qgis</h3>
 
-O usuário deve clicar no ícone do SaniHUB_Ramales para abrir o painel do aplicativo, como
+O usuário deve clicar no ícone do SaniHUB_Ramales <img src="/icons/branch.png"> para abrir o painel do aplicativo, como
 ilustrado na Figura.
+
+<img src="/icons/img_dock.png">
 
 Na aba “Início” clicar em “Criar”. No quadro que se abrirá, ilustrado na Figura 05, o usuário
 deve escolher o idioma do Geopackage do projeto no campo “Local”, definir o nome do
 projeto e o local onde deverá ser armazenado no campo “Buscar...”, pesquisar o Sistema de
 Referência de Coordenadas no campo “Filtro (SRID)”, selecioná-lo e clicar em “OK”.
+
+<img src="/icons/img_criar_projeto.png">
 
 <h3>Coleta e envio de dados no aplicativo Qfield</h3>
 
@@ -74,6 +82,8 @@ carregadas no projeto.
 Com o arquivo de projeto de cada uma das quadras a projetar, o usuário deve abri-lo através
 da aplicação Qfield no seu dispositivo móvel e iniciar a coleta de dados.
 
+<img src="/icons/img_qfield.png">
+
 <h3>Cálculo dos ramais e geração das ordens de serviço</h3>
 
 O projeto da quadra volta do campo praticamente pronto para impressão. Cabe ao usuário, no
@@ -88,13 +98,19 @@ que o projetista de campo faça os devidos ajustes.
 Para a segunda etapa de verificação de consistência, o usuário deve clicar no botão “Calcular”,
 como indicado na Figura.
 
+<img src="/icons/img_full_1.png">
+
 Concluída a etapa de verificação dos cálculos o usuário deve clicar em “Gerar” para que a
 Ordem de Serviço seja produzida. No quadro que se abrirá, o usuário deve clicar nos três
 pontos para indicar o local onde deverá ser armazenada e o nome da ordem de serviço.
 
+<img src="/icons/img_gera_os.png">
+
 A ordem de serviço será gerada em formato .xls e cada ramal ocupará uma aba do arquivo. Em
 todas as abas constará a identificação do ramal, sua extensão e a extensão total da quadra,
 além dos dados inseridos e calculados anteriormente, conforme ilustrado na Figura.
+
+<img src="/icons/img_os.png">
 
 <h3>Impressão dos Projetos</h3>
 
@@ -102,6 +118,8 @@ Caso deseje, o usuário pode criar ou inserir seu template usando a ferramenta p
 compositor de impressão do QGIS. Contudo, o SaniHUB Ramales disponibiliza um template do
 padrão A3. Para acessá-lo o usuário deve clicar em “Novo Compositor de Impressão” (Ctrl + P
 no teclado), como indicado na Figura.
+
+<img src="/icons/img_impressao.png">
 
 <h2>Colaboradores</h2>
 Analista de Conceito: Ivan Paiva<br>
