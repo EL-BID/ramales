@@ -21,6 +21,8 @@ Cooperação para Água y Saneamento na América Latina y el Caribe (FECASACL).
 A instalação do saniHUB Ramales é feita, como os outros plug-ins do QGIS, através do menu
 Complementos -> Gerenciar e Instalar Complementos, conforme mostra a Figura.
 
+<img src="/icons/img_complemento.png">
+
 No gerenciador de complementos, o usuário deve selecionar a opção instalar a partir do ZIP
 (1), indicar a localização do arquivo de instalação SaniHUB_Ramales.zip no seu computador (2)
 e clicar em Instalar Complemento, conforme indica a Figura.
