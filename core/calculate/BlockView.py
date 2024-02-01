@@ -74,7 +74,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.revision.setText(
             self.check(block_dict[self.__get_json_attr('blocks', 'revision')]))  # block_dict['revisao']))
         self.blockName.setText(
-            self.check(block_dict[self.__get_json_attr('blocks', 'user_name')]))  # block_dict['user_name']))
+            self.check(block_dict[self.__get_json_attr('blocks', 'name')]))  # block_dict['user_name']))
         if block_dict[self.__get_json_attr('blocks', 'date')]:  # block_dict['data']:
             self.date.setDate(block_dict[self.__get_json_attr('blocks', 'date')].date())  # block_dict['data'])
         if block_dict[self.__get_json_attr('blocks', 'rev_date')]:  # block_dict['rev_data']:
