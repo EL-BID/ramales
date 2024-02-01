@@ -51,14 +51,14 @@ class DockTabHomeBase(DockTab):
         # Add Plugin Logo at the top of the tab
         path = os.path.join(self.utils.get_plugin_dir(), 'icons/saniramales_02.png')
         logo = QPixmap(path)
-        self.logo_label.setPixmap(logo.scaled(logo.width()/3, logo.height()/3, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        self.logo_label.setPixmap(logo.scaled(int(logo.width()/3), int(logo.height()/3), Qt.KeepAspectRatio, Qt.SmoothTransformation))
         self.vb_layout.addWidget(self.logo_label)
 
         self.__start_project()
         self.__start_field_data()
         path_img = os.path.join(self.utils.get_plugin_dir(), 'icons/img_quadra.png')
         img = QPixmap(path_img)
-        self.img_label.setPixmap(img.scaled(img.width()/2, img.height()/2, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        self.img_label.setPixmap(img.scaled(int(img.width()/2), int(img.height()/2), Qt.KeepAspectRatio, Qt.SmoothTransformation))
         self.vb_layout.addWidget(self.img_label)
         # self.vb_layout.setStretch(0, 0)
         self.vb_layout.setDirection(QBoxLayout.TopToBottom)
