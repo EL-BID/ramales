@@ -6,7 +6,7 @@
 name=saniHUB Ramales
 qgisMinimumVersion=3.0
 description=sanihub.org
-version=1.1
+version=1.2
 author=BID - SaniHUB
 email=info@sanihub.org
 
