@@ -19,7 +19,7 @@
     "branch_id": "ramal_id",
     "photo": "foto",
     "q_terrain": "elev_terreno",
-    "comments": "commentarios",
+    "comments": "comentarios",
     "q_project": "elev_proyecto",
     "depth": "prof",
     "q_rule": "elev_regla",
