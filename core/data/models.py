@@ -115,3 +115,13 @@ class Segment:
 class Ramal:
     segments: list[Segment] = field(default_factory=list)
     is_aerial: bool = False
+
+
+@dataclass
+class EconomyMetrics:
+    return_coefficient: float = 0.0
+    per_capita_endowment: float = 0.0
+    number_of_people_per_economy: float = 0.0
+    peak_day_coefficient: float = 0.0
+    peak_hour_coefficient: float = 0.0
+

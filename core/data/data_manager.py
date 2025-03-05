@@ -1,5 +1,14 @@
-from .data_access import LayersInfoDAO, CalculationInfoDAO, LanguageDAO, LayerRasterDAO, CostsDAO, SegmentsDAO
-from .models import LayersData, Language, LayerRaster, Costs, Ramal
+from .data_access import (
+    LayersInfoDAO,
+    CalculationInfoDAO,
+    LanguageDAO,
+    LayerRasterDAO,
+    CostsDAO,
+    SegmentsDAO,
+    EconomyMetricsDAO
+)
+
+from .models import LayersData, Language, LayerRaster, Costs, Ramal, EconomyMetrics
 from typing import Dict
 
 
@@ -148,3 +157,30 @@ class ProjectDataManager:
             lang=cls.get_language_project().LANGUAGE
         )
         return segs.get_segments()
+
+    @staticmethod
+    def get_economy_metrics() -> EconomyMetrics:
+        return EconomyMetrics(
+            return_coefficient=EconomyMetricsDAO.get_return_coefficient()[0],
+            per_capita_endowment=EconomyMetricsDAO.get_per_capita_endowment()[0],
+            number_of_people_per_economy=EconomyMetricsDAO.get_number_of_people_economy()[0],
+            peak_day_coefficient=EconomyMetricsDAO.get_peak_day_coefficient()[0],
+            peak_hour_coefficient=EconomyMetricsDAO.get_peak_hour_coefficient()[0]
+        )
+
+    @staticmethod
+    def save_economy_metrics(metrics: EconomyMetrics) -> bool:
+        success = (
+                EconomyMetricsDAO.set_return_coefficient(metrics.return_coefficient) and
+                EconomyMetricsDAO.set_per_capita_endowment(metrics.per_capita_endowment) and
+                EconomyMetricsDAO.set_number_of_people_economy(metrics.number_of_people_per_economy) and
+                EconomyMetricsDAO.set_peak_day_coefficient(metrics.peak_day_coefficient) and
+                EconomyMetricsDAO.set_peak_hour_coefficient(metrics.peak_hour_coefficient)
+        )
+        if success:
+            EconomyMetricsDAO.set_done(True)
+        return success
+
+    @staticmethod
+    def is_save_economy_metrics_loaded() -> bool:
+        return EconomyMetricsDAO.is_done()[0]
