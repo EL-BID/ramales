@@ -465,3 +465,52 @@ class SegmentsDAO(LayerDAO):
             )
             result[branch_id].segments.append(segment)
         return result
+
+
+class EconomyMetricsDAO(DAO):
+    SCOPE = 'EconomyMetricsScope'
+    KEY_RETURN_COEFFICIENT = 'RETURN_COEFFICIENT'
+    KEY_PER_CAPITA_ENDOWMENT = 'PER_CAPITA_ENDOWMENT'
+    KEY_NUMBER_OF_PEOPLE_ECONOMY = 'NUMBER_OF_PEOPLE_ECONOMY'
+    KEY_PEAK_DAY_COEFFICIENT = 'PEAK_DAY_COEFFICIENT'
+    KEY_PEAK_HOUR_COEFFICIENT = 'PEAK_HOUR_COEFFICIENT'
+
+    @classmethod
+    def get_return_coefficient(cls) -> Tuple[float, bool]:
+        return cls.proj.readDoubleEntry(cls.SCOPE, cls.KEY_RETURN_COEFFICIENT)
+
+    @classmethod
+    def set_return_coefficient(cls, value: float) -> bool:
+        return cls.proj.writeEntryDouble(cls.SCOPE, cls.KEY_RETURN_COEFFICIENT, value)
+
+    @classmethod
+    def get_per_capita_endowment(cls) -> Tuple[float, bool]:
+        return cls.proj.readDoubleEntry(cls.SCOPE, cls.KEY_PER_CAPITA_ENDOWMENT)
+
+    @classmethod
+    def set_per_capita_endowment(cls, value: float) -> bool:
+        return cls.proj.writeEntryDouble(cls.SCOPE, cls.KEY_PER_CAPITA_ENDOWMENT, value)
+
+    @classmethod
+    def get_number_of_people_economy(cls) -> Tuple[float, bool]:
+        return cls.proj.readDoubleEntry(cls.SCOPE, cls.KEY_NUMBER_OF_PEOPLE_ECONOMY)
+
+    @classmethod
+    def set_number_of_people_economy(cls, value: float) -> bool:
+        return cls.proj.writeEntryDouble(cls.SCOPE, cls.KEY_NUMBER_OF_PEOPLE_ECONOMY, value)
+
+    @classmethod
+    def get_peak_day_coefficient(cls) -> Tuple[float, bool]:
+        return cls.proj.readDoubleEntry(cls.SCOPE, cls.KEY_PEAK_DAY_COEFFICIENT)
+
+    @classmethod
+    def set_peak_day_coefficient(cls, value: float) -> bool:
+        return cls.proj.writeEntryDouble(cls.SCOPE, cls.KEY_PEAK_DAY_COEFFICIENT, value)
+
+    @classmethod
+    def get_peak_hour_coefficient(cls) -> Tuple[float, bool]:
+        return cls.proj.readDoubleEntry(cls.SCOPE, cls.KEY_PEAK_HOUR_COEFFICIENT)
+
+    @classmethod
+    def set_peak_hour_coefficient(cls, value: float) -> bool:
+        return cls.proj.writeEntryDouble(cls.SCOPE, cls.KEY_PEAK_HOUR_COEFFICIENT, value)
