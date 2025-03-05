@@ -4,6 +4,9 @@ from .base.ui_dock_tab_flows_base import DockTabFlowsBase
 
 
 class DockTabflows(DockTabFlowsBase):
+
+    DAY = 86400
+
     def __init__(self, dock):
         super().__init__(dock)
 
@@ -27,11 +30,10 @@ class DockTabflows(DockTabFlowsBase):
         self.load_data()
 
     def on_data_changed(self):
-        start = ((self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
+        calc = (self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
                   * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
-                  * self.dsb_coefficient_k2.value() + int(self.lb_value_number_economy_start.text())) / 86400)
-        end = ((self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
-                * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
-                * self.dsb_coefficient_k2.value() + int(self.lb_value_number_economy_end.text())) / 86400)
+                  * self.dsb_coefficient_k2.value())
+        start = (calc * int(self.lb_value_number_economy_start.text())) / self.DAY
+        end = (calc * int(self.lb_value_number_economy_end.text())) / self.DAY
         self.lb_value_start.setText('{:.3f}'.format(start))
         self.lb_value_end.setText('{:.3f}'.format(end))
