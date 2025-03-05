@@ -5,6 +5,7 @@ from qgis.core import QgsMessageLog
 
 from .dock_tabs.base.ui_dock_tab_base import DockTab
 from .dock_tabs.ui_dock_tab_about import DockTabAbout
+from .dock_tabs.ui_dock_tab_flows import DockTabflows
 from .dock_tabs.ui_dock_tab_home import DockTabHome
 from .dock_tabs.ui_dock_tab_costs import DockTabCosts
 from ..helpers.utils import Utils
@@ -24,6 +25,7 @@ class DockUI:
         self.iface = iface
         self.title = title
         self.tab_home = DockTabHome(self, iface, title)
+        self.tab_flows = DockTabflows(self)
         self.tab_about = DockTabAbout(self)
         self.tab_costs = DockTabCosts(self)
         self.tabWidget.currentChanged.connect(self.on_tab_changed)
@@ -48,13 +50,16 @@ class DockUI:
         self.scroll.setWidget(self.tabWidget)
 
         self.tab_home.tab_start_ui()
+        self.tab_flows.tab_start_ui()
         self.tab_about.tab_start_ui()
         self.tab_costs.tab_start_ui()
         self.tab_home.load_data()
+        self.tab_flows.load_data()
         self.tab_costs.load_data()
 
     def reload(self):
         self.tab_home.reload()
+        self.tab_flows.reload()
         self.tab_about.reload()
         self.tab_costs.reload()
 
@@ -63,6 +68,7 @@ class DockUI:
         self.tabWidget.clear()
         self.tabWidget.clear()
         self.tabWidget.addTab(self.tab_home, self.tr('Início'))
+        self.tabWidget.addTab(self.tab_flows, self.tr('Vazões'))
         self.tabWidget.addTab(self.tab_costs, self.tr('Custos'))
         self.tabWidget.addTab(self.tab_about, self.tr('Sobre'))
         self.tabWidget.setCurrentWidget(before)
