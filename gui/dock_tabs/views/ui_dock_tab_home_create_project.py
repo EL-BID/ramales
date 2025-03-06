@@ -3,7 +3,7 @@ import json
 import os
 import sqlite3
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QCoreApplication
 from PyQt5.QtWidgets import (QDialog, QFormLayout, QComboBox, QLabel, QLineEdit, QTableWidget, QTableWidgetItem,
                              QAbstractItemView, QDialogButtonBox, QPushButton, QHBoxLayout, QFileDialog, QMessageBox,
                              QProgressBar)
@@ -21,9 +21,12 @@ class CreateProjectDialog(QDialog):
         Dialog to create a new project.
     """
 
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(CreateProjectDialog.__name__, msg, disambiguation, n)
+
     def __init__(self, iface):
         super().__init__()
-        self.setWindowTitle(self.tr('Criar projeto QGIS'))
+        self.setWindowTitle(self.translate('Criar projeto QGIS'))
         self.setGeometry(300, 100, 600, 500)
         self.setModal(True)
         self.utils = Utils()
@@ -45,9 +48,9 @@ class CreateProjectDialog(QDialog):
 
         self.bb = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Close)
         bt_ok = self.bb.button(QDialogButtonBox.Ok)
-        bt_ok.setText(self.tr('Confirmar'))
+        bt_ok.setText(self.translate('Confirmar'))
         bt_close = self.bb.button(QDialogButtonBox.Close)
-        bt_close.setText(self.tr('Cancelar'))
+        bt_close.setText(self.translate('Cancelar'))
         self.bb.accepted.connect(self.__accept)
         self.bb.rejected.connect(self.reject)
 
@@ -58,12 +61,12 @@ class CreateProjectDialog(QDialog):
 
     def __accept(self):
         if not self.check_if_is_valid():
-            self.utils.show_dialog(title=self.tr('Erro'), message=self.tr('Preencha todos os campos!'),
+            self.utils.show_dialog(title=self.translate('Erro'), message=self.translate('Preencha todos os campos!'),
                                    information=QMessageBox.Warning)
             return
 
         ret = self.utils.show_dialog_question(title='Criar novo projeto?',
-                                              message=self.tr("Tem certeza que quer criar um novo projeto? Suas " +
+                                              message=self.translate("Tem certeza que quer criar um novo projeto? Suas " +
                                                               "alterações não salvas do projeto atual serão perdidas," +
                                                               " e você será movido automaticamente para o novo projeto."))
 
@@ -95,29 +98,29 @@ class CreateProjectDialog(QDialog):
                 LINEAR_OBSTACLES_LAYER_ID=self.dict_layers['linear_obstacles'],
                 POINT_OBSTACLES_LAYER_ID=self.dict_layers['point_obstacles']
                 ))
-            self.utils.show_dialog(title=self.tr('Criação sucedida'),
-                                   message=self.tr('Projeto criado com sucesso!'),
+            self.utils.show_dialog(title=self.translate('Criação sucedida'),
+                                   message=self.translate('Projeto criado com sucesso!'),
                                    information=QMessageBox.Information)
         except (FileNotFoundError, NotADirectoryError) as e:
-            self.utils.show_dialog(title=self.tr('Erro na criação do projeto'),
-                                   message=self.tr(f'O diretório "{self.le_path.text()}" selecionado não é válido!'),
+            self.utils.show_dialog(title=self.translate('Erro na criação do projeto'),
+                                   message=self.translate(f'O diretório "{self.le_path.text()}" selecionado não é válido!'),
                                    information=QMessageBox.Warning)
         except OSError as e:
             if e.errno == errno.EACCES:
-                self.utils.show_dialog(title=self.tr('Erro de permissão'),
-                                       message=self.tr('Você não tem permissão para criar o projeto nesse diretório!'),
+                self.utils.show_dialog(title=self.translate('Erro de permissão'),
+                                       message=self.translate('Você não tem permissão para criar o projeto nesse diretório!'),
                                        information=QMessageBox.Warning)
             elif e.errno == errno.ENOSPC:
-                self.utils.show_dialog(title=self.tr('Falta de espaço'),
-                                       message=self.tr('Não há espaço suficiente no disco para criar o projeto!'),
+                self.utils.show_dialog(title=self.translate('Falta de espaço'),
+                                       message=self.translate('Não há espaço suficiente no disco para criar o projeto!'),
                                        information=QMessageBox.Warning)
             else:
-                self.utils.show_dialog(title=self.tr('Erro de sistema operacional'),
-                                       message=self.tr('Erro desconhecido: ') + str(e),
+                self.utils.show_dialog(title=self.translate('Erro de sistema operacional'),
+                                       message=self.translate('Erro desconhecido: ') + str(e),
                                        information=QMessageBox.Warning)
         except Exception as e:
-            self.utils.show_dialog(title=self.tr('Erro na criação do projeto'),
-                                   message=self.tr('Erro desconhecido: ') + str(e),
+            self.utils.show_dialog(title=self.translate('Erro na criação do projeto'),
+                                   message=self.translate('Erro desconhecido: ') + str(e),
                                    information=QMessageBox.Warning)
         else:
             self.accept()
@@ -141,11 +144,11 @@ class CreateProjectDialog(QDialog):
         # Show first all SRIDS on the table
         # Columns are: Type, SRID, Description
         self.tb_filter.setColumnCount(3)
-        self.tb_filter.setHorizontalHeaderLabels([self.tr('Tipo'), self.tr('SRID'), self.tr('Descrição')])
+        self.tb_filter.setHorizontalHeaderLabels([self.translate('Tipo'), self.translate('SRID'), self.translate('Descrição')])
 
         # Make the folder line edit and button in same horizontal layout
-        self.pb_path.setText(self.tr('Buscar...'))
-        self.pb_path.setToolTip(self.tr('Selecione a pasta para a criação do projeto QGIS'))
+        self.pb_path.setText(self.translate('Buscar...'))
+        self.pb_path.setToolTip(self.translate('Selecione a pasta para a criação do projeto QGIS'))
         self.hl_path.addWidget(self.le_path, stretch=1)
         self.hl_path.addWidget(self.pb_path)
 
@@ -174,11 +177,11 @@ class CreateProjectDialog(QDialog):
         self.tb_filter.setSelectionBehavior(QTableWidget.SelectRows)
         self.tb_filter.setSelectionMode(QTableWidget.SingleSelection)
 
-        layout.addRow(self.tr('Local:'), self.cb_local)
-        layout.addRow(self.tr('Nome:'), self.le_name)
-        layout.addRow(self.tr('Pasta de instalação'), self.hl_path)
-        layout.addRow(self.tr('Filtro (SRID):'), self.le_srid_filter)
-        layout.addWidget(QLabel(self.tr('Selecione um SRID:')))
+        layout.addRow(self.translate('Local:'), self.cb_local)
+        layout.addRow(self.translate('Nome:'), self.le_name)
+        layout.addRow(self.translate('Pasta de instalação'), self.hl_path)
+        layout.addRow(self.translate('Filtro (SRID):'), self.le_srid_filter)
+        layout.addWidget(QLabel(self.translate('Selecione um SRID:')))
         layout.addWidget(self.tb_filter)
         layout.addWidget(self.bb)
         self.setLayout(layout)

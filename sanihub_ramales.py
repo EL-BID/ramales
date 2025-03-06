@@ -42,6 +42,9 @@ SINGLE_SURVEY_TARGET = 'survey_data'
 class SanihubRamales:
     """QGIS Plugin Implementation."""
 
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(SanihubRamales.__name__, msg, disambiguation, n)
+
     def __init__(self, iface):
         """Constructor.
 
@@ -68,7 +71,7 @@ class SanihubRamales:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&SaniHUB Ramales')
+        self.menu = self.translate(u'&SaniHUB Ramales')
         self.toolbar = self.iface.addToolBar(u'&SaniHUB Ramales')
         self.toolbar.setObjectName(u'&SaniHUB Ramales')
         self.title = 'SaniHUB Ramales'
@@ -163,7 +166,7 @@ class SanihubRamales:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.tr(u'&SanihubRamales'),
+                self.translate(u'&SanihubRamales'),
                 action)
             self.iface.removeToolBarIcon(action)
         # remove the toolbar

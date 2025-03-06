@@ -16,9 +16,12 @@ class DockUI:
 
     utils = Utils()
 
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('SanihubRamales', message)
+    # def tr(self, message):
+    #     # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+    #     return QCoreApplication.translate('SanihubRamales', message)
+
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(DockUI.__name__, msg, disambiguation, n)
 
     def __init__(self, iface, title):
         self.tabWidget = QTabWidget()
@@ -67,8 +70,8 @@ class DockUI:
         before = self.tabWidget.currentWidget()
         self.tabWidget.clear()
         self.tabWidget.clear()
-        self.tabWidget.addTab(self.tab_home, self.tr('Início'))
-        self.tabWidget.addTab(self.tab_flows, self.tr('Vazões'))
-        self.tabWidget.addTab(self.tab_costs, self.tr('Custos'))
-        self.tabWidget.addTab(self.tab_about, self.tr('Sobre'))
+        self.tabWidget.addTab(self.tab_home, self.translate('Início'))
+        self.tabWidget.addTab(self.tab_flows, self.translate('Vazões'))
+        self.tabWidget.addTab(self.tab_costs, self.translate('Custos'))
+        self.tabWidget.addTab(self.tab_about, self.translate('Sobre'))
         self.tabWidget.setCurrentWidget(before)

@@ -31,9 +31,8 @@ class Utils:
         self.data_json = None
         # self.segments = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().SEGMENTS_LAYER_ID)
 
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('SanihubRamales', message)
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(Utils.__name__, msg, disambiguation, n)
 
     def formatNum3Dec(self, valor):
         if isinstance(valor, int):
@@ -98,9 +97,9 @@ class Utils:
         msg_box.setWindowTitle(title)
         msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         btY = msg_box.button(QMessageBox.Yes)
-        btY.setText(self.tr('Sim'))
+        btY.setText(self.translate('Sim'))
         btN = msg_box.button(QMessageBox.No)
-        btN.setText(self.tr('Não'))
+        btN.setText(self.translate('Não'))
         msg_box.buttonClicked.connect(self.on_click)
         returnValue = msg_box.exec()
         if returnValue == QMessageBox.Yes:

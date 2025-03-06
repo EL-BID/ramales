@@ -15,6 +15,10 @@ translate = QCoreApplication.translate
 
 class BlockViewDialog(QDialog, Ui_BlockDialog):
 
+
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(BlockViewDialog.__name__, msg, disambiguation, n)
+
     def __init__(self, project):
         QDialog.__init__(self)
         self.setupUi(self)
@@ -29,14 +33,14 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
 
         # Table headers        
         self.headers = [
-            self.tr("branch"), self.tr("up_box"), self.tr("down_box"),
-            self.tr("length"), self.tr("up_gl"), self.tr("down_gl"),
-            self.tr("upBrLevel"), self.tr("dwnBrLevel"), self.tr("upDepth"),
-            self.tr("dwnDepth"), self.tr("model"), self.tr("upRuleLvl"),
-            self.tr("dwnRuleLvl"), self.tr("critDepth"), self.tr("slopeSection"),
-            self.tr("pvc_diameter"), self.tr("pavement"), self.tr("Posição ramal"),
-            self.tr("H Ramal"), self.tr("Tubo de Queda"), self.tr("H Tubo Queda"),
-            self.tr("obs")
+            self.translate("branch"), self.translate("up_box"), self.translate("down_box"),
+            self.translate("length"), self.translate("up_gl"), self.translate("down_gl"),
+            self.translate("upBrLevel"), self.translate("dwnBrLevel"), self.translate("upDepth"),
+            self.translate("dwnDepth"), self.translate("model"), self.translate("upRuleLvl"),
+            self.translate("dwnRuleLvl"), self.translate("critDepth"), self.translate("slopeSection"),
+            self.translate("pvc_diameter"), self.translate("pavement"), self.translate("Posição ramal"),
+            self.translate("H Ramal"), self.translate("Tubo de Queda"), self.translate("H Tubo Queda"),
+            self.translate("obs")
         ]
         self.tableWidget.setColumnCount(len(self.headers))
         self.tableWidget.setHorizontalHeaderLabels(self.headers)
@@ -47,9 +51,9 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.minDepth.valueChanged.connect(self.depthMinChanged)
         self.minSlope.valueChanged.connect(self.slopeMinChanged)
 
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return translate('BlockViewDialog', message)
+    # def tr(self, message):
+    #     # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+    #     return translate('BlockViewDialog', message)
 
     def setData(self, is_new=False):
         block = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().BLOCKS_LAYER_ID)
@@ -494,7 +498,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         for s in all_nodes:
             nodes.append(s)
         if not nodes_lyr.isValid():
-            raise ValueError(self.tr('Camada inválida!'))
+            raise ValueError(self.translate('Camada inválida!'))
         count = 0
         for i, feat in enumerate(nodes_lyr.getFeatures()):
             item = (self.__get_key_map_of_values(layer=nodes_lyr,
@@ -512,7 +516,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         for s in all_segs:
             segments.append(s)
         if not segments_lyr.isValid():
-            raise ValueError(self.tr('Camada inválida!'))
+            raise ValueError(self.translate('Camada inválida!'))
         count = 0
         for i, feat in enumerate(segments_lyr.getFeatures()):
             if feat[self.utils.get_json_attr('segments', 'tq')]:
@@ -533,13 +537,13 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
     def __get_count_buildings(self):
         buildings_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().BUILDINGS_LAYER_ID)
         if not buildings_lyr.isValid():
-            raise ValueError(self.tr('Camada inválida!'))
+            raise ValueError(self.translate('Camada inválida!'))
         return buildings_lyr.featureCount()
 
     def __get_count_economy(self):
         buildings_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().BUILDINGS_LAYER_ID)
         if not buildings_lyr.isValid():
-            raise ValueError(self.tr('Camada inválida!'))
+            raise ValueError(self.translate('Camada inválida!'))
         count = 0
         for feat in buildings_lyr.getFeatures():
             count += feat[self.utils.get_json_attr('buildings', 'n_econ')]
@@ -548,7 +552,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
     def __get_length_service_lane(self):
         service_lane_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().SERVICE_LANE_LAYER_ID)
         if not service_lane_lyr.isValid():
-            raise ValueError(self.tr('Camada inválida!'))
+            raise ValueError(self.translate('Camada inválida!'))
         length_service_lane = 0
         for feat in service_lane_lyr.getFeatures():
             length_service_lane = feat[self.utils.get_json_attr('service_lane', 'extensao')]
@@ -595,7 +599,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         return item.value() if item else None
 
     def getColumnIndex(self, columnName):
-        return self.headers.index(self.tr(columnName))
+        return self.headers.index(self.translate(columnName))
 
     # def to_float(self, str, default=0):
     #     return float(str.replace(',', '.')) if str != '' else default

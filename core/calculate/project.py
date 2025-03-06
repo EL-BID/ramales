@@ -18,6 +18,9 @@ resources_folder = os.path.join(os.path.dirname(__file__), '../..', 'resources')
 
 class Project:
 
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(Project.__name__, msg, disambiguation, n)
+
     def __init__(self, iface):
         self.iface = iface
         self.plugin_id = PLUGIN_ID
@@ -97,11 +100,11 @@ class Project:
         return tranlated
 
     def showMessage(self, msg):
-        msgTxt = self.tr(msg)
+        msgTxt = self.translate(msg)
         self.iface.messageBar().pushMessage("saniHUB Ramales:", msgTxt, duration=3)
 
     def showError(self, msg):
-        msgTxt = self.tr(msg)
+        msgTxt = self.translate(msg)
         self.iface.messageBar().pushMessage("saniHUB Ramales:",
                                             msgTxt, level=Qgis.Critical, duration=5)
 

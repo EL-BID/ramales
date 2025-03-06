@@ -12,9 +12,12 @@ from ....helpers.utils import Utils
 class DockTabHomeBase(DockTab):
 
 
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('SanihubRamales', message)
+    # def tr(self, message):
+    #     # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+    #     return QCoreApplication.translate('SanihubRamales', message)
+
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(DockTabHomeBase.__name__, msg, disambiguation, n)
 
     def set_logic(self):
         """Insere a lógica de controle da aba. A ser implementada pelos controladores que
@@ -27,20 +30,20 @@ class DockTabHomeBase(DockTab):
         self.vb_layout = QVBoxLayout()
         self.gb_project = QGroupBox()
         self.vb_layout_project = QVBoxLayout()
-        self.lb_create_project = QLabel(self.tr('Criar projeto Qgis:'))
-        self.pb_create_project = QPushButton(self.tr('Criar'))
-        self.lb_raster_select = QLabel(self.tr('Selecionar camada raster:'))
+        self.lb_create_project = QLabel(self.translate('Criar projeto Qgis:'))
+        self.pb_create_project = QPushButton(self.translate('Criar'))
+        self.lb_raster_select = QLabel(self.translate('Selecionar camada raster:'))
         self.cb_raster = QComboBox()
-        self.pb_update_list_layers = QPushButton(self.tr('Atualizar camadas'))
-        self.pb_set_raster = QPushButton(self.tr('Definir Raster'))
+        self.pb_update_list_layers = QPushButton(self.translate('Atualizar camadas'))
+        self.pb_set_raster = QPushButton(self.translate('Definir Raster'))
         self.gb_field_data = QGroupBox()
         self.vb_layout_field_data = QVBoxLayout()
         # self.lb_status_layers = QLabel()
-        # self.pb_set_layers = QPushButton(self.tr('Definir camadas'))
-        self.lb_calculate = QLabel(self.tr('Calcular ramais:'))
-        self.pb_calculate = QPushButton(self.tr('Calcular'))
-        self.lb_generate_os = QLabel(self.tr('Gerar Os xls:'))
-        self.pb_generate_os = QPushButton(self.tr('Gerar'))
+        # self.pb_set_layers = QPushButton(self.translate('Definir camadas'))
+        self.lb_calculate = QLabel(self.translate('Calcular ramais:'))
+        self.pb_calculate = QPushButton(self.translate('Calcular'))
+        self.lb_generate_os = QLabel(self.translate('Gerar Os xls:'))
+        self.pb_generate_os = QPushButton(self.translate('Gerar'))
         self.logo_label = QLabel()
         self.img_label = QLabel()
 
@@ -67,11 +70,11 @@ class DockTabHomeBase(DockTab):
         #self.setMaximumHeight(350)
 
     def __start_project(self):
-        self.gb_project.setTitle(self.tr('Projeto Ramal'))
+        self.gb_project.setTitle(self.translate('Projeto Ramal'))
         self.lb_create_project.setWordWrap(True)
         self.lb_create_project.setAlignment(Qt.AlignLeft)
         self.vb_layout_project.addWidget(self.lb_create_project)
-        self.pb_create_project.setToolTip(self.tr('Criar projeto Qgis para ramal.'))
+        self.pb_create_project.setToolTip(self.translate('Criar projeto Qgis para ramal.'))
         self.pb_create_project.setFixedSize(100, 25)
         self.vb_layout_project.addWidget(self.pb_create_project)
         self.lb_raster_select.setWordWrap(True)
@@ -79,9 +82,9 @@ class DockTabHomeBase(DockTab):
         self.vb_layout_project.addWidget(self.cb_raster)
         h_raster = QHBoxLayout()
         self.pb_update_list_layers.setFixedSize(100, 25)
-        self.pb_update_list_layers.setToolTip(self.tr('Atualizar a lista de camadas'))
+        self.pb_update_list_layers.setToolTip(self.translate('Atualizar a lista de camadas'))
         self.pb_set_raster.setFixedSize(100, 25)
-        self.pb_set_raster.setToolTip(self.tr('Definir camada raster do projeto'))
+        self.pb_set_raster.setToolTip(self.translate('Definir camada raster do projeto'))
         h_raster.addWidget(self.pb_update_list_layers)
         h_raster.addWidget(self.pb_set_raster)
         self.vb_layout_project.addLayout(h_raster)
@@ -90,7 +93,7 @@ class DockTabHomeBase(DockTab):
         self.vb_layout.addWidget(self.gb_project)
 
     def __start_field_data(self):
-        self.gb_field_data.setTitle(self.tr('Dados de campo'))
+        self.gb_field_data.setTitle(self.translate('Dados de campo'))
         # hb_set_layer = QHBoxLayout()
         # hb_set_layer.addWidget(self.lb_status_layers)
         # self.pb_set_layers.setFixedSize(100, 25)
@@ -98,12 +101,12 @@ class DockTabHomeBase(DockTab):
         # self.vb_layout_field_data.addLayout(hb_set_layer)
         self.lb_calculate.setWordWrap(True)
         self.vb_layout_field_data.addWidget(self.lb_calculate)
-        self.pb_calculate.setToolTip(self.tr('Calcular/atualizar cálculos.'))
+        self.pb_calculate.setToolTip(self.translate('Calcular/atualizar cálculos.'))
         self.pb_calculate.setFixedSize(100, 25)
         self.vb_layout_field_data.addWidget(self.pb_calculate)
         self.lb_generate_os.setWordWrap(True)
         self.vb_layout_field_data.addWidget(self.lb_generate_os)
-        self.pb_generate_os.setToolTip(self.tr('Gerar OS'))
+        self.pb_generate_os.setToolTip(self.translate('Gerar OS'))
         self.pb_generate_os.setFixedSize(100, 25)
         self.vb_layout_field_data.addWidget(self.pb_generate_os)
         self.gb_field_data.setMaximumHeight(150)

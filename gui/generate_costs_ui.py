@@ -10,22 +10,25 @@ from ..helpers.utils import Utils
 
 class GenerateCostsUI:
 
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('SanihubRamales', message)
+    # def tr(self, message):
+    #     # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+    #     return QCoreApplication.translate('SanihubRamales', message)
+
+    def translate(self, msg, disambiguation=None, n=-1) -> object:
+        return QCoreApplication.translate(GenerateCostsUI.__name__, msg, disambiguation, n)
 
     def __init__(self):
         self.windows = QDialog()
         self.utils = Utils()
         self.produces_costs = ProducesReportCostsXls()
-        self.windows.setWindowTitle(self.tr('Geração de planilha de custos'))
+        self.windows.setWindowTitle(self.translate('Geração de planilha de custos'))
         self.windows.setGeometry(350, 140, 350, 140)
         self.fl_layout = QFormLayout()
         self.hl_layout = QHBoxLayout()
-        self.lb_select_folder = QLabel(self.tr('Selecione pasta para salvar planilha de custos:'))
+        self.lb_select_folder = QLabel(self.translate('Selecione pasta para salvar planilha de custos:'))
         self.le_select_folder = QLineEdit()
         self.pb_select_folder = QPushButton('...')
-        self.pb_gerenate = QPushButton(self.tr('Gerar planilha'))
+        self.pb_gerenate = QPushButton(self.translate('Gerar planilha'))
         self.quantities_calculator: Optional[QuantitiesCalculations] = None
         self.__load_components()
         self.pb_select_folder.clicked.connect(self.__select_folder_save_os)
@@ -41,7 +44,7 @@ class GenerateCostsUI:
         self.windows.setLayout(self.fl_layout)
 
     def __select_folder_save_os(self):
-        name_file = QFileDialog.getSaveFileName(self.windows, self.tr("Salvar planilha de custos"), '', '*.xls', '')[0]
+        name_file = QFileDialog.getSaveFileName(self.windows, self.translate("Salvar planilha de custos"), '', '*.xls', '')[0]
         if name_file[-4:] != '.xls':
             name_file += '.xls'
         self.le_select_folder.setText(name_file)
@@ -53,7 +56,7 @@ class GenerateCostsUI:
     def __generate_costs(self):
         self.produces_costs.generate_report_costs(local_file=self.le_select_folder.text(),
                                                   quantities_calculator=self.quantities_calculator)
-        self.utils.show_dialog(title='SaniHub Ramales', message=self.tr('Arquivo gerado com sucesso'),
+        self.utils.show_dialog(title='SaniHub Ramales', message=self.translate('Arquivo gerado com sucesso'),
                                information=QMessageBox.Information)
         self.le_select_folder.clear()
         self.windows.close()
