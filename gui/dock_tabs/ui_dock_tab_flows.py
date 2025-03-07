@@ -20,6 +20,7 @@ class DockTabflows(DockTabFlowsBase):
         self.dsb_number_people_economy.valueChanged.connect(self.on_data_changed)
         self.dsb_coefficient_k1.valueChanged.connect(self.on_data_changed)
         self.dsb_coefficient_k2.valueChanged.connect(self.on_data_changed)
+        self.sb_number_economy_end.valueChanged.connect(self.save_economy_end)
 
     def load_data(self):
         resume_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
@@ -30,7 +31,7 @@ class DockTabflows(DockTabFlowsBase):
         resume_dict = dict(zip(resume_fields, resume_values[0]))
         economy_star = str(resume_dict[self.translate('economias')])
         self.lb_value_number_economy_start.setText(economy_star)
-        self.lb_value_number_economy_end.setText(economy_star)
+        self.sb_number_economy_end.setValue(int(economy_star))
         self.load_user_input()
         self.loaded_from_db = True
 
@@ -46,6 +47,21 @@ class DockTabflows(DockTabFlowsBase):
 
     def reload(self):
         self.load_data()
+
+    def save_economy_end(self):
+        resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
+        resume_fields = [field.name() for field in resume.fields()]
+        resume_values = [f.attributes() for f in resume.getFeatures()]
+        resume_dict = dict(zip(resume_fields, resume_values[0]))
+        resume_id = resume_dict[self.utils.get_json_attr('resume_frame', 'id')]
+        if not resume.isEditable():
+            resume.startEditing()
+        resume.changeAttributeValue(
+            resume_id,
+            resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economias')), # TODO: trocar para economia de fim de plano
+            self.sb_number_economy_end.value())
+        resume.commitChanges()
+        self.on_data_changed()
 
     def on_data_changed(self):
         if not self.loaded_from_db:
@@ -63,11 +79,10 @@ class DockTabflows(DockTabFlowsBase):
             ProjectDataManager.save_economy_metrics(self.economy_metrics)
             #self.dock.reload()
 
-
         calc = (self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
                   * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
                   * self.dsb_coefficient_k2.value())
         start = (calc * int(self.lb_value_number_economy_start.text())) / self.DAY
-        end = (calc * int(self.lb_value_number_economy_end.text())) / self.DAY
+        end = (calc * self.sb_number_economy_end.value()) / self.DAY
         self.lb_value_start.setText('{:.3f}'.format(start))
         self.lb_value_end.setText('{:.3f}'.format(end))

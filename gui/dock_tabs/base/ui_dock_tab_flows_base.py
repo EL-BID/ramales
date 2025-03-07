@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtWidgets import QGroupBox, QGridLayout, QVBoxLayout, QDoubleSpinBox, QLabel
+from PyQt5.QtWidgets import QGroupBox, QGridLayout, QVBoxLayout, QDoubleSpinBox, QLabel, QSpinBox
 
 from ...dock_tabs.base.ui_dock_tab_base import DockTab
 
@@ -17,33 +17,29 @@ class DockTabFlowsBase(DockTab):
         self.lb_return_coefficient = QLabel()  # coeficiente de retorno
         self.dsb_return_coefficient = QDoubleSpinBox()
         self.dsb_return_coefficient.setDecimals(2)
-        self.dsb_return_coefficient.setSuffix(self.translate(' C'))
-        self.dsb_return_coefficient.setFixedWidth(100)
+        self.dsb_return_coefficient.setFixedWidth(120)
         self.lb_per_capita_allocation = QLabel()  # dotacao per capita
         self.dsb_per_capita_allocation = QDoubleSpinBox()
         self.dsb_per_capita_allocation.setDecimals(2)
         self.dsb_per_capita_allocation.setMaximum(9999.99)
-        self.dsb_per_capita_allocation.setSuffix(self.translate(' q'))
-        self.dsb_per_capita_allocation.setFixedWidth(100)
+        self.dsb_per_capita_allocation.setSuffix(self.translate(' l/hab x dia'))
+        self.dsb_per_capita_allocation.setFixedWidth(120)
         self.lb_number_people_economy = QLabel()  # numero de pessoas por economia
         self.dsb_number_people_economy = QDoubleSpinBox()
         self.dsb_number_people_economy.setDecimals(2)
-        self.dsb_number_people_economy.setSuffix(self.translate(' p'))
-        self.dsb_number_people_economy.setFixedWidth(100)
+        self.dsb_number_people_economy.setFixedWidth(120)
         self.lb_coefficient_k1 = QLabel()  # coeficiente dia de maior consumo
         self.dsb_coefficient_k1 = QDoubleSpinBox()
         self.dsb_coefficient_k1.setDecimals(2)
-        self.dsb_coefficient_k1.setSuffix(self.translate(' K1'))
-        self.dsb_coefficient_k1.setFixedWidth(100)
+        self.dsb_coefficient_k1.setFixedWidth(120)
         self.lb_coefficient_k2 = QLabel()  # coeficiente hora de maior consumo
         self.dsb_coefficient_k2 = QDoubleSpinBox()
         self.dsb_coefficient_k2.setDecimals(2)
-        self.dsb_coefficient_k2.setFixedWidth(100)
-        self.dsb_coefficient_k2.setSuffix(self.translate(' K2'))
+        self.dsb_coefficient_k2.setFixedWidth(120)
         self.lb_txt_number_economy_start = QLabel()  # numero de economias de inicio
         self.lb_value_number_economy_start = QLabel()
         self.lb_txt_number_economy_end = QLabel()  # numero de economias de fim
-        self.lb_value_number_economy_end = QLabel()
+        self.sb_number_economy_end = QSpinBox()
         # dados de saída
         self.lb_flow = QLabel()
         self.lb_txt_start = QLabel()
@@ -63,29 +59,29 @@ class DockTabFlowsBase(DockTab):
         self.lb_txt_entrance_flow.setWordWrap(True)
         self.vb_layout_flow.addWidget(self.lb_txt_entrance_flow)
 
-        self.lb_return_coefficient.setText(self.translate('Coeficiente de retorno'))
+        self.lb_return_coefficient.setText(self.translate('Coeficiente de retorno (C)'))
         self.gl_layout_flow_ent.addWidget(self.lb_return_coefficient, 0, 0)
         self.gl_layout_flow_ent.addWidget(self.dsb_return_coefficient, 0, 1)
-        self.lb_per_capita_allocation.setText(self.translate('Dotação per capita'))
+        self.lb_per_capita_allocation.setText(self.translate('Dotação per capita (q)'))
         self.gl_layout_flow_ent.addWidget(self.lb_per_capita_allocation, 1, 0)
         self.gl_layout_flow_ent.addWidget(self.dsb_per_capita_allocation, 1, 1)
-        self.lb_number_people_economy.setText(self.translate('Número de pessoas por economia'))
+        self.lb_number_people_economy.setText(self.translate('Número de pessoas por economia (p)'))
         self.gl_layout_flow_ent.addWidget(self.lb_number_people_economy, 2, 0)
         self.gl_layout_flow_ent.addWidget(self.dsb_number_people_economy, 2, 1)
-        self.lb_coefficient_k1.setText(self.translate('Coeficiente dia de maior consumo'))
+        self.lb_coefficient_k1.setText(self.translate('Coeficiente dia de maior consumo (K1)'))
         self.gl_layout_flow_ent.addWidget(self.lb_coefficient_k1, 3, 0)
         self.gl_layout_flow_ent.addWidget(self.dsb_coefficient_k1, 3, 1)
-        self.lb_coefficient_k2.setText(self.translate('Coeficiente hora de maior consumo'))
+        self.lb_coefficient_k2.setText(self.translate('Coeficiente hora de maior consumo (K2)'))
         self.gl_layout_flow_ent.addWidget(self.lb_coefficient_k2, 4, 0)
         self.gl_layout_flow_ent.addWidget(self.dsb_coefficient_k2, 4, 1)
-        self.lb_txt_number_economy_start.setText(self.translate('Número de economias inicio'))
+        self.lb_txt_number_economy_start.setText(self.translate('Número de economias inicio de plano (e)'))
         self.lb_value_number_economy_start.setText('')
         self.gl_layout_flow_ent.addWidget(self.lb_txt_number_economy_start, 5, 0)
         self.gl_layout_flow_ent.addWidget(self.lb_value_number_economy_start, 5, 1)
-        self.lb_txt_number_economy_end.setText(self.translate('Número de economias inicio'))
-        self.lb_value_number_economy_end.setText('')
+        self.lb_txt_number_economy_end.setText(self.translate('Número de economias fim de plano (e)'))
+        self.sb_number_economy_end.setValue(0)
         self.gl_layout_flow_ent.addWidget(self.lb_txt_number_economy_end, 6, 0)
-        self.gl_layout_flow_ent.addWidget(self.lb_value_number_economy_end, 6, 1)
+        self.gl_layout_flow_ent.addWidget(self.sb_number_economy_end, 6, 1)
         self.gb_flow_ent.setLayout(self.gl_layout_flow_ent)
         self.vb_layout_flow.addWidget(self.gb_flow_ent)
 
