@@ -2,6 +2,7 @@
 import datetime
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtWidgets import QItemDelegate
 
 
@@ -13,6 +14,9 @@ from PyQt5.QtWidgets import QItemDelegate
 
 
 class Ui_BlockDialog(object):
+
+    def translate(self, msg, disambiguation=None, n=-1) -> str:
+        return QCoreApplication.translate(Ui_BlockDialog.__name__, msg, disambiguation, n)
     def setupUi(self, BlockDialog):
         BlockDialog.setObjectName("BlockDialog")
         BlockDialog.resize(729, 619)
@@ -125,22 +129,22 @@ class Ui_BlockDialog(object):
         self.tableWidget.setAlternatingRowColors(True)
 
     def retranslateUi(self, BlockDialog):
-        _translate = QtCore.QCoreApplication.translate
-        BlockDialog.setWindowTitle(_translate("BlockDialog", "Cálculo dos Ramais"))
-        self.generalBox.setTitle(_translate("BlockDialog", "Generales"))
-        self.dateLabel.setText(_translate("BlockDialog", "Fecha"))
-        self.date.setDisplayFormat(_translate("BlockDialog", "dd/MM/yyyy"))
-        self.block.setText(_translate("BlockDialog", "Manzana"))
-        self.watershedLabel.setText(_translate("BlockDialog", "Cuenca"))
-        self.minDepthLabel.setText(_translate("BlockDialog", "Profundidad minima"))
-        self.minSlopeLabel.setText(_translate("BlockDialog", "Pendiente minima"))
-        self.groupBox_2.setTitle(_translate("BlockDialog", "Cuantitativos"))
-        self.revisionLabel.setText(_translate("BlockDialog", "Revision"))
-        self.revisionDateLabel.setText(_translate("BlockDialog", "Fecha Revision"))
-        self.revisionDate.setDisplayFormat(_translate("BlockDialog", "dd/MM/yyyy"))
-        self.totalLengthLabel.setText(_translate("BlockDialog", "Longitud total"))
-        self.observationsLabel.setText(_translate("BlockDialog", "Observaciones"))
-        self.os_name_lb.setText(_translate("BlockDialog", "Nome da  OS"))
+        # _translate = QtCore.QCoreApplication.translate
+        BlockDialog.setWindowTitle(self.translate("Cálculo dos Ramais"))
+        self.generalBox.setTitle(self.translate("Generales"))
+        self.dateLabel.setText(self.translate("Fecha"))
+        self.date.setDisplayFormat(self.translate("dd/MM/yyyy"))
+        self.block.setText(self.translate("Manzana"))
+        self.watershedLabel.setText(self.translate("Cuenca"))
+        self.minDepthLabel.setText(self.translate("Profundidad minima"))
+        self.minSlopeLabel.setText(self.translate("Pendiente minima"))
+        self.groupBox_2.setTitle(self.translate("Cuantitativos"))
+        self.revisionLabel.setText(self.translate("Revision"))
+        self.revisionDateLabel.setText(self.translate("Fecha Revision"))
+        self.revisionDate.setDisplayFormat(self.translate("dd/MM/yyyy"))
+        self.totalLengthLabel.setText(self.translate("Longitud total"))
+        self.observationsLabel.setText(self.translate("Observaciones"))
+        self.os_name_lb.setText(self.translate("Nome da  OS"))
 
 
 class ReadOnlyDelegate(QItemDelegate):
