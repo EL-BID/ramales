@@ -38,7 +38,7 @@ class DockTabflows(DockTabFlowsBase):
             ProjectDataManager.save_economy_metrics(self.economy_metrics)
             # self.dock.reload()
 
-        self.save_economy_end()
+        self.save_data_in_layers()
 
     def set_logic(self):
         self.dsb_return_coefficient.valueChanged.connect(self.on_data_changed)
@@ -46,7 +46,7 @@ class DockTabflows(DockTabFlowsBase):
         self.dsb_number_people_economy.valueChanged.connect(self.on_data_changed)
         self.dsb_coefficient_k1.valueChanged.connect(self.on_data_changed)
         self.dsb_coefficient_k2.valueChanged.connect(self.on_data_changed)
-        self.sb_number_economy_end.valueChanged.connect(self.save_economy_end)
+        self.sb_number_economy_end.valueChanged.connect(self.on_data_changed)
 
     def load_data(self):
         resume_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
@@ -76,7 +76,7 @@ class DockTabflows(DockTabFlowsBase):
     def reload(self):
         self.load_data()
 
-    def save_economy_end(self):
+    def save_data_in_layers(self):
         resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
         resume_fields = [field.name() for field in resume.fields()]
         resume_values = [f.attributes() for f in resume.getFeatures()]
@@ -87,7 +87,16 @@ class DockTabflows(DockTabFlowsBase):
                 resume_id,
                 resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economias_fim')),
                 self.sb_number_economy_end.value())
-        self.on_data_changed()
+            resume.changeAttributeValue(
+                resume_id,
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'vazao_Inicio')),
+                float(self.lb_value_start.text()))
+            resume.changeAttributeValue(
+                resume_id,
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'vazao_Fim')),
+                float(self.lb_value_end.text()))
+
+
 
     def on_data_changed(self):
         self.save_timer.start(500)
