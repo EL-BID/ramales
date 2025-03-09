@@ -70,10 +70,11 @@ class CreateProjectDialog(QDialog):
                                                               "alterações não salvas do projeto atual serão perdidas," +
                                                               " e você será movido automaticamente para o novo projeto."))
 
+        print("ACCEPTED2")
         if ret is not True:
             return
-
-        def get_id_layer(lang) -> str:
+        print("ACCEPTED3")
+        def get_id_layer(lang):
             layers = self.__get_layers(lang)
             # for lyr in layers:
             for k, v in layers.items():
@@ -98,8 +99,11 @@ class CreateProjectDialog(QDialog):
                 NODES_LAYER_ID=self.dict_layers['nodes'],
                 SEGMENTS_LAYER_ID=self.dict_layers['segments'],
                 LINEAR_OBSTACLES_LAYER_ID=self.dict_layers['linear_obstacles'],
-                POINT_OBSTACLES_LAYER_ID=self.dict_layers['point_obstacles']
-                ))
+                POINT_OBSTACLES_LAYER_ID=self.dict_layers['point_obstacles'],
+                RESUME_FRAME_LAYER_ID=self.dict_layers['resume_frame'],
+                BUILDINGS_LAYER_ID=self.dict_layers['buildings'],
+                SERVICE_LANE_LAYER_ID=self.dict_layers['service_lane']
+            ))
             self.utils.show_dialog(title=self.translate('Criação sucedida'),
                                    message=self.translate('Projeto criado com sucesso!'),
                                    information=QMessageBox.Information)

@@ -26,8 +26,10 @@ class DockTabflows(DockTabFlowsBase):
         resume_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
         if not resume_lyr:
             return
-        resume_fields = [field.name() for field in resume_lyr.fields()]
+        resume_fields = [field.name().strip() for field in resume_lyr.fields()]
         resume_values = [f.attributes() for f in resume_lyr.getFeatures()]
+        if not resume_lyr or not resume_values:
+            return
         resume_dict = dict(zip(resume_fields, resume_values[0]))
         economy_star = str(resume_dict[self.translate('economias')])
         self.lb_value_number_economy_start.setText(economy_star)
