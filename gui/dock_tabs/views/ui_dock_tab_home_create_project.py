@@ -82,6 +82,7 @@ class CreateProjectDialog(QDialog):
                     self.dict_layers[k] = layer[0].id()
 
         try:
+            print("GENERATING PROJECT!!!!!")
             generate_project(
                 local=self.__parse_name_language(self.cb_local.currentText()),
                 srid=self.tb_filter.selectedItems()[1].text(),
@@ -91,6 +92,7 @@ class CreateProjectDialog(QDialog):
                 iface=self.iface
             )
             get_id_layer(self.__parse_name_language(self.cb_local.currentText()))
+            print(f'dict_layers: {self.dict_layers}')
             ProjectDataManager.save_layers_id(layers_data=LayersData(
                 BLOCKS_LAYER_ID=self.dict_layers['blocks'],
                 NODES_LAYER_ID=self.dict_layers['nodes'],

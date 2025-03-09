@@ -31,7 +31,7 @@ class Utils:
         self.data_json = None
         # self.segments = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().SEGMENTS_LAYER_ID)
 
-    def translate(self, msg, disambiguation=None, n=-1) -> object:
+    def translate(self, msg, disambiguation=None, n=-1) -> str:
         return QCoreApplication.translate(Utils.__name__, msg, disambiguation, n)
 
     def formatNum3Dec(self, valor):

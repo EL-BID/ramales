@@ -70,7 +70,7 @@ def generate_project(local: str,
     utils = Utils()
     iface.newProject()
     project = QgsProject.instance()
-    group = project.layerTreeRoot().addGroup(utils.tr('SaniHUB Ramales'))
+    group = project.layerTreeRoot().addGroup(utils.translate('SaniHUB Ramales'))
     root = project.layerTreeRoot()
     for i, layer_info in enumerate(conn):
         layer_name = layer_info.GetName()
