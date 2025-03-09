@@ -1,6 +1,6 @@
 from typing import Optional
 
-from qgis._core import QgsProject
+from qgis.core import QgsProject, edit
 from ...core.data.data_manager import ProjectDataManager
 from ...core.data.models import EconomyMetrics
 from .base.ui_dock_tab_flows_base import DockTabFlowsBase
@@ -57,13 +57,11 @@ class DockTabflows(DockTabFlowsBase):
         resume_values = [f.attributes() for f in resume.getFeatures()]
         resume_dict = dict(zip(resume_fields, resume_values[0]))
         resume_id = resume_dict[self.utils.get_json_attr('resume_frame', 'id')]
-        if not resume.isEditable():
-            resume.startEditing()
-        resume.changeAttributeValue(
-            resume_id,
-            resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economias')), # TODO: trocar para economia de fim de plano
-            self.sb_number_economy_end.value())
-        resume.commitChanges()
+        with edit(resume):
+            resume.changeAttributeValue(
+                resume_id,
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economies')), # TODO: trocar para economia de fim de plano
+                self.sb_number_economy_end.value())
         self.on_data_changed()
 
     def on_data_changed(self):

@@ -60,8 +60,7 @@ class ProjectDataManager:
                   LayersInfoDAO.set_nodes_layer_id(layers_data.NODES_LAYER_ID) and
                   LayersInfoDAO.set_segments_layer_id(layers_data.SEGMENTS_LAYER_ID) and
                   LayersInfoDAO.set_linear_obstacles_layer_id(layers_data.LINEAR_OBSTACLES_LAYER_ID) and
-                  LayersInfoDAO.set_point_obstacles_layer_id(layers_data.POINT_OBSTACLES_LAYER_ID) and
-                  LayersInfoDAO.set_accessories_layer_id(layers_data.ACCESSORIES_LAYER_ID))
+                  LayersInfoDAO.set_point_obstacles_layer_id(layers_data.POINT_OBSTACLES_LAYER_ID))
         if success:
             LayersInfoDAO.set_done(True)
             return True

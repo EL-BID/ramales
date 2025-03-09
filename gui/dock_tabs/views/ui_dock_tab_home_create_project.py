@@ -70,10 +70,8 @@ class CreateProjectDialog(QDialog):
                                                               "alterações não salvas do projeto atual serão perdidas," +
                                                               " e você será movido automaticamente para o novo projeto."))
 
-        print("ACCEPTED2")
         if ret is not True:
             return
-        print("ACCEPTED3")
         def get_id_layer(lang):
             layers = self.__get_layers(lang)
             # for lyr in layers:
@@ -83,7 +81,6 @@ class CreateProjectDialog(QDialog):
                     self.dict_layers[k] = layer[0].id()
 
         try:
-            print("GENERATING PROJECT!!!!!")
             generate_project(
                 local=self.__parse_name_language(self.cb_local.currentText()),
                 srid=self.tb_filter.selectedItems()[1].text(),
@@ -93,7 +90,6 @@ class CreateProjectDialog(QDialog):
                 iface=self.iface
             )
             get_id_layer(self.__parse_name_language(self.cb_local.currentText()))
-            print(f'dict_layers: {self.dict_layers}')
             ProjectDataManager.save_layers_id(layers_data=LayersData(
                 BLOCKS_LAYER_ID=self.dict_layers['blocks'],
                 NODES_LAYER_ID=self.dict_layers['nodes'],
@@ -102,7 +98,7 @@ class CreateProjectDialog(QDialog):
                 POINT_OBSTACLES_LAYER_ID=self.dict_layers['point_obstacles'],
                 RESUME_FRAME_LAYER_ID=self.dict_layers['resume_frame'],
                 BUILDINGS_LAYER_ID=self.dict_layers['buildings'],
-                SERVICE_LANE_LAYER_ID=self.dict_layers['service_lane']
+                SERVICE_LANE_LAYER_ID=self.dict_layers['service_lane'],
             ))
             self.utils.show_dialog(title=self.translate('Criação sucedida'),
                                    message=self.translate('Projeto criado com sucesso!'),
@@ -161,13 +157,12 @@ class CreateProjectDialog(QDialog):
         # Getting all crs
         con = sqlite3.connect(QgsApplication.srsDatabaseFilePath())
         cur = con.cursor()
-        cur.execute('select * from vw_srs')
+        cur.execute('select description, auth_id, auth_name from vw_srs')
         rows = cur.fetchall()
         con.close()
         for i, crs in enumerate(rows):
-            description = crs[0]
-            srid = crs[-2]
-            srid_type = crs[-3]
+            # TODO: CHECK FOR LOWER VERSIONS
+            description, srid, srid_type = crs
             self.tb_filter.insertRow(i)
             self.tb_filter.setItem(i, 0, QTableWidgetItem(srid_type))
             self.tb_filter.setItem(i, 1, QTableWidgetItem(str(srid)))

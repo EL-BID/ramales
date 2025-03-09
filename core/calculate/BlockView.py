@@ -451,7 +451,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                 self.utils.get_json_attr('resume_frame', "C90º"): self.__get_connections('C90°'),
                 self.utils.get_json_attr('resume_frame', "TE"): self.__get_connections('TE'),
                 self.utils.get_json_attr('resume_frame', "imoveis"): self.__get_count_buildings(),
-                self.utils.get_json_attr('resume_frame', "economias"): self.__get_count_economy(),
+                self.utils.get_json_attr('resume_frame', "economies"): self.__get_count_economy(),
                 self.utils.get_json_attr('resume_frame', "faixa_servidão"): self.__get_length_service_lane(),
             }
             for field, value in attributes.items():

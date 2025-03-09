@@ -6,6 +6,7 @@ import shutil
 import os
 from ...helpers.utils import Utils
 import re
+import json
 
 
 def generate_project(local: str,
@@ -60,7 +61,7 @@ def generate_project(local: str,
 
     path_out_file = rf'{project_path}/sanihubramales_{local}.gpkg'
     path_out = rf'{project_path}'
-    qgis_path = rf'{project_path}/{project_name}.qgs'
+    qgis_path = rf'{project_path}/{project_name}.qgz'
 
     # Copy the geopackage to the new file
     shutil.copytree(path_in, path_out, dirs_exist_ok=True)
@@ -72,6 +73,10 @@ def generate_project(local: str,
     project = QgsProject.instance()
     group = project.layerTreeRoot().addGroup(utils.translate('SaniHUB Ramales'))
     root = project.layerTreeRoot()
+    plugin_dir = utils.get_plugin_dir()
+    localizations_file = os.path.join(plugin_dir, 'resources', 'localizations', f'{local}.json')
+    localizations = json.load(open(localizations_file))
+    resume_frame = localizations['layers']['resume_frame']
     for i, layer_info in enumerate(conn):
         layer_name = layer_info.GetName()
         layer = QgsVectorLayer(path_out_file + "|layername=" + layer_info.GetName(), layer_info.GetName(), 'ogr')
@@ -85,7 +90,7 @@ def generate_project(local: str,
 
             # Close the layers
             node = root.findLayer(layer.id())
-            if layer_name == 'quadro_resumo': #TODO: pegar nome da camada via json
+            if layer_name == resume_frame: #TODO: pegar nome da camada via json
                 node.setItemVisibilityChecked(True)
             else:
                 node.setExpanded(True)
