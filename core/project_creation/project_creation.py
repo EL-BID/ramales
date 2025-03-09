@@ -90,7 +90,7 @@ def generate_project(local: str,
 
             # Close the layers
             node = root.findLayer(layer.id())
-            if layer_name == resume_frame: #TODO: pegar nome da camada via json
+            if layer_name == resume_frame:
                 node.setItemVisibilityChecked(True)
             else:
                 node.setExpanded(True)

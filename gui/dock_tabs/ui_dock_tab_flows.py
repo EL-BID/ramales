@@ -4,6 +4,7 @@ from qgis.core import QgsProject, edit
 from ...core.data.data_manager import ProjectDataManager
 from ...core.data.models import EconomyMetrics
 from .base.ui_dock_tab_flows_base import DockTabFlowsBase
+from PyQt5.QtCore import QTimer
 
 class DockTabflows(DockTabFlowsBase):
 
@@ -11,8 +12,40 @@ class DockTabflows(DockTabFlowsBase):
 
     def __init__(self, dock):
         super().__init__(dock)
+
+        # We do this to avoid saving the values every time the user changes the value
+        # Because we are changing layers, it is very slow to save the values every time
+        self.save_timer = QTimer()
+        self.save_timer.setSingleShot(True)
+        self.save_timer.timeout.connect(self.save_values)
+
         self.economy_metrics = EconomyMetrics()
         self.loaded_from_db = False
+
+
+    def save_values(self):
+        if not self.loaded_from_db:
+            return
+        tmp_economy_metrics = EconomyMetrics(
+            return_coefficient=self.dsb_return_coefficient.value(),
+            number_of_people_per_economy=self.dsb_number_people_economy.value(),
+            peak_day_coefficient=self.dsb_coefficient_k1.value(),
+            peak_hour_coefficient=self.dsb_coefficient_k2.value(),
+            per_capita_endowment=self.dsb_per_capita_allocation.value(),
+        )
+
+        if tmp_economy_metrics != self.economy_metrics:
+            self.economy_metrics = tmp_economy_metrics
+            ProjectDataManager.save_economy_metrics(self.economy_metrics)
+            # self.dock.reload()
+
+        calc = (self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
+                * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
+                * self.dsb_coefficient_k2.value())
+        start = (calc * int(self.lb_value_number_economy_start.text())) / self.DAY
+        end = (calc * self.sb_number_economy_end.value()) / self.DAY
+        self.lb_value_start.setText('{:.3f}'.format(start))
+        self.lb_value_end.setText('{:.3f}'.format(end))
 
     def set_logic(self):
         self.dsb_return_coefficient.valueChanged.connect(self.on_data_changed)
@@ -51,7 +84,6 @@ class DockTabflows(DockTabFlowsBase):
         self.load_data()
 
     def save_economy_end(self):
-        print("Saving economy end...")
         resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
         resume_fields = [field.name() for field in resume.fields()]
         resume_values = [f.attributes() for f in resume.getFeatures()]
@@ -60,7 +92,7 @@ class DockTabflows(DockTabFlowsBase):
         with edit(resume):
             resume.changeAttributeValue(
                 resume_id,
-                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economies')), # TODO: trocar para economia de fim de plano
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economias_fim')),
                 self.sb_number_economy_end.value())
         self.on_data_changed()
 
