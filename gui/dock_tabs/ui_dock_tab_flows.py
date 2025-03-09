@@ -51,6 +51,7 @@ class DockTabflows(DockTabFlowsBase):
         self.load_data()
 
     def save_economy_end(self):
+        print("Saving economy end...")
         resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
         resume_fields = [field.name() for field in resume.fields()]
         resume_values = [f.attributes() for f in resume.getFeatures()]
