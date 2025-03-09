@@ -22,7 +22,6 @@ class DockTabflows(DockTabFlowsBase):
         self.economy_metrics = EconomyMetrics()
         self.loaded_from_db = False
 
-
     def save_values(self):
         if not self.loaded_from_db:
             return
@@ -39,13 +38,7 @@ class DockTabflows(DockTabFlowsBase):
             ProjectDataManager.save_economy_metrics(self.economy_metrics)
             # self.dock.reload()
 
-        calc = (self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
-                * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
-                * self.dsb_coefficient_k2.value())
-        start = (calc * int(self.lb_value_number_economy_start.text())) / self.DAY
-        end = (calc * self.sb_number_economy_end.value()) / self.DAY
-        self.lb_value_start.setText('{:.3f}'.format(start))
-        self.lb_value_end.setText('{:.3f}'.format(end))
+        self.save_economy_end()
 
     def set_logic(self):
         self.dsb_return_coefficient.valueChanged.connect(self.on_data_changed)
@@ -97,25 +90,14 @@ class DockTabflows(DockTabFlowsBase):
         self.on_data_changed()
 
     def on_data_changed(self):
-        if not self.loaded_from_db:
-            return
-        tmp_economy_metrics = EconomyMetrics(
-            return_coefficient=self.dsb_return_coefficient.value(),
-            number_of_people_per_economy=self.dsb_number_people_economy.value(),
-            peak_day_coefficient=self.dsb_coefficient_k1.value(),
-            peak_hour_coefficient=self.dsb_coefficient_k2.value(),
-            per_capita_endowment=self.dsb_per_capita_allocation.value(),
-        )
+        self.save_timer.start(500)
 
-        if tmp_economy_metrics != self.economy_metrics:
-            self.economy_metrics = tmp_economy_metrics
-            ProjectDataManager.save_economy_metrics(self.economy_metrics)
-            #self.dock.reload()
-
+        # Calculate the start and end values, and show them in the UI
         calc = (self.dsb_return_coefficient.value() * self.dsb_per_capita_allocation.value()
-                  * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
-                  * self.dsb_coefficient_k2.value())
+                * self.dsb_number_people_economy.value() * self.dsb_coefficient_k1.value()
+                * self.dsb_coefficient_k2.value())
         start = (calc * int(self.lb_value_number_economy_start.text())) / self.DAY
         end = (calc * self.sb_number_economy_end.value()) / self.DAY
         self.lb_value_start.setText('{:.3f}'.format(start))
         self.lb_value_end.setText('{:.3f}'.format(end))
+
