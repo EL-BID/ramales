@@ -1,7 +1,7 @@
 import decimal
 
 from PyQt5.QtCore import QLocale, QVariant
-from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QDoubleSpinBox
+from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QDoubleSpinBox, QMessageBox
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis._core import QgsProject, QgsApplication, QgsVectorLayer, QgsDefaultValue, QgsFeature
 from qgis.core import edit
@@ -14,7 +14,7 @@ translate = QCoreApplication.translate
 
 
 class BlockViewDialog(QDialog, Ui_BlockDialog):
-
+    title = 'Ramales'
 
     def translate(self, msg, disambiguation=None, n=-1) -> object:
         return QCoreApplication.translate(BlockViewDialog.__name__, msg, disambiguation, n)
@@ -59,6 +59,10 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         block = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().BLOCKS_LAYER_ID)
         block_fields = [field.name() for field in block.fields()]
         block_values = [f.attributes() for f in block.getFeatures()]
+        if len(block_values) == 0:
+            self.utils.show_dialog(title=self.title, message=self.translate('Crie ao menos uma quadra para continuar.'),
+                                   information=QMessageBox.Information)
+            return
         block_dict = dict(zip(block_fields, block_values[0]))
         # resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
         # resume_fields = [field.name() for field in resume.fields()]

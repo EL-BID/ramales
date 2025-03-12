@@ -65,7 +65,6 @@ class LayersInfoDAO(DAO):
     KEY_SEGMENTS_LAYER = 'SEGMENTS_LAYER'
     KEY_LINEAR_OBSTACLES_LAYER = 'LINEAR_OBSTACLES_LAYER'
     KEY_POINT_OBSTACLES_LAYER = 'POINT_OBSTACLES_LAYER'
-    KEY_ACCESSORIES_LAYER = 'ACCESSORIES_LAYER'
     KEY_BUILDINGS_LAYER = 'BUILDINGS_LAYER'
     KEY_SERVICE_LANE_LAYER = 'SERVICE_LANE_LAYER'
 
@@ -101,9 +100,6 @@ class LayersInfoDAO(DAO):
     def get_point_obstacles_layer_id(cls):
         return cls.proj.readEntry(cls.SCOPE, cls.KEY_POINT_OBSTACLES_LAYER, None)
 
-    @classmethod
-    def get_accessories_layer_id(cls):
-        return cls.proj.readEntry(cls.SCOPE, cls.KEY_ACCESSORIES_LAYER, None)
 
     @classmethod
     def set_blocks_layer_id(cls, blocks_layer):
@@ -136,10 +132,6 @@ class LayersInfoDAO(DAO):
     @classmethod
     def set_point_obstacles_layer_id(cls, points_obstacles_layer):
         return cls.proj.writeEntry(cls.SCOPE, cls.KEY_POINT_OBSTACLES_LAYER, points_obstacles_layer)
-
-    @classmethod
-    def set_accessories_layer_id(cls, accessories_layer):
-        return cls.proj.writeEntry(cls.SCOPE, cls.KEY_ACCESSORIES_LAYER, accessories_layer)
 
 
 class CalculationInfoDAO(DAO):

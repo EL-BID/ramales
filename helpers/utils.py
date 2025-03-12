@@ -31,7 +31,7 @@ class Utils:
         self.data_json = None
         # self.segments = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().SEGMENTS_LAYER_ID)
 
-    def translate(self, msg, disambiguation=None, n=-1) -> object:
+    def translate(self, msg, disambiguation=None, n=-1) -> str:
         return QCoreApplication.translate(Utils.__name__, msg, disambiguation, n)
 
     def formatNum3Dec(self, valor):
@@ -150,9 +150,6 @@ class Utils:
     def __set_data_json(self):
         plg_dir = os.path.dirname(__file__)
         plg_dir = plg_dir.replace('helpers', 'resources' + os.sep + 'localizations' + os.sep)
-        # TODO: Tirar 2 linhas abaixo após receber geopackage
-        from ..core.data.models import Language
-        ProjectDataManager.save_language_project(Language(LANGUAGE='pt_BR'))
 
         lang = ProjectDataManager.get_language_project().LANGUAGE
         lang = lang if lang != '' else get_language_file()

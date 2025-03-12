@@ -6,13 +6,16 @@
       "overhead": "aéreo"
     }
   ],
+
   "layers": {
-      "accessories": "acessorios",
       "blocks": "quadra",
       "nodes": "caixas",
       "segments": "trecho",
       "linear_obstacles": "obst_lineares",
-      "point_obstacles": "obst_pontuais"
+      "point_obstacles": "obst_pontuais",
+      "resume_frame": "quadro_resumo",
+      "service_lane": "faixa_servidão",
+      "buildings": "edificacoes"
     },
   "raster": "dem_ramais",
   "nodes": ["caixas", {
@@ -109,6 +112,9 @@
     "TE": "TE",
     "imoveis": "imoveis",
     "economias": "economias",
+    "economias_fim": "economias_fim",
+    "vazao_Inicio": "vazao_Inicio",
+    "vazao_Fim": "vazao_Fim",
     "faixa_servidão": "faixa_servidão"
   }],
   "service_lane": ["faixa_servidão", {

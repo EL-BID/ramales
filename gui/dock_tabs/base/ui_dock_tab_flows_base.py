@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtWidgets import QGroupBox, QGridLayout, QVBoxLayout, QDoubleSpinBox, QLabel, QSpinBox
+from PyQt5.QtWidgets import QGroupBox, QGridLayout, QVBoxLayout, QDoubleSpinBox, QLabel, QSpinBox, QPushButton
 
 from ...dock_tabs.base.ui_dock_tab_base import DockTab
 
@@ -40,6 +40,7 @@ class DockTabFlowsBase(DockTab):
         self.lb_value_number_economy_start = QLabel()
         self.lb_txt_number_economy_end = QLabel()  # numero de economias de fim
         self.sb_number_economy_end = QSpinBox()
+
         # dados de saída
         self.lb_flow = QLabel()
         self.lb_txt_start = QLabel()
