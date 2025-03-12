@@ -59,11 +59,22 @@ class DockTabflows(DockTabFlowsBase):
         resume_dict = dict(zip(resume_fields, resume_values[0]))
         economy_star = str(resume_dict[self.translate('economias')])
         self.lb_value_number_economy_start.setText(economy_star)
-        self.sb_number_economy_end.setValue(int(economy_star))
         self.load_user_input()
         self.loaded_from_db = True
 
     def load_user_input(self):
+        resume_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
+        economy_end_idx = self.utils.get_idx_attr(resume_lyr, 'resume_frame', 'economias_fim')
+        feat = None
+        for f in resume_lyr.getFeatures():
+            feat = f
+            break
+        if feat and feat[economy_end_idx]:
+            economy_end = feat[economy_end_idx]
+            self.sb_number_economy_end.setValue(int(economy_end))
+        else:
+            self.sb_number_economy_end.setValue(int(self.lb_value_number_economy_start.text()))
+
         if ProjectDataManager.is_save_economy_metrics_loaded():
             self.economy_metrics = ProjectDataManager.get_economy_metrics()
 
