@@ -1,13 +1,23 @@
 {
   "locale_name": "Español (es_ES)",
+  "bool_air": ["",
+    {
+      "underground": "enterrado",
+      "overhead": "aéreo"
+    }
+  ],
+
   "layers": {
-      "accessories": "accesorios",
       "blocks": "manzana_proyecto",
       "nodes": "cajas",
       "segments": "tramo",
       "linear_obstacles": "obst_lineales",
-      "point_obstacles": "obst_puntuales"
-    },
+      "point_obstacles": "obst_puntuales",
+      "resume_frame": "quadro_resumo",
+      "service_lane": "faixa_servidão",
+      "buildings": "edificacoes",
+      "accessories": "accesorios"
+  },
   "raster": "dem_ramales",
   "nodes": ["cajas", {
     "id": "fid",
@@ -73,5 +83,53 @@
     "rev_date": "fecha_revise",
     "total_length": "longitud_total",
     "os_name": "hs_nombre"
+  }],
+  "resume_frame": ["quadro_resumo", {
+    "id": "id",
+    "ext_trechos_DN100(m)": "ext_trechos_DN100(m)",
+    "ext_TQ_DN100": "ext_TQ_DN100",
+    "ext_total_DN100(m)": "ext_total_DN100(m)",
+    "ext_trechos_DN150(m)": "ext_trechos_DN150(m)",
+    "ext_TQ_DN150(m)": "ext_TQ_DN150(m)",
+    "ext_total_DN150(m)": "ext_total_DN150(m)",
+    "ext_total(m)": "ext_total(m)",
+    "cx_Ø40": "cx_Ø40",
+    "cx_Ø60": "cx_Ø60",
+    "cx_ret_tijolinho": "cx_ret_tijolinho",
+    "cx_ret_concreto": "cx_ret_concreto",
+    "TIL": "TIL",
+    "total_inspeção": "total_inspeção",
+    "selim": "selim",
+    "C90º": "C90º",
+    "TE": "TE",
+    "imoveis": "imoveis",
+    "economias": "economias",
+    "economias_fim": "economias_fim",
+    "vazao_Inicio": "vazao_Inicio",
+    "vazao_Fim": "vazao_Fim",
+    "faixa_servidão": "faixa_servidão"
+  }],
+  "service_lane": ["faixa_servidão", {
+    "id": "fid",
+    "extensao": "extensao",
+    "largura": "largura",
+    "coord_Xi": "coord_Xi",
+    "coord_Yi": "coord_Yi",
+    "coord_Xf": "coord_Xf",
+    "coord_Yf": "coord_Yf",
+    "comentarios": "comentarios",
+    "responsavel": "responsavel",
+    "fone": "fone"
+  }],
+  "buildings": ["edificacoes", {
+    "id": "fid",
+    "nome": "nome",
+    "tipo": "tipo",
+    "n_pav": "n_pav",
+    "n_econ": "n_econ",
+    "observ": "observ",
+    "morador": "morador",
+    "matricula": "matricula",
+    "unidade": "unidade"
   }]
 }

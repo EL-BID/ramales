@@ -2,6 +2,7 @@ import os
 from qgis.PyQt.QtCore import QCoreApplication, QVariant
 import json
 from qgis.core import *
+from qgis._core import QgsProject
 
 from ..data.data_manager import ProjectDataManager
 from ..calculate.BlockView import BlockViewDialog
