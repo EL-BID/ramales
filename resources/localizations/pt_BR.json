@@ -3,7 +3,7 @@
   "bool_air": ["",
     {
       "underground": "enterrado",
-      "overhead": "aéreo"
+      "elevated": "aéreo"
     }
   ],
 
@@ -111,33 +111,33 @@
     "C90º": "C90º",
     "TE": "TE",
     "imoveis": "imoveis",
-    "economias": "economias",
-    "economias_fim": "economias_fim",
-    "vazao_Inicio": "vazao_Inicio",
-    "vazao_Fim": "vazao_Fim",
-    "faixa_servidão": "faixa_servidão"
+    "economies": "economias",
+    "economies_final": "economias_fim",
+    "flow_initial": "vazao_Inicio",
+    "flow_final": "vazao_Fim",
+    "service_lane": "faixa_servidão"
   }],
   "service_lane": ["faixa_servidão", {
     "id": "fid",
-    "extensao": "extensao",
-    "largura": "largura",
+    "length": "extensao",
+    "width": "largura",
     "coord_Xi": "coord_Xi",
     "coord_Yi": "coord_Yi",
     "coord_Xf": "coord_Xf",
     "coord_Yf": "coord_Yf",
-    "comentarios": "comentarios",
-    "responsavel": "responsavel",
-    "fone": "fone"
+    "coments": "comentarios",
+    "responsable": "responsavel",
+    "phone": "fone"
   }],
   "buildings": ["edificacoes", {
     "id": "fid",
-    "nome": "nome",
-    "tipo": "tipo",
+    "name": "nome",
+    "type": "tipo",
     "n_pav": "n_pav",
     "n_econ": "n_econ",
     "observ": "observ",
-    "morador": "morador",
-    "matricula": "matricula",
-    "unidade": "unidade"
+    "resident": "morador",
+    "registration": "matricula",
+    "unit": "unidade"
   }]
 }

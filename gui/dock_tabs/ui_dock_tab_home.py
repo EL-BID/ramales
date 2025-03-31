@@ -182,11 +182,11 @@ class DockTabHome(DockTabHomeBase):
                 self.utils.get_json_attr('resume_frame', "C90º"): 0,
                 self.utils.get_json_attr('resume_frame', "TE"): 0,
                 self.utils.get_json_attr('resume_frame', "imoveis"): 0,
-                self.utils.get_json_attr('resume_frame', "economias"): 0,
-                self.utils.get_json_attr('resume_frame', "faixa_servidão"): 0,
-                self.utils.get_json_attr('resume_frame', "economias_fim"): 0,
-                self.utils.get_json_attr('resume_frame', "vazao_Inicio"): 0,
-                self.utils.get_json_attr('resume_frame', "vazao_Fim"): 0,
+                self.utils.get_json_attr('resume_frame', "economies"): 0,
+                self.utils.get_json_attr('resume_frame', "service_lane"): 0,
+                self.utils.get_json_attr('resume_frame', "economies_final"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_initial"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_final"): 0,
             }
             for field, value in attributes.items():
                 if feat_exist is not None:

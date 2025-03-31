@@ -416,11 +416,11 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                 self.utils.get_json_attr('resume_frame', "C90º"): self.__get_connections('C90°'),
                 self.utils.get_json_attr('resume_frame', "TE"): self.__get_connections('TE'),
                 self.utils.get_json_attr('resume_frame', "imoveis"): self.__get_count_buildings(),
-                self.utils.get_json_attr('resume_frame', "economias"): self.__get_count_economy(),
-                self.utils.get_json_attr('resume_frame', "faixa_servidão"): self.__get_length_service_lane(),
-                self.utils.get_json_attr('resume_frame', "economias_fim"): 0,
-                self.utils.get_json_attr('resume_frame', "vazao_Inicio"): 0,
-                self.utils.get_json_attr('resume_frame', "vazao_Fim"): 0,
+                self.utils.get_json_attr('resume_frame', "economies"): self.__get_count_economy(),
+                self.utils.get_json_attr('resume_frame', "service_lane"): self.__get_length_service_lane(),
+                self.utils.get_json_attr('resume_frame', "economies_final"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_initial"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_final"): 0,
             }
             for field, value in attributes.items():
                 if feat_exist is not None:
@@ -530,7 +530,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             raise ValueError(self.translate('Camada inválida!'))
         length_service_lane = 0
         for feat in service_lane_lyr.getFeatures():
-            length_service_lane = feat[self.utils.get_json_attr('service_lane', 'extensao')]
+            length_service_lane = feat[self.utils.get_json_attr('service_lane', 'length')]
             break
         return length_service_lane
 
@@ -668,7 +668,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                                                        1)  # N21 slopeSection
         return upBrLevel, dwnBrLevel, upDepth, dwnDepth, model, upRuleLvl, slopeSection, critDepth, dwnRuleLvl
 
-    def __calculate_overhead(self, i, initial, minDepth, minSlope):
+    def __calculate_elevated(self, i, initial, minDepth, minSlope):
         length = self.utils.str_to_float_locale(self.getTableValue(i, "length"))
         up_gl = self.utils.str_to_float_locale(self.getTableValue(i, "up_gl"))
         down_box = self.getTableValue(i, "down_box")
@@ -719,7 +719,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                             self.__calculate_underground(i, initial, minDepth, minSlope))
                     else:
                         upBrLevel, dwnBrLevel, upDepth, dwnDepth, model, upRuleLvl, slopeSection, critDepth, dwnRuleLvl = (
-                            self.__calculate_overhead(i, initial, minDepth, minSlope))
+                            self.__calculate_elevated(i, initial, minDepth, minSlope))
                     self.tableWidget.setItem(i, self.getColumnIndex('upBrLevel'),
                                              QTableWidgetItem(self.__float_to_str_locale(upBrLevel)))
                     self.tableWidget.setItem(i, self.getColumnIndex('dwnBrLevel'),

@@ -478,7 +478,7 @@ class ProducesReportCostsXls:
         worksheet.write(63, 6, Formula("SUM(G56:G63)"), NUM_BOLD_STYLE)
 
         worksheet.write_merge(64, 64, 1, 5, self.translate('TOTAL GERAL'), TEXT_BOLD_LEFT_10_BORDER)
-        worksheet.write(64, 6, Formula("SUM(G53:G64)"), NUM_BOLD_STYLE)
+        worksheet.write(64, 6, Formula("G53+G64"), NUM_BOLD_STYLE)
 
         worksheet.write_merge(66, 66, 1, 5, self.translate('VALOR POR METRO'), TEXT_BOLD_LEFT_10_BORDER)
         worksheet.write(66, 6, Formula("G65/E17"), NUM_BOLD_STYLE)

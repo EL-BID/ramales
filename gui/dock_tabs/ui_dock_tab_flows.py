@@ -64,7 +64,7 @@ class DockTabflows(DockTabFlowsBase):
 
     def load_user_input(self):
         resume_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
-        economy_end_idx = self.utils.get_idx_attr(resume_lyr, 'resume_frame', 'economias_fim')
+        economy_end_idx = self.utils.get_idx_attr(resume_lyr, 'resume_frame', 'economies_final')
         feat = None
         for f in resume_lyr.getFeatures():
             feat = f
@@ -96,15 +96,15 @@ class DockTabflows(DockTabFlowsBase):
         with edit(resume):
             resume.changeAttributeValue(
                 resume_id,
-                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economias_fim')),
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'economies_final')),
                 self.sb_number_economy_end.value())
             resume.changeAttributeValue(
                 resume_id,
-                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'vazao_Inicio')),
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'flow_initial')),
                 float(self.lb_value_start.text()))
             resume.changeAttributeValue(
                 resume_id,
-                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'vazao_Fim')),
+                resume.fields().lookupField(self.utils.get_json_attr('resume_frame', 'flow_final')),
                 float(self.lb_value_end.text()))
 
 
