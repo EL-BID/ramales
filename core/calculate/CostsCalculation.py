@@ -114,7 +114,7 @@ class CostCalculationRamal:
                     ext_protection = float(segment.lgt_protection)
                 except ValueError:
                     ext_protection = 0
-                total_protection += ext_protection * segment.length * (segment.pvc_diameter / 1000 + 0.1)
+                total_protection += ext_protection * self.costs.TRENCH_WIDTH * (segment.pvc_diameter / 1000 + 0.1)
         return total_protection
 
     def get_protection_tq(self):
