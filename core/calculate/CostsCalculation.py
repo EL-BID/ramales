@@ -9,7 +9,7 @@ class CostCalculationRamal:
         self.ramal = ramal
 
     def get_total_extension(self):
-        return sum([segment.length + segment.h_tq for segment in self.ramal.segments])
+        return sum([segment.length for segment in self.ramal.segments])
 
     def get_total_extension_100(self):
         return sum([segment.length for segment in self.ramal.segments if segment.pvc_diameter in (100, 110)])
