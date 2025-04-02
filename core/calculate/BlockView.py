@@ -64,14 +64,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                                    information=QMessageBox.Information)
             return
         block_dict = dict(zip(block_fields, block_values[0]))
-        # resume = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
-        # resume_fields = [field.name() for field in resume.fields()]
-        # resume_values = [f.attributes() for f in resume.getFeatures()]
-        # resume_dict = dict(zip(resume_fields, resume_values))
-        # list_block_values = list(block_dict.values())
         self.block_id = block_dict[self.utils.get_json_attr('blocks', 'id')]
-        # v = resume_dict[self.utils.get_json_attr('resume_frame', 'id')]
-        # print(v)
         nodes = []
         nodes_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().NODES_LAYER_ID)
         all_nodes = nodes_lyr.getFeatures()
@@ -201,26 +194,6 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                                                  value=segments[i].attributes()[
                                                      self.utils.get_idx_attr(segments_lyr, 'segments',
                                                                          'paviment_2')]))))  # paviment
-            # TODO: REMOVER
-            # self.tableWidget.setItem(i, 17, QTableWidgetItem(  # tubo queda
-            #     self.check(segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'segments', 'fall_tube')])))
-            # self.tableWidget.setItem(i, 17, QTableWidgetItem(self.check(segments[i].attributes()[
-            #                    self.utils.get_idx_attr(segments_lyr, 'segments', 'h_tq')])))
-            # self.tableWidget.setItem(i, 18, QTableWidgetItem(
-            #     self.concat2(
-            #         self.__get_key_map_of_values(layer=segments_lyr,
-            #                                      idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'obstacle1'),
-            #                                      value=segments[i].attributes()[
-            #                                          self.utils.get_idx_attr(segments_lyr, 'segments', 'obstacle1')]),
-            #         self.__get_key_map_of_values(layer=segments_lyr,
-            #                                      idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'obstacle2'),
-            #                                      value=segments[i].attributes()[
-            #                                          self.utils.get_idx_attr(segments_lyr, 'segments', 'obstacle2')]),
-            #         self.__get_key_map_of_values(layer=segments_lyr,
-            #                                      idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'obstacle3'),
-            #                                      value=segments[i].attributes()[
-            #                                          self.utils.get_idx_attr(segments_lyr, 'segments',
-            #                                                              'obstacle3')]))))  # 'obstacles'))))
             self.tableWidget.setItem(i, 17, QTableWidgetItem(
                 self.__get_key_map_of_values(layer=nodes_lyr,
                                              idx_col=self.utils.get_idx_attr(nodes_lyr, 'nodes', 'branch_position'),
@@ -277,14 +250,6 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         elif str(str1) != 'NULL' and str(str2) != 'NULL':
             return str(str1) + ' - ' + str(str2)
         return str(str1).replace('NULL', '')
-
-    # def get_element_layer_nodes(self, node: str, name_attr: str):
-    #     nodes_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().NODES_LAYER_ID)
-    #     all_nodes = nodes_lyr.getFeatures()
-    #     for n in all_nodes:
-    #         if n.attributes()[self.utils.get_idx_attr(nodes_lyr, 'nodes', 'name')] == node:
-    #             return n.attributes()[self.utils.get_idx_attr(nodes_lyr, 'nodes', name_attr)]
-    #     return
 
     def save(self):
         self.tableWidget.blockSignals(True)
@@ -451,8 +416,11 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                 self.utils.get_json_attr('resume_frame', "C90º"): self.__get_connections('C90°'),
                 self.utils.get_json_attr('resume_frame', "TE"): self.__get_connections('TE'),
                 self.utils.get_json_attr('resume_frame', "imoveis"): self.__get_count_buildings(),
-                self.utils.get_json_attr('resume_frame', "economias"): self.__get_count_economy(),
-                self.utils.get_json_attr('resume_frame', "faixa_servidão"): self.__get_length_service_lane(),
+                self.utils.get_json_attr('resume_frame', "economies"): self.__get_count_economy(),
+                self.utils.get_json_attr('resume_frame', "service_lane"): self.__get_length_service_lane(),
+                self.utils.get_json_attr('resume_frame', "economies_final"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_initial"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_final"): 0,
             }
             for field, value in attributes.items():
                 if feat_exist is not None:
@@ -462,6 +430,9 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                 else:
                     feature.setAttribute(field, value)
                     resume_frame.addFeature(feature)
+                    if feat_exist is None:
+                        for feat in resume_frame.getFeatures():
+                            feat_exist = feat.id()
 
     def __get_len_DN(self, dn):
         total = 0.00
@@ -559,7 +530,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             raise ValueError(self.translate('Camada inválida!'))
         length_service_lane = 0
         for feat in service_lane_lyr.getFeatures():
-            length_service_lane = feat[self.utils.get_json_attr('service_lane', 'extensao')]
+            length_service_lane = feat[self.utils.get_json_attr('service_lane', 'length')]
             break
         return length_service_lane
 
@@ -697,7 +668,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                                                        1)  # N21 slopeSection
         return upBrLevel, dwnBrLevel, upDepth, dwnDepth, model, upRuleLvl, slopeSection, critDepth, dwnRuleLvl
 
-    def __calculate_overhead(self, i, initial, minDepth, minSlope):
+    def __calculate_elevated(self, i, initial, minDepth, minSlope):
         length = self.utils.str_to_float_locale(self.getTableValue(i, "length"))
         up_gl = self.utils.str_to_float_locale(self.getTableValue(i, "up_gl"))
         down_box = self.getTableValue(i, "down_box")
@@ -748,7 +719,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                             self.__calculate_underground(i, initial, minDepth, minSlope))
                     else:
                         upBrLevel, dwnBrLevel, upDepth, dwnDepth, model, upRuleLvl, slopeSection, critDepth, dwnRuleLvl = (
-                            self.__calculate_overhead(i, initial, minDepth, minSlope))
+                            self.__calculate_elevated(i, initial, minDepth, minSlope))
                     self.tableWidget.setItem(i, self.getColumnIndex('upBrLevel'),
                                              QTableWidgetItem(self.__float_to_str_locale(upBrLevel)))
                     self.tableWidget.setItem(i, self.getColumnIndex('dwnBrLevel'),

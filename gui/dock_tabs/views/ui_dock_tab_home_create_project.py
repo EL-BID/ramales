@@ -232,3 +232,5 @@ class CreateProjectDialog(QDialog):
         data_json = json.load(file_json)
         file_json.close()
         return data_json['layers']
+
+

@@ -4,9 +4,9 @@ import os
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QDialog
 from qgis.PyQt.QtWidgets import QMessageBox
-from qgis._core import QgsDefaultValue
+from qgis._core import QgsDefaultValue, QgsFeature
 from qgis.core import QgsMapLayerType, QgsVectorLayer
-from qgis.core import QgsProject
+from qgis.core import QgsProject, edit
 
 from .views.ui_dock_tab_home_base import DockTabHomeBase
 from .views.ui_dock_tab_home_create_project import CreateProjectDialog
@@ -51,6 +51,7 @@ class DockTabHome(DockTabHomeBase):
             set_language_file(self.create_project_dialog.cb_local.currentText()[-6:-1])
             ProjectDataManager.save_language_project(
                 language=Language(LANGUAGE=self.create_project_dialog.cb_local.currentText()[-6:-1]))
+            self.__init_resume_frame()
             self.dock.reload()
 
     def __layer_add(self):
@@ -146,39 +147,6 @@ class DockTabHome(DockTabHomeBase):
                                    message=self.translate('Antes de gerar a OS, clique em Atualizar Cálculos. '),
                                    information=QMessageBox.Critical)
 
-    # def __show_set_vector_layers(self):
-    #     self.set_layers.show_set_layers(self.__get_list_vector_layers())
-
-    # def __set_id_layers(self):
-    #     def get_id_layer(name_layer) -> str:
-    #         layer = QgsProject.instance().mapLayersByName(name_layer)
-    #         if len(layer) == 1:
-    #             return layer[0].id()
-    #         return
-    #
-    #     if self.set_layers.check_selection_layers():
-    #         set_language_file(self.set_layers.cb_language.currentText()[-6:-1])
-    #         ProjectDataManager.save_language_project(
-    #             language=Language(LANGUAGE=self.set_layers.cb_language.currentText()[-6:-1]))
-    #         ProjectDataManager.save_layers_id(layers_data=LayersData(
-    #             BLOCKS_LAYER_ID=get_id_layer(self.set_layers.cb_blocks.currentText()),
-    #             NODES_LAYER_ID=get_id_layer(self.set_layers.cb_nodes.currentText()),
-    #             SEGMENTS_LAYER_ID=get_id_layer(self.set_layers.cb_segments.currentText()),
-    #             LINEAR_OBSTACLES_LAYER_ID=get_id_layer(self.set_layers.cb_linear_obstacles.currentText()),
-    #             POINT_OBSTACLES_LAYER_ID=get_id_layer(self.set_layers.cb_points_obstacles.currentText()),
-    #             ACCESSORIES_LAYER_ID=get_id_layer(self.set_layers.cb_accessories.currentText())
-    #         ))
-    #         # self.proj.blockDialog.setData(is_new=False)
-    #         self.utils.show_dialog(title=self.title, message=self.translate('Camadas definidas com sucesso!'),
-    #                                information=QMessageBox.Information)
-    #         self.set_layers.close()
-    #     else:
-    #         self.utils.show_dialog(title=self.title, message=self.translate('Todas as camadas devem ser identificadas!'),
-    #                                information=QMessageBox.Critical)
-    #
-    # def __close_set_id_layers(self):
-    #     self.set_layers.close()
-
     @staticmethod
     def __get_list_vector_layers():
         layers = [l for l in QgsProject().instance().mapLayers().values() if isinstance(l, QgsVectorLayer)]
@@ -186,16 +154,45 @@ class DockTabHome(DockTabHomeBase):
         layerList.insert(0, '')
         return layerList
 
-    # def __recognize_vector_layers(self):
-    #     if ProjectDataManager.is_data_layers_id_loaded():
-    #         self.lb_status_layers.setText(self.translate('Camadas reconhecidas!'))
-    #         self.lb_status_layers.setStyleSheet(
-    #             'background-color: lightgreen; border: 1px solid green; border-style: outset; border-radius: 10px;')
-    #         self.lb_status_layers.setAlignment(Qt.AlignCenter)
-    #         # self.pb_set_layers.setEnabled(False)
-    #     else:
-    #         self.lb_status_layers.setText(self.translate('Definir camadas!'))
-    #         self.lb_status_layers.setStyleSheet(
-    #             'background-color: rgb(235,142,141); border: 1px solid red; border-style: outset; border-radius: 10px;')
-    #         self.lb_status_layers.setAlignment(Qt.AlignCenter)
-    #         self.pb_set_layers.setEnabled(True)
+    def __init_resume_frame(self):
+        resume_frame = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID)
+        feat_exist = None
+
+        with edit(resume_frame):
+            feature = QgsFeature(resume_frame.fields())
+            resume_frame.addFeature(feature)
+            for feat in resume_frame.getFeatures():
+                feat_exist = feat.id()
+                break
+            attributes = {
+                self.utils.get_json_attr('resume_frame', 'ext_trechos_DN100(m)'): 0,
+                self.utils.get_json_attr('resume_frame', 'ext_TQ_DN100'): 0,
+                self.utils.get_json_attr('resume_frame', 'ext_total_DN100(m)'): 0,
+                self.utils.get_json_attr('resume_frame', "ext_trechos_DN150(m)"): 0,
+                self.utils.get_json_attr('resume_frame', "ext_TQ_DN150(m)"): 0,
+                self.utils.get_json_attr('resume_frame', "ext_total_DN150(m)"): 0,
+                self.utils.get_json_attr('resume_frame', "ext_total(m)"): 0,
+                self.utils.get_json_attr('resume_frame', "cx_Ø40"): 0,
+                self.utils.get_json_attr('resume_frame', "cx_Ø60"): 0,
+                self.utils.get_json_attr('resume_frame', "cx_ret_tijolinho"): 0,
+                self.utils.get_json_attr('resume_frame', "cx_ret_concreto"): 0,
+                self.utils.get_json_attr('resume_frame', "TIL"): 0,
+                self.utils.get_json_attr('resume_frame', "total_inspeção"): 0,
+                self.utils.get_json_attr('resume_frame', "selim"): 0,
+                self.utils.get_json_attr('resume_frame', "C90º"): 0,
+                self.utils.get_json_attr('resume_frame', "TE"): 0,
+                self.utils.get_json_attr('resume_frame', "imoveis"): 0,
+                self.utils.get_json_attr('resume_frame', "economies"): 0,
+                self.utils.get_json_attr('resume_frame', "service_lane"): 0,
+                self.utils.get_json_attr('resume_frame', "economies_final"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_initial"): 0,
+                self.utils.get_json_attr('resume_frame', "flow_final"): 0,
+            }
+            for field, value in attributes.items():
+                if feat_exist is not None:
+                    resume_frame.changeAttributeValue(feat_exist,
+                                                      self.utils.get_idx_attr(resume_frame, 'resume_frame', field),
+                                                      value)
+                else:
+                    feature.setAttribute(field, value)
+                    resume_frame.addFeature(feature)
