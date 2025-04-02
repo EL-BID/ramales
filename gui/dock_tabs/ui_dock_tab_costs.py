@@ -99,7 +99,11 @@ class DockTabCosts(DockTabCostsBase):
                 total_costs_materials += costs_materials[i-33] * values_quantities[i]
 
             total_costs = total_costs_services + total_costs_materials
-            total_costs_meter = total_costs / self.quantities_calculator.costs_calculation.get_total_extension()
+            total_extension = self.quantities_calculator.costs_calculation.get_total_extension()
+            if total_extension != 0:
+                total_costs_meter = total_costs / self.quantities_calculator.costs_calculation.get_total_extension()
+            else:
+                total_costs_meter = 0
 
             self.lb_materials_costs.setText(f"{self.translate('Custo dos materiais (USD):')} $ {self.utils.formatNum2Dec(total_costs_materials)}")
             self.lb_services_costs.setText(f"{self.translate('Custo dos serviços (USD):')} $ {self.utils.formatNum2Dec(total_costs_services)}")
