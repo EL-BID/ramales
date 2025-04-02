@@ -1,6 +1,6 @@
 from typing import Optional
 
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtCore import QTimer
 
 from ..generate_costs_ui import GenerateCostsUI
 from ...core.calculate.CostsCalculation import QuantitiesCalculations
@@ -16,6 +16,10 @@ class DockTabCosts(DockTabCostsBase):
         self.loaded_from_db = False
         self.costs: Optional[Costs] = None
         self.generate_costs = GenerateCostsUI()
+
+        self.save_timer = QTimer()
+        self.save_timer.setSingleShot(True)
+        self.save_timer.timeout.connect(self.save_values)
 
     def set_logic(self):
         self.sb_soil.valueChanged.connect(self.on_data_changed)
@@ -95,14 +99,17 @@ class DockTabCosts(DockTabCostsBase):
                 total_costs_materials += costs_materials[i-33] * values_quantities[i]
 
             total_costs = total_costs_services + total_costs_materials
+            total_costs_meter = total_costs / self.quantities_calculator.costs_calculation.get_total_extension()
 
             self.lb_materials_costs.setText(f"{self.translate('Custo dos materiais (USD):')} $ {self.utils.formatNum2Dec(total_costs_materials)}")
             self.lb_services_costs.setText(f"{self.translate('Custo dos serviços (USD):')} $ {self.utils.formatNum2Dec(total_costs_services)}")
             self.lb_total_costs.setText(f"{self.translate('Custo total (USD):')} $ {self.utils.formatNum2Dec(total_costs)}")
+            self.lb_total_costs_meter.setText(f"{self.translate('Custo total por metro (USD):')} $ {self.utils.formatNum2Dec(total_costs_meter)}")
         else:
             self.lb_materials_costs.setText(f"{self.translate('Custo dos materiais (USD):')} $ {self.utils.formatNum2Dec(0)}")
             self.lb_services_costs.setText(f"{self.translate('Custo dos serviços (USD):')} $ {self.utils.formatNum2Dec(0)}")
             self.lb_total_costs.setText(f"{self.translate('Custo total (USD):')} $ {self.utils.formatNum2Dec(0)}")
+            self.lb_total_costs_meter.setText(f"{self.translate('Custo total por metro (USD):')} $ {self.utils.formatNum2Dec(0)}")
 
 
     def load_costs_calculations(self):
@@ -124,6 +131,9 @@ class DockTabCosts(DockTabCostsBase):
             self.gb_DataCosts.hide()
 
     def on_data_changed(self):
+        self.save_timer.start(500)
+
+    def save_values(self):
         if not self.loaded_from_db:
             return
         tmp_costs = Costs(
@@ -163,14 +173,6 @@ class DockTabCosts(DockTabCostsBase):
         ProjectDataManager.save_costs(self.costs)
         self.dock_reload()
         self.load_costs_values()
-
-    def setCosts(self):
-        pass
-        # if self.costs_calculator is not None:
-        #     self.costs_calculator.loadData(costs=self.costs, calculation=self.calculation,
-        #                                    entranceData=self.project_data)
-        # else:
-        #     self.load_costs_calculator()
 
     def __show_report_costs(self):
         self.rep_out_costs.loadReportCosts(self.quantities_calculator)
