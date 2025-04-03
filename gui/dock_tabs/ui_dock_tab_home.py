@@ -52,6 +52,7 @@ class DockTabHome(DockTabHomeBase):
             ProjectDataManager.save_language_project(
                 language=Language(LANGUAGE=self.create_project_dialog.cb_local.currentText()[-6:-1]))
             self.__init_resume_frame()
+            self.__set_file_layout()
             self.dock.reload()
 
     def __layer_add(self):
@@ -65,8 +66,9 @@ class DockTabHome(DockTabHomeBase):
         # self.__recognize_vector_layers()
 
     def __set_raster_layer(self):
-        response = self.utils.show_dialog_question(title=self.title, message=(self.translate('Confirma a seleção da camada ') +
-                                                                              self.cb_raster.currentText() + ':'))
+        response = self.utils.show_dialog_question(title=self.title,
+                                                   message=(self.translate('Confirma a seleção da camada ') +
+                                                            self.cb_raster.currentText() + ':'))
         if response:
             nodes = self.proj.getNodesLayer()
             default_value = QgsDefaultValue(expression='', applyOnUpdate=False)
@@ -74,7 +76,8 @@ class DockTabHome(DockTabHomeBase):
             if ProjectDataManager.get_layer_raster().LAYER_RASTER == '':
                 q_terrain_ex = q_terrain_ex.replace(self.__get_raster_express(), self.cb_raster.currentText())
             else:
-                q_terrain_ex = q_terrain_ex.replace(ProjectDataManager.get_layer_raster().LAYER_RASTER, self.cb_raster.currentText())
+                q_terrain_ex = q_terrain_ex.replace(ProjectDataManager.get_layer_raster().LAYER_RASTER,
+                                                    self.cb_raster.currentText())
             default_value.setExpression(q_terrain_ex)
             default_value.setApplyOnUpdate(True)
             nodes.setDefaultValueDefinition(self.__get_idx_attr(nodes, 'nodes', 'q_terrain'), default_value)
@@ -124,8 +127,8 @@ class DockTabHome(DockTabHomeBase):
             return
 
     # def load_data(self):
-        # self.set_layers.load_set_layers(self.__get_list_vector_layers())
-        # self.__recognize_vector_layers()
+    # self.set_layers.load_set_layers(self.__get_list_vector_layers())
+    # self.__recognize_vector_layers()
 
     def reload(self):
         # self.load_data()
@@ -196,3 +199,24 @@ class DockTabHome(DockTabHomeBase):
                 else:
                     feature.setAttribute(field, value)
                     resume_frame.addFeature(feature)
+
+    @staticmethod
+    def __set_file_layout():
+        try:
+            path = QgsProject.instance().readPath("./")
+            file_path_1 = os.path.join(path, 'saniHUB_Ramales_padraoA2.qpt')
+            file_path_2 = os.path.join(path, 'saniHUB_Ramales_padraoA3.qpt')
+            files = [file_path_1, file_path_2]
+            for f in files:
+                with open(f, 'r') as file:
+                    text = file.read()  # TODO: adicionar os ids dos arquivos nos json quando tiver o espanhol
+                text_edited = (text.replace('quadra_39601933_6b1b_46bc_94a8_e8cabd76f51e',
+                                            ProjectDataManager.get_layers_id().BLOCKS_LAYER_ID)
+                               .replace('quadro_resumo_82f7fac2_bdac_422e_b7bf_7b2105d31ef3',
+                                        ProjectDataManager.get_layers_id().RESUME_FRAME_LAYER_ID))
+                with open(f, 'w') as file:
+                    file.write(text_edited)
+        except FileNotFoundError as e:
+            print(f'Arquivo não encontrado {e}')
+        except Exception as e:
+            print(f'Erro ao processar {e}')
