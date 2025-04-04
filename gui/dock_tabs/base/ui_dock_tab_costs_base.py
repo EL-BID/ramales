@@ -112,6 +112,7 @@ class DockTabCostsBase(DockTab):
         self.lb_services_costs = QLabel()
         self.lb_materials_costs = QLabel()
         self.lb_total_costs = QLabel()
+        self.lb_total_costs_meter = QLabel()
 
 
         self.vb_layoutCosts = QVBoxLayout()
@@ -209,7 +210,9 @@ class DockTabCostsBase(DockTab):
         self.gl_layoutDataCosts.addWidget(self.lb_materials_costs, 1, 1)
         self.gl_layoutDataCosts.addWidget(QLabel(self.translate('Total geral')), 2, 0)
         self.gl_layoutDataCosts.addWidget(self.lb_total_costs, 2, 1)
-        self.gl_layoutDataCosts.addWidget(self.pb_generate_xls_costs, 3, 1)
+        self.gl_layoutDataCosts.addWidget(QLabel(self.translate('Valor por metro')), 3, 0)
+        self.gl_layoutDataCosts.addWidget(self.lb_total_costs_meter, 3, 1)
+        self.gl_layoutDataCosts.addWidget(self.pb_generate_xls_costs, 4, 1)
         self.gb_DataCosts.setLayout(self.gl_layoutDataCosts)
         self.vb_layoutCosts.addWidget(self.gb_DataCosts)
         self.gb_DataCosts.hide()

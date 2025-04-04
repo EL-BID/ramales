@@ -8668,7 +8668,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -8854,7 +8854,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="ext_total(m)&#xa;" heading="ext_total(m)&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="ext_total(m)" heading="ext_total(m)" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -8880,7 +8880,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -9066,7 +9066,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="ext_total_DN150(m)&#xa;" heading="ext_total_DN150(m)&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="ext_total_DN150(m)" heading="ext_total_DN150(m)" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -9083,7 +9083,7 @@
    <lastRow cellBackgroundColor="255,255,255,255" enabled="0"/>
   </cellStyles>
  </LayoutMultiFrame>
- <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{2121decc-a20c-4e72-87f1-f3b2f3c3d9a6}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="30" horizontalGrid="1" relationId="" vectorLayer="quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{2121decc-a20c-4e72-87f1-f3b2f3c3d9a6}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.6" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
+ <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{2121decc-a20c-4e72-87f1-f3b2f3c3d9a6}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="30" horizontalGrid="1" relationId="" vectorLayer="<<RESUME_FRAME_ID>>" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{2121decc-a20c-4e72-87f1-f3b2f3c3d9a6}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.6" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
   <childFrame templateUuid="{d57b1f95-5deb-4b42-b906-3b8b35d06f4c}" uuid="{d57b1f95-5deb-4b42-b906-3b8b35d06f4c}"/>
   <LayoutObject>
    <dataDefinedProperties>
@@ -9092,7 +9092,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -9304,7 +9304,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -9490,7 +9490,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="ext_TQ_DN150(m)&#xa;" heading="ext_TQ_DN150(m)&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="ext_TQ_DN150(m)" heading="ext_TQ_DN150(m)" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -9516,7 +9516,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadra_419cf395_4733_4d9f_9caf_e5892a1686be'"/>
+       <Option name="expression" type="QString" value="'<<BLOCKS_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -9719,7 +9719,7 @@
    <lastRow cellBackgroundColor="255,255,255,255" enabled="0"/>
   </cellStyles>
  </LayoutMultiFrame>
- <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{d169d3f3-f8fd-46b2-b371-8d820d2ca66a}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="20" horizontalGrid="1" relationId="" vectorLayer="quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{d169d3f3-f8fd-46b2-b371-8d820d2ca66a}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.3" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
+ <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{d169d3f3-f8fd-46b2-b371-8d820d2ca66a}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="20" horizontalGrid="1" relationId="" vectorLayer="<<RESUME_FRAME_ID>>" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{d169d3f3-f8fd-46b2-b371-8d820d2ca66a}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.3" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
   <childFrame templateUuid="{f3916f4d-8ef7-4f97-9be1-6fe66d40daba}" uuid="{f3916f4d-8ef7-4f97-9be1-6fe66d40daba}"/>
   <LayoutObject>
    <dataDefinedProperties>
@@ -9728,7 +9728,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -9914,7 +9914,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="ext_trechos_DN150(m)&#xa;" heading="ext_trechos_DN150(m)&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="ext_trechos_DN150(m)" heading="ext_trechos_DN150(m)" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -9940,7 +9940,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -10126,7 +10126,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="imoveis&#xa;" heading="imoveis&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="imoveis" heading="imoveis" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -10152,7 +10152,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -10338,7 +10338,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="economias&#xa;" heading="economias&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="economias" heading="economias" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -10364,7 +10364,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -10550,7 +10550,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="C90º&#xa;" heading="C90º&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="C90º" heading="C90º" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -10576,7 +10576,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadra_419cf395_4733_4d9f_9caf_e5892a1686be'"/>
+       <Option name="expression" type="QString" value="'<<BLOCKS_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -10788,7 +10788,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -10974,7 +10974,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="ext_total_DN100(m)&#xa;" heading="ext_total_DN100(m)&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="ext_total_DN100(m)" heading="ext_total_DN100(m)" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -11000,7 +11000,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -11186,7 +11186,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="cx_ret_tijolinho&#xa;" heading="cx_ret_tijolinho&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="cx_ret_tijolinho" heading="cx_ret_tijolinho" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -11212,7 +11212,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -11398,7 +11398,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="cx_Ø40&#xa;" heading="cx_Ø40&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="cx_Ø40" heading="cx_Ø40" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -11424,7 +11424,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -11610,7 +11610,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="cx_ret_concreto&#xa;" heading="cx_ret_concreto&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="cx_ret_concreto" heading="cx_ret_concreto" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -11636,7 +11636,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -11822,7 +11822,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="selim&#xa;" heading="selim&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="selim" heading="selim" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -11848,7 +11848,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -12034,7 +12034,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="cx_Ø60&#xa;" heading="cx_Ø60&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="cx_Ø60" heading="cx_Ø60" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -12060,7 +12060,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -12246,7 +12246,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="total_inspeção&#xa;" heading="total_inspeção&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="total_inspeção" heading="total_inspeção" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -12272,7 +12272,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadra_419cf395_4733_4d9f_9caf_e5892a1686be'"/>
+       <Option name="expression" type="QString" value="'<<BLOCKS_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -12484,7 +12484,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -12670,7 +12670,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="4" vAlignment="128" attribute="TIL&#xa;" heading="TIL&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="4" vAlignment="128" attribute="TIL" heading="TIL" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -12696,7 +12696,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
@@ -12882,7 +12882,7 @@
    </text-style>
   </contentTextFormat>
   <displayColumns>
-   <column hAlignment="1" vAlignment="128" attribute="TE&#xa;" heading="TE&#xa;" sortOrder="0" width="0" sortByRank="0">
+   <column hAlignment="1" vAlignment="128" attribute="TE" heading="TE" sortOrder="0" width="0" sortByRank="0">
     <backgroundColor green="0" blue="0" alpha="0" red="0"/>
    </column>
   </displayColumns>
@@ -12899,7 +12899,7 @@
    <lastRow cellBackgroundColor="255,255,255,255" enabled="0"/>
   </cellStyles>
  </LayoutMultiFrame>
- <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{9fbe4210-c546-412e-9b6b-a7031f383d30}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="20" horizontalGrid="1" relationId="" vectorLayer="quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{9fbe4210-c546-412e-9b6b-a7031f383d30}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.3" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
+ <LayoutMultiFrame wrapString="" filterFeatures="false" showUniqueRowsOnly="0" uuid="{9fbe4210-c546-412e-9b6b-a7031f383d30}" filterToAtlasIntersection="0" featureFilter="" vectorLayerSource="D:/Flávia/SaniHUB_Ramales/geopackage/portuguese_geopackage_ramales/portuguese_sanihubramales.gpkg|layername=quadro_resumo" gridStrokeWidth="0.05" resizeMode="0" showOnlyVisibleFeatures="0" wrapBehavior="0" maxFeatures="20" horizontalGrid="1" relationId="" vectorLayer="<<RESUME_FRAME_ID>>" headerHAlignment="2" vectorLayerName="quadro_resumo" showGrid="0" emptyTableMessage="" headerMode="0" templateUuid="{9fbe4210-c546-412e-9b6b-a7031f383d30}" source="0" showEmptyRows="0" useConditionalStyling="0" type="65649" backgroundColor="255,255,255,0" cellMargin="0.3" emptyTableMode="0" gridColor="0,0,0,255" verticalGrid="1" vectorLayerProvider="ogr">
   <childFrame templateUuid="{8d7063a1-dd3c-4be7-ab8d-b3417d35d6da}" uuid="{8d7063a1-dd3c-4be7-ab8d-b3417d35d6da}"/>
   <LayoutObject>
    <dataDefinedProperties>
@@ -12908,7 +12908,7 @@
      <Option name="properties" type="Map">
       <Option name="dataDefinedAttributeTableSourceLayer" type="Map">
        <Option name="active" type="bool" value="true"/>
-       <Option name="expression" type="QString" value="'quadro_resumo_574c97ff_eeb3_46a7_aac8_ba69e0767710'"/>
+       <Option name="expression" type="QString" value="'<<RESUME_FRAME_ID>>'"/>
        <Option name="type" type="int" value="3"/>
       </Option>
      </Option>
