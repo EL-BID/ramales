@@ -9,6 +9,23 @@ import re
 import json
 
 
+def replace_resume_frame_ids(a3_qpt_file, a2_qpt_file,
+                             resume_frame_id_replace, resume_frame_id,
+                             blocks_layer_id_replace, blocks_layer_id):
+    if resume_frame_id is None or blocks_layer_id is None:
+        raise ValueError('Resume frame or blocks layer id not found')
+
+    for f in (a3_qpt_file, a2_qpt_file):
+        with open(f, 'r') as file:
+            text = file.read()
+        text_edited = (text.replace(blocks_layer_id_replace,
+                                    blocks_layer_id)
+                       .replace(resume_frame_id_replace,
+                                resume_frame_id))
+        with open(f, 'w') as file:
+            file.write(text_edited)
+
+
 def generate_project(local: str,
                      srid_type: str,
                      srid: str,
@@ -76,7 +93,19 @@ def generate_project(local: str,
     plugin_dir = utils.get_plugin_dir()
     localizations_file = os.path.join(plugin_dir, 'resources', 'localizations', f'{local}.json')
     localizations = json.load(open(localizations_file))
+
+    # resume frame vars
     resume_frame = localizations['layers']['resume_frame']
+    blocks = localizations['layers']['blocks']
+
+    a2_qpt_file = os.path.join(path_out, 'saniHUB_Ramales_padraoA2.qpt')
+    a3_qpt_file = os.path.join(path_out, 'saniHUB_Ramales_padraoA3.qpt')
+
+    print(f"project creation. {a2_qpt_file=}, {a3_qpt_file=}")
+    resume_frame_id_replace = '<<RESUME_FRAME_ID>>'
+    blocks_layer_id_replace = '<<BLOCKS_ID>>'
+
+    resume_frame_id, blocks_layer_id = None, None
     for i, layer_info in enumerate(conn):
         layer_name = layer_info.GetName()
         layer = QgsVectorLayer(path_out_file + "|layername=" + layer_info.GetName(), layer_info.GetName(), 'ogr')
@@ -92,10 +121,17 @@ def generate_project(local: str,
             node = root.findLayer(layer.id())
             if layer_name == resume_frame:
                 node.setItemVisibilityChecked(True)
+                resume_frame_id = layer.id()
+            elif layer_name == blocks:
+                node.setItemVisibilityChecked(True)
+                blocks_layer_id = layer.id()
             else:
                 node.setExpanded(True)
                 node.setExpanded(False)
 
+    replace_resume_frame_ids(a3_qpt_file, a2_qpt_file,
+                             resume_frame_id_replace, resume_frame_id,
+                             blocks_layer_id_replace, blocks_layer_id)
     project.write(qgis_path)
 
 
