@@ -101,7 +101,6 @@ def generate_project(local: str,
     a2_qpt_file = os.path.join(path_out, 'saniHUB_Ramales_padraoA2.qpt')
     a3_qpt_file = os.path.join(path_out, 'saniHUB_Ramales_padraoA3.qpt')
 
-    print(f"project creation. {a2_qpt_file=}, {a3_qpt_file=}")
     resume_frame_id_replace = '<<RESUME_FRAME_ID>>'
     blocks_layer_id_replace = '<<BLOCKS_ID>>'
 
