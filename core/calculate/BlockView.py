@@ -395,27 +395,27 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             cx_ret_concrete = self.__get_cx('Retangular Concreto')
             til = self.__get_cx('TIL_Terminal Inspeção-Limpeza')
             attributes = {
-                self.utils.get_json_attr('resume_frame', 'ext_trechos_DN100(m)'): ext_trechos_DN100,
-                self.utils.get_json_attr('resume_frame', 'ext_TQ_DN100'): ext_TQ_DN100,
-                self.utils.get_json_attr('resume_frame', 'ext_total_DN100(m)'):
+                self.utils.get_json_attr('resume_frame', 'length_segments_DN100(m)'): ext_trechos_DN100,
+                self.utils.get_json_attr('resume_frame', 'length_TQ_DN100'): ext_TQ_DN100,
+                self.utils.get_json_attr('resume_frame', 'length_total_DN100(m)'):
                     (ext_trechos_DN100 + ext_TQ_DN100),
-                self.utils.get_json_attr('resume_frame', "ext_trechos_DN150(m)"): ext_trechos_DN150,
-                self.utils.get_json_attr('resume_frame', "ext_TQ_DN150(m)"): ext_TQ_DN150,
-                self.utils.get_json_attr('resume_frame', "ext_total_DN150(m)"):
+                self.utils.get_json_attr('resume_frame', "length_segments_DN150(m)"): ext_trechos_DN150,
+                self.utils.get_json_attr('resume_frame', "length_TQ_DN150(m)"): ext_TQ_DN150,
+                self.utils.get_json_attr('resume_frame', "length_total_DN150(m)"):
                     (ext_trechos_DN150 + ext_TQ_DN150),
-                self.utils.get_json_attr('resume_frame', "ext_total(m)"):
+                self.utils.get_json_attr('resume_frame', "length_total(m)"):
                     (ext_trechos_DN100 + ext_TQ_DN100 + ext_trechos_DN150 + ext_TQ_DN150),
-                self.utils.get_json_attr('resume_frame', "cx_Ø40"): cx_040,
-                self.utils.get_json_attr('resume_frame', "cx_Ø60"): cx_060,
-                self.utils.get_json_attr('resume_frame', "cx_ret_tijolinho"): cx_ret_brick,
-                self.utils.get_json_attr('resume_frame', "cx_ret_concreto"): cx_ret_concrete,
+                self.utils.get_json_attr('resume_frame', "box_Ø40"): cx_040,
+                self.utils.get_json_attr('resume_frame', "box_Ø60"): cx_060,
+                self.utils.get_json_attr('resume_frame', "box_rect_brick"): cx_ret_brick,
+                self.utils.get_json_attr('resume_frame', "cx_ret_concret"): cx_ret_concrete,
                 self.utils.get_json_attr('resume_frame', "TIL"): til,
-                self.utils.get_json_attr('resume_frame', "total_inspeção"):
+                self.utils.get_json_attr('resume_frame', "total_inspection"):
                     (cx_040 + cx_060 + cx_ret_brick + cx_ret_concrete + til),
-                self.utils.get_json_attr('resume_frame', "selim"): self.__get_cx('Selim_Rede'),
+                self.utils.get_json_attr('resume_frame', "saddle"): self.__get_cx('Selim_Rede'),
                 self.utils.get_json_attr('resume_frame', "C90º"): self.__get_connections('C90°'),
                 self.utils.get_json_attr('resume_frame', "TE"): self.__get_connections('TE'),
-                self.utils.get_json_attr('resume_frame', "imoveis"): self.__get_count_buildings(),
+                self.utils.get_json_attr('resume_frame', "buildings"): self.__get_count_buildings(),
                 self.utils.get_json_attr('resume_frame', "economies"): self.__get_count_economy(),
                 self.utils.get_json_attr('resume_frame', "service_lane"): self.__get_length_service_lane(),
                 self.utils.get_json_attr('resume_frame', "economies_final"): 0,
