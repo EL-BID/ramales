@@ -273,6 +273,7 @@ class CostCalculation:
     def get_connections_count(self) -> Dict[str, int]:
         result = {}
         used_nodes = set()
+        # TODO: usar json para pegar as camadas após o novo geopackage em espanhol
         for ramal_id, ramal in self.ramals.items():
             for i, segment in enumerate(ramal.segments):
                 c1, c1_name = segment.UpBox.node_type, segment.UpBox.name
