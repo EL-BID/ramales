@@ -120,6 +120,13 @@ class Utils:
                 return n.attributes()[self.get_idx_attr(nodes_lyr, 'nodes', name_attr)]
         return
 
+    def get_element_layer_blocks(self, name_attr: str):
+        block_lyr = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().BLOCKS_LAYER_ID)
+        all_nodes = block_lyr.getFeatures()
+        for n in all_nodes:
+            return n.attributes()[self.get_idx_attr(block_lyr, 'blocks', name_attr)]
+        return
+
     def get_idx_attr(self, layer: QgsVectorLayer, name_lyr: str, name_attr: str):
         attrs = layer.fields().names()
         return attrs.index(self.get_json_attr(name_lyr, name_attr))
@@ -169,3 +176,13 @@ class Utils:
             return float(value)
         else:
             return 0.00
+
+    @staticmethod
+    def get_key_map_of_values(layer: QgsVectorLayer, idx_col: int, value: str) -> str:
+        for dicts in layer.editorWidgetSetup(idx_col).config().values():
+            for item in dicts:
+                k = [k for k in item.keys()]
+                v = [v for v in item.values()]
+                if v[0] == value:
+                    return k[0]
+        return 'NULL'
