@@ -185,17 +185,17 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             self.tableWidget.setCellWidget(i, 15, dsb_pcv)  # 'pvc_diam'))))
             self.tableWidget.setItem(i, 16, QTableWidgetItem(
                 self.concat1(
-                    self.__get_key_map_of_values(layer=segments_lyr,
+                    self.utils.get_key_map_of_values(layer=segments_lyr,
                                                  idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'paviment_1'),
                                                  value=segments[i].attributes()[
                                                      self.utils.get_idx_attr(segments_lyr, 'segments', 'paviment_1')]),
-                    self.__get_key_map_of_values(layer=segments_lyr,
+                    self.utils.get_key_map_of_values(layer=segments_lyr,
                                                  idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'paviment_2'),
                                                  value=segments[i].attributes()[
                                                      self.utils.get_idx_attr(segments_lyr, 'segments',
                                                                          'paviment_2')]))))  # paviment
             self.tableWidget.setItem(i, 17, QTableWidgetItem(
-                self.__get_key_map_of_values(layer=nodes_lyr,
+                self.utils.get_key_map_of_values(layer=nodes_lyr,
                                              idx_col=self.utils.get_idx_attr(nodes_lyr, 'nodes', 'branch_position'),
                                              value=segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'nodes',
                                                                                                 'branch_position')])))  # node('posicao_ramal'))))
@@ -226,16 +226,6 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         self.minDepth.blockSignals(False)
         self.minSlope.blockSignals(False)
         self.show()
-
-    @staticmethod
-    def __get_key_map_of_values(layer: QgsVectorLayer, idx_col: int, value: str) -> str:
-        for dicts in layer.editorWidgetSetup(idx_col).config().values():
-            for item in dicts:
-                k = [k for k in item.keys()]
-                v = [v for v in item.values()]
-                if v[0] == value:
-                    return k[0]
-        return 'NULL'
 
     @staticmethod
     def concat1(str1, str2) -> str:
@@ -476,7 +466,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             raise ValueError(self.translate('Camada inválida!'))
         count = 0
         for i, feat in enumerate(nodes_lyr.getFeatures()):
-            item = (self.__get_key_map_of_values(layer=nodes_lyr,
+            item = (self.utils.get_key_map_of_values(layer=nodes_lyr,
                                                  idx_col=self.utils.get_idx_attr(nodes_lyr, 'nodes', 'node_type'),
                                                  value=nodes[i].attributes()[
                                                      self.utils.get_idx_attr(nodes_lyr, 'nodes', 'node_type')]))
@@ -495,11 +485,11 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
         count = 0
         for i, feat in enumerate(segments_lyr.getFeatures()):
             if feat[self.utils.get_json_attr('segments', 'tq')]:
-                conn_1 = (self.__get_key_map_of_values(layer=segments_lyr,
+                conn_1 = (self.utils.get_key_map_of_values(layer=segments_lyr,
                                                        idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'tq_link1'),
                                                        value=segments[i].attributes()[
                                                            self.utils.get_idx_attr(segments_lyr, 'segments', 'tq_link1')]))
-                conn_2 = (self.__get_key_map_of_values(layer=segments_lyr,
+                conn_2 = (self.utils.get_key_map_of_values(layer=segments_lyr,
                                                        idx_col=self.utils.get_idx_attr(segments_lyr, 'segments', 'tq_link2'),
                                                        value=segments[i].attributes()[
                                                            self.utils.get_idx_attr(segments_lyr, 'segments', 'tq_link2')]))

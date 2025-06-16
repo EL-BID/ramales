@@ -125,7 +125,8 @@ class ProducesReportOSXls:
             worksheet.write(8, 2, list_block_values[1], TEXT_NORMAL_CENTER_12_QUADRA)
             worksheet.write_merge(8, 8, 3, 10, '', TEXT_NORMAL_LEFT_12_QUADRA)
             worksheet.write_merge(8, 8, 11, 12, self.translate('RAMAL:'), TEXT_BOLD_LEFT_12_RAMAL)
-            worksheet.write_merge(8, 8, 13, self.MAX_COLUMN, self.translate('R-') + str(branch), TEXT_NORMAL_CENTER_12_RAMAL)
+            worksheet.write_merge(8, 8, 13, self.MAX_COLUMN, self.translate('R-') + str(branch),
+                                  TEXT_NORMAL_CENTER_12_RAMAL)
             worksheet.write_merge(9, 9, 0, 1, self.translate('BACIA:'), TEXT_BOLD_LEFT_12_BACIA)
             worksheet.write_merge(9, 9, 2, 4, list_block_values[3], TEXT_NORMAL_CENTER_12_BACIA)
             worksheet.write_merge(9, 9, 5, 9, '', TEXT_NORMAL_CENTER_12_BACIA)
@@ -142,7 +143,8 @@ class ProducesReportOSXls:
             worksheet.write_merge(10, 10, self.MAX_COLUMN - 1, self.MAX_COLUMN, list_block_values[5],
                                   TEXT_NORMAL_CENTER_DECLIV)
 
-            worksheet.write_merge(12, 12, 0, self.MAX_COLUMN, self.translate('QUANTITATIVOS'), TEXT_BOLD_CENTER_12_QUANT)
+            worksheet.write_merge(12, 12, 0, self.MAX_COLUMN, self.translate('QUANTITATIVOS'),
+                                  TEXT_BOLD_CENTER_12_QUANT)
             worksheet.write(13, 0, self.translate('REV.:'), TEXT_NORMAL_LEFT_REV)
             worksheet.write_merge(13, 13, 1, 2, list_block_values[6], TEXT_NORMAL_CENTER_REV)
             worksheet.write_merge(13, 13, 3, 4, self.translate('Data Rev.:'), TEXT_NORMAL_LEFT_DATA_REV)
@@ -177,7 +179,8 @@ class ProducesReportOSXls:
             worksheet.write_merge(17, 19, 2, 2, self.translate('DISTÂNCIA (m)'), TEXT_NORMAL_CENTER_HEADER_V)
             worksheet.write_merge(17, 18, 3, 4, self.translate('COTA TERRENO (m)'), TEXT_NORMAL_CENTER_HEADER_H)
             worksheet.write_merge(17, 18, 5, 6, self.translate('COTA RAMAL (m)'), TEXT_NORMAL_CENTER_HEADER_H)
-            worksheet.write_merge(17, 18, 7, 8, self.translate('ALTURA / PROFUNDIDADE (m)'), TEXT_NORMAL_CENTER_HEADER_H)
+            worksheet.write_merge(17, 18, 7, 8, self.translate('ALTURA / PROFUNDIDADE (m)'),
+                                  TEXT_NORMAL_CENTER_HEADER_H)
             worksheet.write_merge(17, 19, 9, 9, self.translate('GABARITO (m)'), TEXT_NORMAL_CENTER_HEADER_V)
             worksheet.write_merge(17, 18, 10, 11, self.translate('COTA RÉGUA (m)'), TEXT_NORMAL_CENTER_HEADER_H)
             worksheet.write_merge(17, 19, 12, 12, self.translate('PROF. CRÍTICA (m)'), TEXT_NORMAL_CENTER_HEADER_V)
@@ -203,9 +206,17 @@ class ProducesReportOSXls:
                                     TEXT_NORMAL_CENTER_BODY_L)
                     worksheet.write(row, 1, str(feat[self.utils.get_idx_attr_segments('down_box')]),
                                     NUMBER_NORMAL_CENTER_BODY_C)
-                    worksheet.write(row, 2, self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('length')]),
+                    worksheet.write(row, 2,
+                                    self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('length')]),
                                     NUMBER_NORMAL_CENTER_BODY_C)
                     branch_length += self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('length')])
+                    branch_pos = (
+                        self.utils.get_key_map_of_values(layer=self.segments,
+                                                         idx_col=self.utils.get_idx_attr(self.segments, 'segments',
+                                                                                         'branch_position'),
+                                                         value=segments[i].attributes()[
+                                                             self.utils.get_idx_attr(self.segments, 'segments',
+                                                                                     'branch_position')]))
                     worksheet.write(row, 3, self.utils.str_to_float_locale(self.utils.get_element_layer_nodes(
                         node=feat[self.utils.get_idx_attr_segments('up_box')], name_attr='q_terrain')),
                                     NUMBER_NORMAL_CENTER_BODY_C_000)
@@ -213,15 +224,26 @@ class ProducesReportOSXls:
                         node=feat[self.utils.get_idx_attr_segments('down_box')], name_attr='q_terrain')),
                                     NUMBER_NORMAL_CENTER_BODY_C_000)
                     worksheet.write(row, 5,
-                                    self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('up_qproject')]),
+                                    self.utils.str_to_float_locale(
+                                        feat[self.utils.get_idx_attr_segments('up_qproject')]),
                                     NUMBER_NORMAL_CENTER_BODY_C_000)
                     worksheet.write(row, 6,
-                                    self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('dwn_qproject')]),
+                                    self.utils.str_to_float_locale(
+                                        feat[self.utils.get_idx_attr_segments('dwn_qproject')]),
                                     NUMBER_NORMAL_CENTER_BODY_C_000)
                     if row == 20:
-                        worksheet.write(row, 7, self.utils.str_to_float_locale(self.utils.get_element_layer_nodes(
-                            node=feat[self.utils.get_idx_attr_segments('up_box')], name_attr='depth')),
-                                        NUMBER_NORMAL_CENTER_BODY_C)
+                        if (branch_pos == self.utils.get_json_attr(name_lyr='bool_air', attribute='underground') and
+                                self.utils.get_element_layer_nodes(
+                                    node=feat[self.utils.get_idx_attr_segments('up_box')], name_attr='depth') <
+                                self.utils.get_element_layer_blocks(name_attr='min_depth')):
+                            worksheet.write(row, 7,
+                                            self.utils.str_to_float_locale(
+                                                self.utils.get_element_layer_blocks(name_attr='min_depth')),
+                                            NUMBER_NORMAL_CENTER_BODY_C)
+                        else:
+                            worksheet.write(row, 7, self.utils.str_to_float_locale(self.utils.get_element_layer_nodes(
+                                node=feat[self.utils.get_idx_attr_segments('up_box')], name_attr='depth')),
+                                            NUMBER_NORMAL_CENTER_BODY_C)
                     else:
                         worksheet.write(row, 7, self.utils.str_to_float_locale(self.utils.get_element_layer_nodes(
                             node=feat[self.utils.get_idx_attr_segments('up_box')], name_attr='q_terrain')) -
@@ -245,7 +267,8 @@ class ProducesReportOSXls:
                     worksheet.write(row, 13, self.utils.str_to_float_locale(
                         feat[self.utils.get_idx_attr_segments('unevenness_segment')]),
                                     NUMBER_NORMAL_CENTER_BODY_C_0)
-                    worksheet.write(row, 14, self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('h_tq')]),
+                    worksheet.write(row, 14,
+                                    self.utils.str_to_float_locale(feat[self.utils.get_idx_attr_segments('h_tq')]),
                                     NUMBER_NORMAL_CENTER_BODY_C)
                     worksheet.write(row, 15, str(feat[self.utils.get_idx_attr_segments('comments')])
                                     .replace('NULL', '').replace('0.0', ''),
@@ -257,10 +280,12 @@ class ProducesReportOSXls:
             worksheet.write_merge(q_row, q_row + 11, 0, self.MAX_COLUMN, '', TEXT_NOTES_SPACE)
             q_row += 12
             worksheet.write_merge(q_row, q_row, 0, 5, self.translate('Emissão:'), TEXT_NORMAL_LEFT_EMIS)
-            worksheet.write_merge(q_row, q_row, 6, 9, self.translate('Liberação:') + '         /         /             ',
+            worksheet.write_merge(q_row, q_row, 6, 9,
+                                  self.translate('Liberação:') + '         /         /             ',
                                   TEXT_NORMAL_CENTER_LIB)
             worksheet.write_merge(q_row, q_row, 10, self.MAX_COLUMN,
-                                  self.translate('Recebido:') + '         /         /                                     ',
+                                  self.translate(
+                                      'Recebido:') + '         /         /                                     ',
                                   TEXT_NORMAL_CENTER_REC)
             q_row += 1
             worksheet.write_merge(q_row, q_row, 0, 1, self.translate('Por:'), TEXT_NORMAL_CENTER_EMIS_POR)
@@ -271,9 +296,11 @@ class ProducesReportOSXls:
             worksheet.write_merge(q_row, q_row, 11, self.MAX_COLUMN, '_____________________________',
                                   TEXT_NORMAL_CENTER_REC_ROW)
             q_row += 1
-            worksheet.write_merge(q_row, q_row, 0, 5, '                                      ' + self.translate('Projeto'),
+            worksheet.write_merge(q_row, q_row, 0, 5,
+                                  '                                      ' + self.translate('Projeto'),
                                   TEXT_NORMAL_CENTER_EMIS_PROJ)
-            worksheet.write_merge(q_row, q_row, 6, 9, '               ' + self.translate('Fiscalização'), TEXT_NORMAL_CENTER_LIB_FIS)
+            worksheet.write_merge(q_row, q_row, 6, 9, '               ' + self.translate('Fiscalização'),
+                                  TEXT_NORMAL_CENTER_LIB_FIS)
             worksheet.write_merge(q_row, q_row, 10, self.MAX_COLUMN, '               ' + self.translate('Construtora'),
                                   TEXT_NORMAL_CENTER_REC_CONS)
         workbook.save(local_file)
@@ -383,8 +410,8 @@ NUMBER_NORMAL_CENTER_BODY_C_0 = easyxf('font: name Arial, height 160; align: ver
 TEXT_NORMAL_CENTER_BODY_R = easyxf('font: name Arial, height 160; align: vert center, horiz center; '
                                    'borders: left 1, right 2, bottom 1;', num_format_str='#,##0.00')
 TEXT_NOTES_SPACE = easyxf('font: name Arial, height 240, bold True; '
-                                'align: vert center, horiz center; '
-                                'borders: left 2, right 2, top 2, bottom 2;')
+                          'align: vert center, horiz center; '
+                          'borders: left 2, right 2, top 2, bottom 2;')
 TEXT_BOLD_CENTER_OBS_0 = easyxf('font: name Arial, height 240, bold True; '
                                 'align: vert center, horiz center; '
                                 'borders: left 2, right 2, top 2, bottom 0;')
