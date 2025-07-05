@@ -135,9 +135,10 @@ class DockTabCosts(DockTabCostsBase):
             self.gb_DataCosts.hide()
 
     def on_data_changed(self):
-        self.save_timer.start(500)
+        self.save_timer.start(1500)
 
     def save_values(self):
+        print("Saving values")
         if not self.loaded_from_db:
             return
         tmp_costs = Costs(

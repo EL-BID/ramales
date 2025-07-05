@@ -212,7 +212,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/calculate/BlockView.py" line="559"/>
+        <location filename="../core/calculate/BlockView.py" line="530"/>
         <source>Camada inválida!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -434,128 +434,133 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="134"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="135"/>
         <source>Para calcular os custos do projeto, preencher os dados abaixo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="138"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="139"/>
         <source>Dimensionamento:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="142"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="143"/>
         <source>Largura da vala</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="145"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="146"/>
         <source>Altura do berço</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="148"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="149"/>
         <source>Altura do envoltório</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="152"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="153"/>
         <source>Tipo de solo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="155"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="156"/>
         <source>Solo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="156"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="157"/>
         <source>Empolamento Solo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="161"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="162"/>
         <source>Rocha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="164"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="165"/>
         <source>Empolamento Rocha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="167"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="168"/>
         <source>Tipo de escavação:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="170"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="171"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="173"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="174"/>
         <source>Mecânica</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="177"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="178"/>
         <source>Material de reaterro:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="180"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="181"/>
         <source>Próprio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="183"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="184"/>
         <source>Aporte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="184"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="185"/>
         <source>O aporte deve ser no mínimo equivalente ao percentual de rocha presente.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="189"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="190"/>
         <source>Distância de descarte:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="192"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="193"/>
         <source>Distância</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="198"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="199"/>
         <source>Ver custos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="199"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="200"/>
         <source>Editar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="201"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="202"/>
         <source>Gerar xls custos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="206"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="207"/>
         <source>Total serviços</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="208"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="209"/>
         <source>Total materiais</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="210"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="211"/>
         <source>Total geral</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="213"/>
+        <source>Valor por metro</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -625,27 +630,27 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
 <context>
     <name>DockTabHome</name>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="67"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="69"/>
         <source>Confirma a seleção da camada </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="82"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="86"/>
         <source>Camadar raster definida com sucesso!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="85"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="89"/>
         <source>Uma camada raster deve ser definida!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="145"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="149"/>
         <source>SaniHub Ramal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="145"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="149"/>
         <source>Antes de gerar a OS, clique em Atualizar Cálculos. </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1966,7 +1971,7 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
 <context>
     <name>utils</name>
     <message>
-        <location filename="../core/project_creation/project_creation.py" line="74"/>
+        <location filename="../core/project_creation/project_creation.py" line="91"/>
         <source>SaniHUB Ramales</source>
         <translation type="unfinished"></translation>
     </message>
