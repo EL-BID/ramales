@@ -28,6 +28,13 @@ class DockTab(QWidget):
         """
         pass
 
+    def hover(self):
+        """
+            Method called when the tab is hovered, used to update the tab information.
+            Should be overridden by subclasses if needed.
+        """
+        pass
+
     def set_logic(self):
         """Method called to define user input logic."""
         pass

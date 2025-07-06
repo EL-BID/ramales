@@ -1,190 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en">
-<context>
-    <name>BlockDialog</name>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="120"/>
-        <source>Manzana</source>
-        <translation type="obsolete">Block</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="117"/>
-        <source>Generales</source>
-        <translation type="obsolete">General</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="118"/>
-        <source>Fecha</source>
-        <translation type="obsolete">Date</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="127"/>
-        <source>dd/MM/yyyy</source>
-        <translation type="obsolete">dd/MM/yyyy</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="121"/>
-        <source>Cuenca</source>
-        <translation type="obsolete">Watershed</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="122"/>
-        <source>Profundidad mÃ­nima</source>
-        <translation type="obsolete">Minimum depth</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="123"/>
-        <source>Pendiente mÃ­nima</source>
-        <translation type="obsolete">Minimum slope</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="124"/>
-        <source>Cuantitativos</source>
-        <translation type="obsolete">Quantitative</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="125"/>
-        <source>RevisiÃ³n</source>
-        <translation type="obsolete">Revision</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="126"/>
-        <source>Fecha RevisiÃ³n</source>
-        <translation type="obsolete">Revision date</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="128"/>
-        <source>Longitud total</source>
-        <translation type="obsolete">Total length</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="129"/>
-        <source>Observaciones</source>
-        <translation type="obsolete">Observations</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="122"/>
-        <source>Profundidad minima</source>
-        <translation type="obsolete">Minimum depth</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="123"/>
-        <source>Pendiente minima</source>
-        <translation type="obsolete">Minimum slope</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="125"/>
-        <source>Revision</source>
-        <translation type="obsolete">Revision</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/BlockDialogUi.py" line="126"/>
-        <source>Fecha Revision</source>
-        <translation type="obsolete">Revision date</translation>
-    </message>
-</context>
+<TS version="2.1">
 <context>
     <name>BlockViewDialog</name>
     <message>
         <location filename="../core/calculate/BlockView.py" line="36"/>
+        <source>branch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core/calculate/BlockView.py" line="36"/>
         <source>up_box</source>
-        <translation type="unfinished">Box: Upstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="36"/>
         <source>down_box</source>
-        <translation type="unfinished">Box: Donwstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="37"/>
         <source>length</source>
-        <translation type="unfinished">Length</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="37"/>
         <source>up_gl</source>
-        <translation type="unfinished">Ground level: Upstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="37"/>
         <source>down_gl</source>
-        <translation type="unfinished">Ground level: Downstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="38"/>
         <source>upBrLevel</source>
-        <translation type="unfinished">Ground branch: Upstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="38"/>
         <source>dwnBrLevel</source>
-        <translation type="unfinished">Ground branch: Downstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="38"/>
         <source>upDepth</source>
-        <translation type="unfinished">Depth: Upstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="39"/>
         <source>dwnDepth</source>
-        <translation type="unfinished">Depth: Downstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="39"/>
         <source>model</source>
-        <translation type="unfinished">Template</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="39"/>
         <source>upRuleLvl</source>
-        <translation type="unfinished">Ground ruler: Upstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="40"/>
         <source>dwnRuleLvl</source>
-        <translation type="unfinished">Ground ruler: Downstream</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="40"/>
         <source>critDepth</source>
-        <translation type="unfinished">Critical depth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="40"/>
         <source>slopeSection</source>
-        <translation type="unfinished">Slope section</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="41"/>
         <source>pvc_diameter</source>
-        <translation type="unfinished">PVC</translation>
-    </message>
-    <message>
-        <location filename="../core/calculate/BlockView.py" line="43"/>
-        <source>obs</source>
-        <translation type="unfinished">Observations</translation>
-    </message>
-    <message>
-        <location filename="../core/calculate/BlockView.py" line="36"/>
-        <source>branch</source>
-        <translation type="unfinished">Branch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="41"/>
         <source>pavement</source>
-        <translation type="unfinished">Pavement</translation>
-    </message>
-    <message>
-        <location filename="../views/BlockView.py" line="23"/>
-        <source>splice</source>
-        <translation type="obsolete">Splice</translation>
-    </message>
-    <message>
-        <location filename="../views/BlockView.py" line="24"/>
-        <source>obstacles</source>
-        <translation type="obsolete">Obstacles</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../core/calculate/BlockView.py" line="41"/>
@@ -207,12 +109,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../core/calculate/BlockView.py" line="43"/>
+        <source>obs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../core/calculate/BlockView.py" line="63"/>
         <source>Crie ao menos uma quadra para continuar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/calculate/BlockView.py" line="559"/>
+        <location filename="../core/calculate/BlockView.py" line="520"/>
         <source>Camada inválida!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,92 +167,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="107"/>
+        <source>O diretório &quot;{0}&quot; selecionado não é válido!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="128"/>
         <source>Erro na criação do projeto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="107"/>
-        <source>O diretório &quot;{self.le_path.text()}&quot; selecionado não é válido!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="112"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
         <source>Erro de permissão</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="112"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
         <source>Você não tem permissão para criar o projeto nesse diretório!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
         <source>Falta de espaço</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
         <source>Não há espaço suficiente no disco para criar o projeto!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
         <source>Erro de sistema operacional</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="128"/>
         <source>Erro desconhecido: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>Tipo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>SRID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>Descrição</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="152"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="156"/>
         <source>Buscar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="157"/>
         <source>Selecione a pasta para a criação do projeto QGIS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="181"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="185"/>
         <source>Local:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="182"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="186"/>
         <source>Nome:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="183"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="187"/>
         <source>Pasta de instalação</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="184"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="188"/>
         <source>Filtro (SRID):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="185"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="189"/>
         <source>Selecione um SRID:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,6 +324,29 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
     </message>
 </context>
 <context>
+    <name>DockTabCosts</name>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="85"/>
+        <source>Custo dos materiais (USD):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="86"/>
+        <source>Custo dos serviços (USD):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="87"/>
+        <source>Custo total (USD):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="88"/>
+        <source>Custo total por metro (USD):</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DockTabCostsBase</name>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="46"/>
@@ -434,128 +364,133 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="134"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="135"/>
         <source>Para calcular os custos do projeto, preencher os dados abaixo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="138"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="139"/>
         <source>Dimensionamento:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="142"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="143"/>
         <source>Largura da vala</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="145"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="146"/>
         <source>Altura do berço</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="148"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="149"/>
         <source>Altura do envoltório</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="152"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="153"/>
         <source>Tipo de solo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="155"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="156"/>
         <source>Solo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="156"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="157"/>
         <source>Empolamento Solo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="161"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="162"/>
         <source>Rocha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="164"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="165"/>
         <source>Empolamento Rocha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="167"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="168"/>
         <source>Tipo de escavação:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="170"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="171"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="173"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="174"/>
         <source>Mecânica</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="177"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="178"/>
         <source>Material de reaterro:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="180"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="181"/>
         <source>Próprio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="183"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="184"/>
         <source>Aporte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="184"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="185"/>
         <source>O aporte deve ser no mínimo equivalente ao percentual de rocha presente.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="189"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="190"/>
         <source>Distância de descarte:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="192"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="193"/>
         <source>Distância</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="198"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="199"/>
         <source>Ver custos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="199"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="200"/>
         <source>Editar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="201"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="202"/>
         <source>Gerar xls custos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="206"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="207"/>
         <source>Total serviços</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="208"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="209"/>
         <source>Total materiais</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="210"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="211"/>
         <source>Total geral</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="213"/>
+        <source>Valor por metro</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -567,57 +502,57 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="59"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="60"/>
         <source>Para calcular as vazões do projeto, preencher os dados abaixo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="63"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="64"/>
         <source>Coeficiente de retorno (C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="66"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="67"/>
         <source>Dotação per capita (q)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="69"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="70"/>
         <source>Número de pessoas por economia (p)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="72"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="73"/>
         <source>Coeficiente dia de maior consumo (K1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="75"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="76"/>
         <source>Coeficiente hora de maior consumo (K2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="78"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="79"/>
         <source>Número de economias inicio de plano (e)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="82"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="83"/>
         <source>Número de economias fim de plano (e)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="89"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="90"/>
         <source>Vazão (l/s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="92"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="93"/>
         <source>Inicio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="96"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="97"/>
         <source>Fim</source>
         <translation type="unfinished"></translation>
     </message>
@@ -625,27 +560,27 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
 <context>
     <name>DockTabHome</name>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="67"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="69"/>
         <source>Confirma a seleção da camada </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="82"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="86"/>
         <source>Camadar raster definida com sucesso!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="85"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="89"/>
         <source>Uma camada raster deve ser definida!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="145"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="149"/>
         <source>SaniHub Ramal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="145"/>
+        <location filename="../gui/dock_tabs/ui_dock_tab_home.py" line="149"/>
         <source>Antes de gerar a OS, clique em Atualizar Cálculos. </source>
         <translation type="unfinished"></translation>
     </message>
@@ -782,12 +717,12 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/generate_costs_ui.py" line="47"/>
+        <location filename="../gui/generate_costs_ui.py" line="48"/>
         <source>Salvar planilha de custos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/generate_costs_ui.py" line="59"/>
+        <location filename="../gui/generate_costs_ui.py" line="60"/>
         <source>Arquivo gerado com sucesso</source>
         <translation type="unfinished"></translation>
     </message>
@@ -818,59 +753,6 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <location filename="../gui/generate_os_ui.py" line="53"/>
         <source>Arquivo gerado com sucesso</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LayersPanelDialog</name>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="112"/>
-        <source>Ajustes</source>
-        <translation type="obsolete">Settings</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="113"/>
-        <source>Seleccionar capa existente</source>
-        <translation type="obsolete">Select existing layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="114"/>
-        <source>Crear nueva capa</source>
-        <translation type="obsolete">Create new layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="115"/>
-        <source>Seleccionar</source>
-        <translation type="obsolete">Select</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="121"/>
-        <source>Capa de Manzana</source>
-        <translation type="obsolete">Block Layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="122"/>
-        <source>Capa de Encuesta</source>
-        <translation type="obsolete">Survey layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="120"/>
-        <source>Crear Capa</source>
-        <translation type="obsolete">Create Layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="118"/>
-        <source>Capa de Obstáculos</source>
-        <translation type="obsolete">Layer of obstacles</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="124"/>
-        <source>Capa de Segmentos</source>
-        <translation type="obsolete">Segment layer</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LayersPanelDialogUi.py" line="123"/>
-        <source>Capa de Obstaculos</source>
-        <translation type="obsolete">Layer of obstacles</translation>
     </message>
 </context>
 <context>
@@ -1274,177 +1156,159 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="129"/>
+        <location filename="../core/xls/produces_os_xls.py" line="130"/>
         <source>BACIA:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="132"/>
+        <location filename="../core/xls/produces_os_xls.py" line="133"/>
         <source>DATA:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="137"/>
+        <location filename="../core/xls/produces_os_xls.py" line="138"/>
         <source>PROF.MÍNIMA (m):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="141"/>
+        <location filename="../core/xls/produces_os_xls.py" line="142"/>
         <source>DECLIVIDADE MÍNIMA (m/m):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="145"/>
+        <location filename="../core/xls/produces_os_xls.py" line="146"/>
         <source>QUANTITATIVOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="146"/>
+        <location filename="../core/xls/produces_os_xls.py" line="148"/>
         <source>REV.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="148"/>
+        <location filename="../core/xls/produces_os_xls.py" line="150"/>
         <source>Data Rev.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="153"/>
+        <location filename="../core/xls/produces_os_xls.py" line="155"/>
         <source>Extensão total:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="158"/>
+        <location filename="../core/xls/produces_os_xls.py" line="160"/>
         <source>Extensão ramal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="164"/>
+        <location filename="../core/xls/produces_os_xls.py" line="166"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="176"/>
+        <location filename="../core/xls/produces_os_xls.py" line="178"/>
         <source>CAIXA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="177"/>
+        <location filename="../core/xls/produces_os_xls.py" line="179"/>
         <source>DISTÂNCIA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="178"/>
+        <location filename="../core/xls/produces_os_xls.py" line="180"/>
         <source>COTA TERRENO (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="179"/>
+        <location filename="../core/xls/produces_os_xls.py" line="181"/>
         <source>COTA RAMAL (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="180"/>
+        <location filename="../core/xls/produces_os_xls.py" line="182"/>
         <source>ALTURA / PROFUNDIDADE (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="181"/>
+        <location filename="../core/xls/produces_os_xls.py" line="184"/>
         <source>GABARITO (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="182"/>
+        <location filename="../core/xls/produces_os_xls.py" line="185"/>
         <source>COTA RÉGUA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="183"/>
+        <location filename="../core/xls/produces_os_xls.py" line="186"/>
         <source>PROF. CRÍTICA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="184"/>
+        <location filename="../core/xls/produces_os_xls.py" line="187"/>
         <source>CAIM. TRECHO (cm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="185"/>
+        <location filename="../core/xls/produces_os_xls.py" line="188"/>
         <source>TUBO DE QUEDA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="186"/>
+        <location filename="../core/xls/produces_os_xls.py" line="189"/>
         <source>OBS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="195"/>
+        <location filename="../core/xls/produces_os_xls.py" line="198"/>
         <source>MONT.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="196"/>
+        <location filename="../core/xls/produces_os_xls.py" line="199"/>
         <source>JUS.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="255"/>
+        <location filename="../core/xls/produces_os_xls.py" line="278"/>
         <source>NOTAS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="259"/>
+        <location filename="../core/xls/produces_os_xls.py" line="282"/>
         <source>Emissão:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="260"/>
+        <location filename="../core/xls/produces_os_xls.py" line="283"/>
         <source>Liberação:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="262"/>
+        <location filename="../core/xls/produces_os_xls.py" line="286"/>
         <source>Recebido:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="270"/>
+        <location filename="../core/xls/produces_os_xls.py" line="295"/>
         <source>Por:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="274"/>
+        <location filename="../core/xls/produces_os_xls.py" line="299"/>
         <source>Projeto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="276"/>
+        <location filename="../core/xls/produces_os_xls.py" line="302"/>
         <source>Fiscalização</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="277"/>
+        <location filename="../core/xls/produces_os_xls.py" line="304"/>
         <source>Construtora</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PublishDialog</name>
-    <message>
-        <location filename="../views/ui/PublishDialogUi.py" line="48"/>
-        <source>Publish</source>
-        <translation type="obsolete">Publish</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/PublishDialogUi.py" line="49"/>
-        <source>username</source>
-        <translation type="obsolete">Username</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/PublishDialogUi.py" line="50"/>
-        <source>password</source>
-        <translation type="obsolete">Password</translation>
     </message>
 </context>
 <context>
@@ -1806,21 +1670,6 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
 <context>
     <name>SanihubRamales</name>
     <message>
-        <location filename="../sanihub_ramales.py" line="192"/>
-        <source>Sanihub Ramales: Ajustes</source>
-        <translation type="obsolete">Settings</translation>
-    </message>
-    <message>
-        <location filename="../sanihub_ramales.py" line="198"/>
-        <source>Sanihub Ramales: Import</source>
-        <translation type="obsolete">Import</translation>
-    </message>
-    <message>
-        <location filename="../sanihub_ramales.py" line="204"/>
-        <source>Sanihub Ramales: Publish</source>
-        <translation type="obsolete">Publish</translation>
-    </message>
-    <message>
         <location filename="../sanihub_ramales.py" line="74"/>
         <source>&amp;SaniHUB Ramales</source>
         <translation type="unfinished"></translation>
@@ -1832,98 +1681,70 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
     </message>
 </context>
 <context>
-    <name>SurveysDialog</name>
-    <message>
-        <location filename="../views/ui/ImportSurveysDialogUi.py" line="56"/>
-        <source>Importar Encuestas</source>
-        <translation type="obsolete">Import Surveys</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/ImportSurveysDialogUi.py" line="57"/>
-        <source>Seleccione el proyecto que desea importar:</source>
-        <translation type="obsolete">Select the project you want to import:</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/ImportSurveysDialogUi.py" line="58"/>
-        <source>Recargar listado</source>
-        <translation type="obsolete">Reload listing</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/ImportSurveysDialogUi.py" line="62"/>
-        <source>Projecto</source>
-        <translation type="obsolete">Project</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/ImportSurveysDialogUi.py" line="64"/>
-        <source>Encuesta</source>
-        <translation type="obsolete">Block/s</translation>
-    </message>
-</context>
-<context>
     <name>Ui_BlockDialog</name>
+    <message>
+        <location filename="../gui/BlockDialogUi.py" line="133"/>
+        <source>Cálculo dos Ramais</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="134"/>
         <source>Generales</source>
-        <translation type="unfinished">General</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="135"/>
         <source>Fecha</source>
-        <translation type="unfinished">Date</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="144"/>
         <source>dd/MM/yyyy</source>
-        <translation type="unfinished">dd/MM/yyyy</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="137"/>
         <source>Manzana</source>
-        <translation type="unfinished">Block</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="138"/>
         <source>Cuenca</source>
-        <translation type="unfinished">Watershed</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="139"/>
         <source>Profundidad minima</source>
-        <translation type="unfinished">Minimum depth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="140"/>
         <source>Pendiente minima</source>
-        <translation type="unfinished">Minimum slope</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="141"/>
         <source>Cuantitativos</source>
-        <translation type="unfinished">Quantitative</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="142"/>
         <source>Revision</source>
-        <translation type="unfinished">Revision</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="143"/>
         <source>Fecha Revision</source>
-        <translation type="unfinished">Revision date</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="145"/>
         <source>Longitud total</source>
-        <translation type="unfinished">Total length</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/BlockDialogUi.py" line="146"/>
         <source>Observaciones</source>
-        <translation type="unfinished">Observations</translation>
-    </message>
-    <message>
-        <location filename="../gui/BlockDialogUi.py" line="133"/>
-        <source>Cálculo dos Ramais</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1946,27 +1767,9 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
     </message>
 </context>
 <context>
-    <name>loginQDialog</name>
-    <message>
-        <location filename="../views/ui/LoginView.py" line="46"/>
-        <source>Login</source>
-        <translation type="obsolete">Login</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LoginView.py" line="47"/>
-        <source>Password</source>
-        <translation type="obsolete">Password</translation>
-    </message>
-    <message>
-        <location filename="../views/ui/LoginView.py" line="48"/>
-        <source>User</source>
-        <translation type="obsolete">User</translation>
-    </message>
-</context>
-<context>
     <name>utils</name>
     <message>
-        <location filename="../core/project_creation/project_creation.py" line="74"/>
+        <location filename="../core/project_creation/project_creation.py" line="91"/>
         <source>SaniHUB Ramales</source>
         <translation type="unfinished"></translation>
     </message>

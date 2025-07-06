@@ -1,7 +1,7 @@
 import json
 import os
 
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal, QCoreApplication
 from PyQt5.QtWidgets import QDialog
 from qgis.PyQt.QtWidgets import QMessageBox
 from qgis._core import QgsDefaultValue, QgsFeature
@@ -67,7 +67,7 @@ class DockTabHome(DockTabHomeBase):
 
     def __set_raster_layer(self):
         response = self.utils.show_dialog_question(title=self.title,
-                                                   message=(self.translate('Confirma a seleção da camada ') +
+                                                   message=(self.tr('Confirma a seleção da camada ') +
                                                             self.cb_raster.currentText() + ':'))
         if response:
             nodes = self.proj.getNodesLayer()
@@ -83,10 +83,10 @@ class DockTabHome(DockTabHomeBase):
             nodes.setDefaultValueDefinition(self.__get_idx_attr(nodes, 'nodes', 'q_terrain'), default_value)
             set_layer_raster(self.cb_raster.currentText())
             ProjectDataManager.save_layer_raster(layer_raster=LayerRaster(LAYER_RASTER=self.cb_raster.currentText()))
-            self.utils.show_dialog(title=self.title, message=self.translate('Camadar raster definida com sucesso!'),
+            self.utils.show_dialog(title=self.title, message=self.tr('Camadar raster definida com sucesso!'),
                                    information=QMessageBox.Information)
         else:
-            self.utils.show_dialog(title=self.title, message=self.translate('Uma camada raster deve ser definida!'),
+            self.utils.show_dialog(title=self.title, message=self.tr('Uma camada raster deve ser definida!'),
                                    information=QMessageBox.Warning)
 
     def __get_idx_attr(self, layer: QgsVectorLayer, name_lyr: str, name_attr: str):
@@ -139,15 +139,15 @@ class DockTabHome(DockTabHomeBase):
         self.proj.blockDialog.setData(is_new=False)
         # else:
         #     self.utils.show_dialog(title=self.title,
-        #                            message=self.translate('Primeiro selecione as camadas do projeto em Iniciar.'),
+        #                            message=self.tr('Primeiro selecione as camadas do projeto em Iniciar.'),
         #                            information=QMessageBox.Critical)
 
     def __produces_xls_os(self):
         if ProjectDataManager.get_status_calculation():
             self.generate_os.show_generate_os()
         else:
-            self.utils.show_dialog(title=self.translate('SaniHub Ramal'),
-                                   message=self.translate('Antes de gerar a OS, clique em Atualizar Cálculos. '),
+            self.utils.show_dialog(title=self.tr('SaniHub Ramal'),
+                                   message=self.tr('Antes de gerar a OS, clique em Atualizar Cálculos. '),
                                    information=QMessageBox.Critical)
 
     @staticmethod

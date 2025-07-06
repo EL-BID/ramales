@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from .data_access import (
     LayersInfoDAO,
     CalculationInfoDAO,
@@ -144,6 +146,7 @@ class ProjectDataManager:
         return CostsDAO.is_done()[0]
 
     @classmethod
+    @lru_cache(maxsize=1)
     def get_all_segments(cls) -> Dict[str, Ramal]:
         if not cls.get_layers_id().SEGMENTS_LAYER_ID \
                 or not cls.get_layers_id().NODES_LAYER_ID \

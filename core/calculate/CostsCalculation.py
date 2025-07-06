@@ -22,7 +22,9 @@ class CostCalculationRamal:
             return 0
         total_volume = 0
         for segment in self.ramal.segments:
-            prof_media = (segment.up_qproject + segment.dwn_qproject) / 2
+            height_up_box = segment.UpBox.h_branch
+            height_dwn_box = segment.DownBox.h_branch
+            prof_media = (height_up_box + height_dwn_box) / 2
             width = self.costs.TRENCH_WIDTH
             area = width * segment.length
             cradle_height = self.costs.CRADLE_HEIGHT

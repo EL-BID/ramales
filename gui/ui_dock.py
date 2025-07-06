@@ -39,9 +39,8 @@ class DockUI:
         widget: DockTab = self.tabWidget.widget(index)
         if not isinstance(widget, DockTab):
             return
-
+        widget.hover()
         if widget.should_reload:
-            QgsMessageLog.logMessage(f"Carregando aba {widget.__class__.__name__}", "on_tab_changed")
             widget.reload()
 
     def loadDock(self):

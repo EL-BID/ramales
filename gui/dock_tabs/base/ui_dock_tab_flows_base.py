@@ -40,6 +40,7 @@ class DockTabFlowsBase(DockTab):
         self.lb_value_number_economy_start = QLabel()
         self.lb_txt_number_economy_end = QLabel()  # numero de economias de fim
         self.sb_number_economy_end = QSpinBox()
+        self.sb_number_economy_end.setMaximum(999)
 
         # dados de saída
         self.lb_flow = QLabel()
