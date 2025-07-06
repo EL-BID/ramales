@@ -212,7 +212,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/calculate/BlockView.py" line="530"/>
+        <location filename="../core/calculate/BlockView.py" line="520"/>
         <source>Camada inválida!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -572,57 +572,57 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="59"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="60"/>
         <source>Para calcular as vazões do projeto, preencher os dados abaixo:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="63"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="64"/>
         <source>Coeficiente de retorno (C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="66"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="67"/>
         <source>Dotação per capita (q)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="69"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="70"/>
         <source>Número de pessoas por economia (p)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="72"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="73"/>
         <source>Coeficiente dia de maior consumo (K1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="75"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="76"/>
         <source>Coeficiente hora de maior consumo (K2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="78"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="79"/>
         <source>Número de economias inicio de plano (e)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="82"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="83"/>
         <source>Número de economias fim de plano (e)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="89"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="90"/>
         <source>Vazão (l/s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="92"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="93"/>
         <source>Inicio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="96"/>
+        <location filename="../gui/dock_tabs/base/ui_dock_tab_flows_base.py" line="97"/>
         <source>Fim</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1279,157 +1279,157 @@ Para mais detalhes acesse o link de LICENÇA do plugin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="129"/>
+        <location filename="../core/xls/produces_os_xls.py" line="130"/>
         <source>BACIA:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="132"/>
+        <location filename="../core/xls/produces_os_xls.py" line="133"/>
         <source>DATA:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="137"/>
+        <location filename="../core/xls/produces_os_xls.py" line="138"/>
         <source>PROF.MÍNIMA (m):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="141"/>
+        <location filename="../core/xls/produces_os_xls.py" line="142"/>
         <source>DECLIVIDADE MÍNIMA (m/m):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="145"/>
+        <location filename="../core/xls/produces_os_xls.py" line="146"/>
         <source>QUANTITATIVOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="146"/>
+        <location filename="../core/xls/produces_os_xls.py" line="148"/>
         <source>REV.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="148"/>
+        <location filename="../core/xls/produces_os_xls.py" line="150"/>
         <source>Data Rev.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="153"/>
+        <location filename="../core/xls/produces_os_xls.py" line="155"/>
         <source>Extensão total:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="158"/>
+        <location filename="../core/xls/produces_os_xls.py" line="160"/>
         <source>Extensão ramal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="164"/>
+        <location filename="../core/xls/produces_os_xls.py" line="166"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="176"/>
+        <location filename="../core/xls/produces_os_xls.py" line="178"/>
         <source>CAIXA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="177"/>
+        <location filename="../core/xls/produces_os_xls.py" line="179"/>
         <source>DISTÂNCIA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="178"/>
+        <location filename="../core/xls/produces_os_xls.py" line="180"/>
         <source>COTA TERRENO (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="179"/>
+        <location filename="../core/xls/produces_os_xls.py" line="181"/>
         <source>COTA RAMAL (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="180"/>
+        <location filename="../core/xls/produces_os_xls.py" line="182"/>
         <source>ALTURA / PROFUNDIDADE (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="181"/>
+        <location filename="../core/xls/produces_os_xls.py" line="184"/>
         <source>GABARITO (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="182"/>
+        <location filename="../core/xls/produces_os_xls.py" line="185"/>
         <source>COTA RÉGUA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="183"/>
+        <location filename="../core/xls/produces_os_xls.py" line="186"/>
         <source>PROF. CRÍTICA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="184"/>
+        <location filename="../core/xls/produces_os_xls.py" line="187"/>
         <source>CAIM. TRECHO (cm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="185"/>
+        <location filename="../core/xls/produces_os_xls.py" line="188"/>
         <source>TUBO DE QUEDA (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="186"/>
+        <location filename="../core/xls/produces_os_xls.py" line="189"/>
         <source>OBS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="195"/>
+        <location filename="../core/xls/produces_os_xls.py" line="198"/>
         <source>MONT.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="196"/>
+        <location filename="../core/xls/produces_os_xls.py" line="199"/>
         <source>JUS.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="255"/>
+        <location filename="../core/xls/produces_os_xls.py" line="278"/>
         <source>NOTAS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="259"/>
+        <location filename="../core/xls/produces_os_xls.py" line="282"/>
         <source>Emissão:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="260"/>
+        <location filename="../core/xls/produces_os_xls.py" line="283"/>
         <source>Liberação:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="262"/>
+        <location filename="../core/xls/produces_os_xls.py" line="286"/>
         <source>Recebido:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="270"/>
+        <location filename="../core/xls/produces_os_xls.py" line="295"/>
         <source>Por:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="274"/>
+        <location filename="../core/xls/produces_os_xls.py" line="299"/>
         <source>Projeto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="276"/>
+        <location filename="../core/xls/produces_os_xls.py" line="302"/>
         <source>Fiscalização</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core/xls/produces_os_xls.py" line="277"/>
+        <location filename="../core/xls/produces_os_xls.py" line="304"/>
         <source>Construtora</source>
         <translation type="unfinished"></translation>
     </message>
