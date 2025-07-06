@@ -23,6 +23,10 @@ class DockTabCosts(DockTabCostsBase):
         self.save_timer.setSingleShot(True)
         self.save_timer.timeout.connect(self.save_values)
 
+    def hover(self):
+        """Called when the tab is hovered, used to update the tab information."""
+        ProjectDataManager.get_all_segments.cache_clear()
+
     def set_logic(self):
         self.sb_soil.valueChanged.connect(self.on_data_changed)
         self.sb_rock.valueChanged.connect(self.on_data_changed)
@@ -142,7 +146,7 @@ class DockTabCosts(DockTabCostsBase):
             self.gb_DataCosts.hide()
 
     def on_data_changed(self):
-        self.save_timer.start(1500)
+        self.save_timer.start(200)
 
     def save_values(self):
         print("Saving values")
