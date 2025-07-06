@@ -104,9 +104,13 @@ class CreateProjectDialog(QDialog):
                                    message=self.translate('Projeto criado com sucesso!'),
                                    information=QMessageBox.Information)
         except (FileNotFoundError, NotADirectoryError) as e:
-            self.utils.show_dialog(title=self.translate('Erro na criação do projeto'),
-                                   message=self.translate(f'O diretório "{self.le_path.text()}" selecionado não é válido!'),
-                                   information=QMessageBox.Warning)
+            translated_message = str(self.translate('O diretório "{0}" selecionado não é válido!')).format(
+                self.le_path.text())
+            self.utils.show_dialog(
+                title=self.translate('Erro na criação do projeto'),
+                message=translated_message,
+                information=QMessageBox.Warning
+            )
         except OSError as e:
             if e.errno == errno.EACCES:
                 self.utils.show_dialog(title=self.translate('Erro de permissão'),

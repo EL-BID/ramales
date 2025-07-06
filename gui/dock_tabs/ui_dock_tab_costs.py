@@ -1,6 +1,6 @@
 from typing import Optional
 
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QCoreApplication
 
 from ..generate_costs_ui import GenerateCostsUI
 from ...core.calculate.CostsCalculation import QuantitiesCalculations
@@ -10,6 +10,8 @@ from ...core.data.models import Costs
 
 
 class DockTabCosts(DockTabCostsBase):
+    # def translate(self, msg, disambiguation=None, n=-1) -> object:
+    #     return QCoreApplication.translate(DockTabCosts.__name__, msg, disambiguation, n)
     def __init__(self, dock):
         super().__init__(dock)
         self.quantities_calculator: Optional[QuantitiesCalculations] = None
@@ -80,13 +82,18 @@ class DockTabCosts(DockTabCostsBase):
         self.cb_show_data_costs.setChecked(ProjectDataManager.should_show_costs())
 
     def load_costs_values(self):
+        label_materials = self.tr("Custo dos materiais (USD):")
+        label_services = self.tr("Custo dos serviços (USD):")
+        label_total = self.tr("Custo total (USD):")
+        label_total_meter = self.tr("Custo total por metro (USD):")
         if self.costs is not None:
             # Serviços de custos sao de 1 a 33
             costs_services = self.costs.SERVICES[:33]
             costs_materials = self.costs.SERVICES[33:]
 
             methods_quantities = [method for method in dir(self.quantities_calculator)
-                                  if callable(getattr(self.quantities_calculator, method)) and method.startswith("get_")]
+                                  if
+                                  callable(getattr(self.quantities_calculator, method)) and method.startswith("get_")]
             methods_quantities.sort()
             values_quantities = [getattr(self.quantities_calculator, method)() for method in methods_quantities]
 
@@ -96,24 +103,24 @@ class DockTabCosts(DockTabCostsBase):
                 total_costs_services += costs_services[i] * values_quantities[i]
 
             for i in range(33, 40):
-                total_costs_materials += costs_materials[i-33] * values_quantities[i]
+                total_costs_materials += costs_materials[i - 33] * values_quantities[i]
 
             total_costs = total_costs_services + total_costs_materials
             total_extension = self.quantities_calculator.costs_calculation.get_total_extension()
             if total_extension != 0:
-                total_costs_meter = total_costs / self.quantities_calculator.costs_calculation.get_total_extension()
+                total_costs_meter = total_costs / total_extension
             else:
                 total_costs_meter = 0
 
-            self.lb_materials_costs.setText(f"{self.translate('Custo dos materiais (USD):')} $ {self.utils.formatNum2Dec(total_costs_materials)}")
-            self.lb_services_costs.setText(f"{self.translate('Custo dos serviços (USD):')} $ {self.utils.formatNum2Dec(total_costs_services)}")
-            self.lb_total_costs.setText(f"{self.translate('Custo total (USD):')} $ {self.utils.formatNum2Dec(total_costs)}")
-            self.lb_total_costs_meter.setText(f"{self.translate('Custo total por metro (USD):')} $ {self.utils.formatNum2Dec(total_costs_meter)}")
+            self.lb_materials_costs.setText(f"{label_materials} $ {self.utils.formatNum2Dec(total_costs_materials)}")
+            self.lb_services_costs.setText(f"{label_services} $ {self.utils.formatNum2Dec(total_costs_services)}")
+            self.lb_total_costs.setText(f"{label_total} $ {self.utils.formatNum2Dec(total_costs)}")
+            self.lb_total_costs_meter.setText(f"{label_total_meter} $ {self.utils.formatNum2Dec(total_costs_meter)}")
         else:
-            self.lb_materials_costs.setText(f"{self.translate('Custo dos materiais (USD):')} $ {self.utils.formatNum2Dec(0)}")
-            self.lb_services_costs.setText(f"{self.translate('Custo dos serviços (USD):')} $ {self.utils.formatNum2Dec(0)}")
-            self.lb_total_costs.setText(f"{self.translate('Custo total (USD):')} $ {self.utils.formatNum2Dec(0)}")
-            self.lb_total_costs_meter.setText(f"{self.translate('Custo total por metro (USD):')} $ {self.utils.formatNum2Dec(0)}")
+            self.lb_materials_costs.setText(f"{label_materials} $ {self.utils.formatNum2Dec(0)}")
+            self.lb_services_costs.setText(f"{label_services} $ {self.utils.formatNum2Dec(0)}")
+            self.lb_total_costs.setText(f"{label_total} $ {self.utils.formatNum2Dec(0)}")
+            self.lb_total_costs_meter.setText(f"{label_total_meter} $ {self.utils.formatNum2Dec(0)}")
 
 
     def load_costs_calculations(self):

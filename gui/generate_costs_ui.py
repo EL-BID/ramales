@@ -29,6 +29,7 @@ class GenerateCostsUI:
         self.le_select_folder = QLineEdit()
         self.pb_select_folder = QPushButton('...')
         self.pb_gerenate = QPushButton(self.translate('Gerar planilha'))
+        self.pb_gerenate.adjustSize()
         self.quantities_calculator: Optional[QuantitiesCalculations] = None
         self.__load_components()
         self.pb_select_folder.clicked.connect(self.__select_folder_save_os)
@@ -37,7 +38,7 @@ class GenerateCostsUI:
     def __load_components(self):
         self.le_select_folder.setFixedSize(400, 25)
         self.pb_select_folder.setFixedSize(100, 25)
-        self.pb_gerenate.setFixedSize(100, 25)
+        self.pb_gerenate.adjustSize()
         self.fl_layout.addRow(self.lb_select_folder)
         self.fl_layout.addRow(self.le_select_folder, self.pb_select_folder)
         self.fl_layout.addRow('', self.pb_gerenate)

@@ -200,7 +200,7 @@ class DockTabCostsBase(DockTab):
         self.pb_report_costs.setText(self.translate('Editar'))
         self.pb_report_costs.setFixedSize(100, 25)
         self.pb_generate_xls_costs.setText(self.translate('Gerar xls custos'))
-        self.pb_generate_xls_costs.setFixedSize(100, 25)
+        self.pb_generate_xls_costs.adjustSize()
         self.hb_layoutShowCosts.addWidget(self.cb_show_data_costs)
         self.hb_layoutShowCosts.addWidget(self.pb_report_costs)
         self.vb_layoutCosts.addLayout(self.hb_layoutShowCosts)

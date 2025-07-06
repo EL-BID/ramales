@@ -260,92 +260,92 @@
         <translation>¡Proyecto creado exitosamente!</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="128"/>
         <source>Erro na criação do projeto</source>
         <translation>Error al crear el proyecto</translation>
     </message>
     <message>
         <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="107"/>
-        <source>O diretório &quot;{self.le_path.text()}&quot; selecionado não é válido!</source>
-        <translation>¡El directorio seleccionado &quot;{self.le_path.text()}&quot; no es válido!</translation>
+        <source>O diretório &quot;{0}&quot; selecionado não é válido!</source>
+        <translation>¡El directorio seleccionado &quot;{0}&quot; no es válido!</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="112"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
         <source>Erro de permissão</source>
         <translation>Error de permiso</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="112"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
         <source>Você não tem permissão para criar o projeto nesse diretório!</source>
         <translation>¡No tienes permiso para crear el proyecto en este directorio!</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
         <source>Falta de espaço</source>
         <translation>Falta de espacio</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="116"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
         <source>Não há espaço suficiente no disco para criar o projeto!</source>
         <translation>¡No hay suficiente espacio en el disco para crear el proyecto!</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="120"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
         <source>Erro de sistema operacional</source>
         <translation>Error del sistema operativo</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="124"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="128"/>
         <source>Erro desconhecido: </source>
         <translation>Error desconocido: </translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>Tipo</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>SRID</source>
         <translation>SRID</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="149"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
         <source>Descrição</source>
         <translation>Descripción</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="152"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="156"/>
         <source>Buscar...</source>
         <translation>Buscar...</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="153"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="157"/>
         <source>Selecione a pasta para a criação do projeto QGIS</source>
         <translation>Seleccione la carpeta para crear el proyecto QGIS</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="181"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="185"/>
         <source>Local:</source>
         <translation>Local:</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="182"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="186"/>
         <source>Nome:</source>
         <translation>Nombre:</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="183"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="187"/>
         <source>Pasta de instalação</source>
         <translation>Carpeta de instalación</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="184"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="188"/>
         <source>Filtro (SRID):</source>
         <translation>Filtro (SRID):</translation>
     </message>
     <message>
-        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="185"/>
+        <location filename="../gui/dock_tabs/views/ui_dock_tab_home_create_project.py" line="189"/>
         <source>Selecione um SRID:</source>
         <translation>Seleccione un SRID:</translation>
     </message>
@@ -420,6 +420,29 @@ Para más detalles acceda al enlace LICENCIA del plugin.</translation>
     </message>
 </context>
 <context>
+    <name>DockTabCosts</name>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="85"/>
+        <source>Custo dos materiais (USD):</source>
+        <translation>Costo de materiales (USD):</translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="86"/>
+        <source>Custo dos serviços (USD):</source>
+        <translation>Costo de servicios (USD):</translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="87"/>
+        <source>Custo total (USD):</source>
+        <translation>Costo total (USD):</translation>
+    </message>
+    <message>
+        <location filename="../gui/dock_tabs/ui_dock_tab_costs.py" line="88"/>
+        <source>Custo total por metro (USD):</source>
+        <translation>Costo total por metro (USD):</translation>
+    </message>
+</context>
+<context>
     <name>DockTabCostsBase</name>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="46"/>
@@ -474,7 +497,7 @@ Para más detalles acceda al enlace LICENCIA del plugin.</translation>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="157"/>
         <source>Empolamento Solo</source>
-        <translation>esponjamiento en suelos</translation>
+        <translation>Esponjamiento en suelos</translation>
     </message>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="162"/>
@@ -484,7 +507,7 @@ Para más detalles acceda al enlace LICENCIA del plugin.</translation>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="165"/>
         <source>Empolamento Rocha</source>
-        <translation>esponjamiento en roca</translation>
+        <translation>Esponjamiento en roca</translation>
     </message>
     <message>
         <location filename="../gui/dock_tabs/base/ui_dock_tab_costs_base.py" line="168"/>
@@ -790,12 +813,12 @@ Para más detalles acceda al enlace LICENCIA del plugin.</translation>
         <translation>Generar hoja de cálculo</translation>
     </message>
     <message>
-        <location filename="../gui/generate_costs_ui.py" line="47"/>
+        <location filename="../gui/generate_costs_ui.py" line="48"/>
         <source>Salvar planilha de custos</source>
         <translation>Guardar hoja de cálculo de costos</translation>
     </message>
     <message>
-        <location filename="../gui/generate_costs_ui.py" line="59"/>
+        <location filename="../gui/generate_costs_ui.py" line="60"/>
         <source>Arquivo gerado com sucesso</source>
         <translation>Archivo generado exitosamente</translation>
     </message>
