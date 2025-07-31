@@ -35,7 +35,9 @@
     "coord_x": "coord_x",
     "coord_y": "coord_y",
     "critical_depth": "prof_critica",
-    "template": "gabarito"
+    "template": "gabarito",
+    "branch_position": "posicion_caja",
+    "h_branch": "h_ramal"
   }],
   "segments":  ["tramo", {
     "id": "fid",
@@ -66,7 +68,15 @@
     "coord_Xi": "coord_Xi",
     "coord_Yi": "coord_Yi",
     "coord_Xf": "coord_Xf",
-    "coord_Yf": "coord_Yf"
+    "coord_Yf": "coord_Yf",
+    "tq": "TC",
+    "h_tq": "h_TC",
+    "to_envelop": "envolver_TC",
+    "tq_link1": "TC_conexion 1",
+    "tq_link2": "TQ_conexion 2",
+    "branch_position": "posicion_ramal",
+    "h_branch": "h_ramal"
+
   }],
   "blocks": ["manzana_proyecto", {
     "id": "fid",
