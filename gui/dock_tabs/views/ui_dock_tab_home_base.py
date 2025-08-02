@@ -1,6 +1,6 @@
 import os
 
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QLocale, QSettings
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (QPushButton, QLabel, QComboBox, QGroupBox, QVBoxLayout, QBoxLayout, QHBoxLayout)
 from qgis.PyQt.QtCore import Qt
@@ -51,9 +51,14 @@ class DockTabHomeBase(DockTab):
         self.set_logic()
 
     def tab_start_ui(self):
-        # Add Plugin Logo at the top of the tab
-        path = os.path.join(self.utils.get_plugin_dir(), 'icons/saniramales_02.png')
-        logo = QPixmap(path)
+        # Get system language
+        locale = QSettings().value('locale/userLocale')[0:2]
+        if locale == "es":
+            logo_path = os.path.join(self.utils.get_plugin_dir(), 'icons/saniramales_02_ES.png')
+        else:
+            logo_path = os.path.join(self.utils.get_plugin_dir(), 'icons/saniramales_02.png')
+
+        logo = QPixmap(logo_path)
         self.logo_label.setPixmap(logo.scaled(int(logo.width()/3), int(logo.height()/3), Qt.KeepAspectRatio, Qt.SmoothTransformation))
         self.vb_layout.addWidget(self.logo_label)
 
