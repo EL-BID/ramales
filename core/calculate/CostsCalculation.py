@@ -1,3 +1,4 @@
+from ...helpers.locale_helper import get_localization_object
 from ..data.models import Costs, Ramal, Segment
 from typing import Dict
 import math
@@ -309,6 +310,9 @@ class QuantitiesCalculations:
     def __init__(self, costs: Costs, ramals: Dict[str, Ramal]):
         self.costs = costs
         self.costs_calculation = CostCalculation(self.costs, ramals)
+        locale_object = get_localization_object()
+        self.box_type_mapping = locale_object["box_type_mapping"]
+        self.pavement_type_mapping = locale_object["pavement_type_mapping"]
 
     # SINALIZAÇÃO E SEGURANÇA
     def get_01_01_01(self):
@@ -365,53 +369,69 @@ class QuantitiesCalculations:
 
     # CAIXAS E POÇOS DE VISITA
     def get_01_06_01(self):
-        return self.costs_calculation.get_node_counts().get('1', 0)
+        node_id = self.box_type_mapping["dn40"]
+        return self.costs_calculation.get_node_counts().get(str(node_id), 0)
 
     def get_01_06_02(self):
-        return self.costs_calculation.get_node_counts().get('2', 0)
+        node_id = self.box_type_mapping["dn60"]
+        return self.costs_calculation.get_node_counts().get(str(node_id), 0)
 
     def get_01_06_03(self):
-        return self.costs_calculation.get_node_counts().get('4', 0)
+        node_id = self.box_type_mapping["retangular_tijolinho"]
+        return self.costs_calculation.get_node_counts().get(str(node_id), 0)
 
     def get_01_06_04(self):
-        return self.costs_calculation.get_node_counts().get('3', 0)
+        node_id = self.box_type_mapping["retangular_concreto"]
+        return self.costs_calculation.get_node_counts().get(str(node_id), 0)
 
     def get_01_06_05(self):
-        return self.costs_calculation.get_node_counts().get('13', 0)
+        node_id = self.box_type_mapping["til_terminal_inspecao_limpanca"]
+        return self.costs_calculation.get_node_counts().get(str(node_id), 0)
 
-    # DEMOLIÇÕES
-    # 01.07.01 até 01.07.10, return 0 por enquanto em tudo
+    # DEMOLIÇÕES (Pavimentos)
     def get_01_07_01(self):
-        return (self.costs_calculation.get_pavement_areas().get('1', 0.0) +
-                self.costs_calculation.get_pavement_areas().get('4', 0.0) +
-                self.costs_calculation.get_pavement_areas().get('8', 0.0))
+        ids = [
+            self.pavement_type_mapping["ardosia"],
+            self.pavement_type_mapping["ceramica"],
+            self.pavement_type_mapping["marmore"]
+        ]
+        return sum(self.costs_calculation.get_pavement_areas().get(str(pid), 0.0) for pid in ids)
 
     def get_01_07_02(self):
-        return self.costs_calculation.get_pavement_areas().get('10', 0.0)
+        pid = self.pavement_type_mapping["placas_de_concreto"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_03(self):
-        return self.costs_calculation.get_pavement_areas().get('12', 0.0)
+        pid = self.pavement_type_mapping["paralelepipedo"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_04(self):
-        return self.costs_calculation.get_pavement_areas().get('13', 0.0)
+        pid = self.pavement_type_mapping["grama"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_05(self):
-        return self.costs_calculation.get_pavement_areas().get('2', 0.0)
+        pid = self.pavement_type_mapping["asfalto"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_06(self):
-        return self.costs_calculation.get_pavement_areas().get('3', 0.0)
+        pid = self.pavement_type_mapping["blocos_intertravados"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_07(self):
-        return self.costs_calculation.get_pavement_areas().get('5', 0.0)
+        pid = self.pavement_type_mapping["cimentado"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_08(self):
-        return self.costs_calculation.get_pavement_areas().get('6', 0.0)
+        pid = self.pavement_type_mapping["concreto_simples"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_09(self):
-        return self.costs_calculation.get_pavement_areas().get('7', 0.0)
+        pid = self.pavement_type_mapping["concreto_reforcado"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     def get_01_07_10(self):
-        return self.costs_calculation.get_pavement_areas().get('9', 0.0)
+        pid = self.pavement_type_mapping["pedra_portuguesa"]
+        return self.costs_calculation.get_pavement_areas().get(str(pid), 0.0)
 
     # SERVIÇOS DIRETOS
     def get_01_08_01(self):

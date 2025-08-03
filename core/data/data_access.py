@@ -50,7 +50,7 @@ class LanguageDAO(DAO):
 
     @classmethod
     def get_language_project(cls):
-        return cls.proj.readEntry(cls.SCOPE, cls.KEY_LANGUAGE, None)
+        return cls.proj.readEntry(cls.SCOPE, cls.KEY_LANGUAGE, "pt_BR")
 
     @classmethod
     def set_language_project(cls, language: str):

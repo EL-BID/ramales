@@ -17,6 +17,7 @@ from qgis._core import QgsProject, QgsVectorLayer
 from qgis.PyQt.QtGui import QFont
 from qgis.PyQt.QtWidgets import QMessageBox
 import os.path
+from functools import cached_property
 
 
 class Utils:
@@ -30,6 +31,11 @@ class Utils:
     def __init__(self):
         self.data_json = None
         # self.segments = QgsProject.instance().mapLayer(ProjectDataManager.get_layers_id().SEGMENTS_LAYER_ID)
+
+    def get_locale_json(self):
+        if self.data_json is None:
+            self.__set_data_json()
+        return self.data_json
 
     def translate(self, msg, disambiguation=None, n=-1) -> str:
         return QCoreApplication.translate(Utils.__name__, msg, disambiguation, n)

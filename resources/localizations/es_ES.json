@@ -140,5 +140,35 @@
     "resident": "residente",
     "registration": "matricula",
     "unit": "unidade"
-  }]
+  }],
+  "box_type_mapping": {
+    "dn40": 1,
+    "dn60": 2,
+    "retangular_concreto": 3,
+    "retangular_tijolinho": 4,
+    "dn40_existente": 5,
+    "dn60_existente": 6,
+    "retangular_concreto_existente": 7,
+    "retangular_tijolinho_existente": 8,
+    "pv_rede_existente": 13,
+    "selim_rede": 10,
+    "q_vizinha": 11,
+    "pv_rede_projetado": 9,
+    "til_terminal_inspecao_limpanca": 12
+  },
+   "pavement_type_mapping": {
+    "ardosia": 1,
+    "asfalto": 2,
+    "blocos_intertravados": 3,
+    "ceramica": 12,
+    "cimentado": 5,
+    "concreto_simples": 6,
+    "concreto_reforcado": 7,
+    "marmore": 8,
+    "pedra_portuguesa": 9,
+    "placas_de_concreto": 10,
+    "sem_pavimento": 11,
+    "paralelepipedo": 4,
+    "grama": 13
+  }
 }
