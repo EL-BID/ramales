@@ -1,4 +1,4 @@
-from ...helpers.locale_helper import get_localization_object
+from ...helpers.utils import Utils
 from ..data.models import Costs, Ramal, Segment
 from typing import Dict
 import math
@@ -310,7 +310,8 @@ class QuantitiesCalculations:
     def __init__(self, costs: Costs, ramals: Dict[str, Ramal]):
         self.costs = costs
         self.costs_calculation = CostCalculation(self.costs, ramals)
-        locale_object = get_localization_object()
+        utils = Utils()
+        locale_object = utils.get_locale_json()
         self.box_type_mapping = locale_object["box_type_mapping"]
         self.pavement_type_mapping = locale_object["pavement_type_mapping"]
 
