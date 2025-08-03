@@ -39,6 +39,17 @@ class DockTab(QWidget):
         """Method called to define user input logic."""
         pass
 
+    def hard_reload(self):
+        """
+            Method called by the dock to reload tab information, based on data
+            current project.
+            It is used to reload the tab when the project changes.
+        """
+        self.utils = Utils()
+        self.should_reload = True
+        self.reload()
+        self.should_reload = False
+
     def reload(self):
         """
             Method called by the dock to reload tab information, based on data

@@ -187,4 +187,4 @@ class SanihubRamales:
         self.dockwidget.show()
 
     def on_project_clear(self):
-        self.dock.reload()
+        self.dock.hard_reload()

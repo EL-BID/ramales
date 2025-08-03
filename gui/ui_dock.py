@@ -65,6 +65,13 @@ class DockUI:
         self.tab_about.reload()
         self.tab_costs.reload()
 
+    def hard_reload(self):
+        self.add_tabs()
+        self.tab_home.hard_reload()
+        self.tab_flows.hard_reload()
+        self.tab_about.hard_reload()
+        self.tab_costs.hard_reload()
+
     def add_tabs(self):
         before = self.tabWidget.currentWidget()
         self.tabWidget.clear()
