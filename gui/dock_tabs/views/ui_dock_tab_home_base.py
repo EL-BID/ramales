@@ -5,6 +5,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (QPushButton, QLabel, QComboBox, QGroupBox, QVBoxLayout, QBoxLayout, QHBoxLayout)
 from qgis.PyQt.QtCore import Qt
 
+from ....core.calculate.project import Project
 from ..base.ui_dock_tab_base import DockTab
 from ....helpers.utils import Utils
 
@@ -46,7 +47,7 @@ class DockTabHomeBase(DockTab):
         self.pb_generate_os = QPushButton(self.translate('Gerar'))
         self.logo_label = QLabel()
         self.img_label = QLabel()
-
+        self.proj = Project(self.iface)
         self.utils = Utils()
         self.set_logic()
 

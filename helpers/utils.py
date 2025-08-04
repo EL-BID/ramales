@@ -135,6 +135,10 @@ class Utils:
 
     def get_idx_attr(self, layer: QgsVectorLayer, name_lyr: str, name_attr: str):
         attrs = layer.fields().names()
+        try:
+            res = attrs.index(self.get_json_attr(name_lyr, name_attr))
+        except ValueError:
+            print(f"{name_lyr=}, {name_attr=}, {attrs=},{self.get_json_attr(name_lyr, name_attr)=}")
         return attrs.index(self.get_json_attr(name_lyr, name_attr))
 
     def get_idx_attr_segments(self, name_attr: str):

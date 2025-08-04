@@ -70,6 +70,22 @@ class Node:
     branch_position: Optional[str]
     h_branch: Optional[float]
 
+    def __post_init__(self):
+        float_fields = [
+            "q_terrain", "q_project", "depth", "q_rule",
+            "coord_x", "coord_y", "critical_depth", "h_branch"
+        ]
+
+        for field in float_fields:
+            value = getattr(self, field)
+            if str(value) == "NULL":
+                setattr(self, field, 0.0)
+            elif isinstance(value, str):
+                try:
+                    setattr(self, field, float(value))
+                except ValueError:
+                    pass  # Let it remain None or raise, depending on desired behavior
+
 
 @dataclass
 class Segment:

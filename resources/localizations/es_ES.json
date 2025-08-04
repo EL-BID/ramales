@@ -36,7 +36,7 @@
     "coord_y": "coord_y",
     "critical_depth": "prof_critica",
     "template": "gabarito",
-    "branch_position": "posicion_caja",
+    "branch_position": "posicion_ramal",
     "h_branch": "h_ramal"
   }],
   "segments":  ["tramo", {
@@ -73,7 +73,7 @@
     "h_tq": "h_TC",
     "to_envelop": "envolver_TC",
     "tq_link1": "TC_conexion 1",
-    "tq_link2": "TQ_conexion 2",
+    "tq_link2": "TC_conexion 2",
     "branch_position": "posicion_ramal",
     "h_branch": "h_ramal"
 

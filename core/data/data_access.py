@@ -1,14 +1,10 @@
 from abc import ABC, abstractmethod
 
 from PyQt5.QtCore import QLocale
-from qgis.core import QgsProject, QgsVectorLayer, QgsMapLayer
+from qgis.core import QgsProject, QgsVectorLayer
 from typing import Tuple, Dict, List
 
 from ..data.models import Ramal, Segment, Node
-import os
-import json
-import importlib
-from ...helpers.globals import get_language_file
 
 
 class DAO(ABC):

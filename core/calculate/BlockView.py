@@ -198,7 +198,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                 self.utils.get_key_map_of_values(layer=nodes_lyr,
                                              idx_col=self.utils.get_idx_attr(nodes_lyr, 'nodes', 'branch_position'),
                                              value=segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'nodes',
-                                                                                                'branch_position')])))  # node('posicao_ramal'))))
+                                                                                                'branch_position')])))
             self.tableWidget.setItem(i, 18, QTableWidgetItem(
                 self.__float_to_str_locale(self.utils.get_element_layer_nodes(
                     node=segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'segments', 'up_box')],
@@ -208,7 +208,7 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
                     'NULL', '')))
             self.tableWidget.setItem(i, 20, QTableWidgetItem(
                 self.check(self.__float_to_str_locale(
-                    segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'segments', 'h_TQ')],
+                    segments[i].attributes()[self.utils.get_idx_attr(segments_lyr, 'segments', 'h_tq')],
                     decimals=2).replace(
                     'NULL', ''))))
             self.tableWidget.setItem(i, 21, QTableWidgetItem(
@@ -511,7 +511,9 @@ class BlockViewDialog(QDialog, Ui_BlockDialog):
             raise ValueError(self.translate('Camada inválida!'))
         count = 0
         for feat in buildings_lyr.getFeatures():
-            count += feat[self.utils.get_json_attr('buildings', 'n_econ')]
+            e = feat[self.utils.get_json_attr('buildings', 'n_econ')]
+            e = int(e)
+            count += e
         return count
 
     def __get_length_service_lane(self):
