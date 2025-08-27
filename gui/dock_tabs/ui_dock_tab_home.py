@@ -26,7 +26,6 @@ class DockTabHome(DockTabHomeBase):
         self.iface = iface
         self.utils = Utils()
         self.create_project_dialog = CreateProjectDialog(self.iface)
-        self.proj = Project(self.iface)
         self.generate_os = GenerateOsUI()
         # self.set_layers = SetLayersUI()
         self.data_json = None
@@ -43,6 +42,7 @@ class DockTabHome(DockTabHomeBase):
         self.pb_set_raster.clicked.connect(self.__set_raster_layer)
         self.pb_calculate.clicked.connect(self.__update_calculate)
         self.pb_generate_os.clicked.connect(self.__produces_xls_os)
+        self.proj.blockDialog.accepted.connect(lambda: self.dock.reload())
         # self.pb_set_layers.clicked.connect(self.__show_set_vector_layers)
 
     def __create_project(self):
