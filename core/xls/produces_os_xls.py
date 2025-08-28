@@ -1,6 +1,6 @@
 import json
 
-from PyQt5.QtCore import Qt, QLocale, QCoreApplication
+from PyQt5.QtCore import Qt, QLocale, QCoreApplication, QVariant
 from qgis._core import QgsProject, QgsVectorLayer
 from xlwt import Workbook, easyxf
 import os
@@ -167,7 +167,7 @@ class ProducesReportOSXls:
                                       TEXT_NORMAL_LEFT_DATA_BRANCH)
                 # Get, from caixa in up_box, the h_branch
                 worksheet.write(15, self.MAX_COLUMN,
-                                h_branch,
+                                h_branch if type(h_branch) is not QVariant else 0.00,
                                 TEXT_NORMAL_CENTER_BRANCH)
             else:
                 worksheet.write_merge(15, 15, 0, 3, '', TEXT_NORMAL_LEFT_TUBO)
