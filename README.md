@@ -1,5 +1,5 @@
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/EL-BID/ramales/blob/dev/README.md)
-[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/EL-BID/ramales/blob/master/README-es.md)
+[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/EL-BID/ramales/blob/dev/README-es.md)
 
 
 <html>
