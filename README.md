@@ -1,6 +1,16 @@
+
+
 <html>
 <body>
 <h1>SaniHUB Ramales</h1>
+<a href="https://github.com/EL-BID/ramales/blob/dev/README.md" style="text-decoration:none;display:inline-block;">
+  <img src="https://img.shields.io/badge/lang-pt--br-green.svg" alt="pt-br">
+</a>
+<a href="https://github.com/EL-BID/ramales/blob/master/README.es.md" style="text-decoration:none;display:inline-block;">
+  <img src="https://img.shields.io/badge/lang-es-yellow.svg" alt="es">
+</a>
+
+
 <h2>Descrição</h2>
 
 O SaniHUB Ramales é um software livre que tem como objetivo auxiliar no traçado e na
